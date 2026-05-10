@@ -381,35 +381,29 @@
 
     /* ── CONTACT ── */
     .contact-sec { padding: var(--pad) 0; background: white; }
-    .contact-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
-    .contact-info h2 { font-size: clamp(26px,3vw,38px); color: var(--navy); margin-bottom: 14px; }
-    .contact-info > p { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 32px; }
-    .cc-list { display: flex; flex-direction: column; gap: 14px; }
-    .cc { display:flex; align-items:center; gap:14px; padding:18px; background:var(--bg); border-radius:16px; transition:all .25s; }
-    .cc:hover { background:var(--sky); transform:translateX(5px); }
-    .cc-i { width:50px; height:50px; border-radius:13px; background:white; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 3px 10px rgba(0,0,0,.06); flex-shrink:0; }
-    .cc-lbl { font-size:11px; color:var(--muted); font-weight:600; display:block; }
-    .cc-val { font-size:15px; color:var(--navy); font-weight:700; }
-
-    .contact-form { background: var(--bg); border-radius: 28px; padding: 44px 36px; }
-    .contact-form h3 { font-size: 22px; color: var(--navy); margin-bottom: 26px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .fg { display: flex; flex-direction: column; gap: 5px; }
-    .fg.full { grid-column: 1/-1; }
-    .fg label { font-size: 13px; font-weight: 700; color: var(--text); }
-    .fg input, .fg select, .fg textarea {
-      padding: 13px 15px; border: 2px solid transparent; background: white;
-      border-radius: 12px; font-family:'Nunito',sans-serif; font-size: 14px; color: var(--text);
-      outline: none; transition: border-color .2s; width: 100%;
+    .contact-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+      margin-top: 20px;
     }
-    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
-    .fg textarea { resize: vertical; min-height: 110px; }
-    .form-sub { margin-top: 22px; }
-    .form-sub .btn { width: 100%; justify-content: center; padding: 16px; font-size: 16px; }
-    .form-ok { display: none; text-align: center; padding: 28px 16px; }
-    .form-ok .ok-e { font-size: 56px; display: block; margin-bottom: 10px; }
-    .form-ok h4 { font-size: 20px; color: var(--navy); margin-bottom: 6px; }
-    .form-ok p { font-size: 14px; color: var(--muted); }
+    .ccard {
+      background: var(--bg); border-radius: 24px; padding: 40px 32px;
+      text-align: center; transition: all .3s;
+      border-bottom: 4px solid transparent;
+      box-shadow: 0 4px 20px rgba(10,45,114,.07);
+    }
+    .ccard:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(10,45,114,.15); }
+    .ccard:nth-child(1) { border-color: var(--blue); }
+    .ccard:nth-child(2) { border-color: var(--yellow); }
+    .ccard:nth-child(3) { border-color: var(--green); }
+    .ccard-icon {
+      width: 72px; height: 72px; border-radius: 20px; background: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 20px;
+      box-shadow: 0 6px 20px rgba(10,45,114,.10);
+    }
+    .ccard h4 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .ccard p  { font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.5; margin-bottom: 22px; }
+    .ccard .btn { display: inline-flex; }
 
     /* ── FOOTER ── */
     .site-footer { background: #051f5c; padding: 70px 0 0; color: rgba(255,255,255,.65); }
@@ -470,6 +464,7 @@
       .testi-grid { grid-template-columns: repeat(2,1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 36px; }
+      .contact-cards { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
     }
     @media(max-width:768px){
       .main-nav { display: none; }
@@ -486,9 +481,7 @@
       .products-grid { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
-      .contact-inner { grid-template-columns: 1fr; gap: 36px; }
-      .contact-form { padding: 28px 20px; }
-      .form-grid { grid-template-columns: 1fr; }
+      .contact-cards { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; gap: 28px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
@@ -908,74 +901,32 @@
 <!-- CONTACT -->
 <section class="contact-sec" id="contact">
   <div class="container">
-    <div class="contact-inner">
+    <div class="section-title">
+      <span class="badge">Get In Touch</span>
+      <h2>We'd Love to <span>Hear From You</span></h2>
+      <p>Whether you're a school, retailer, or parent — reach out through any of the channels below and we'll get back to you promptly.</p>
+    </div>
+    <div class="contact-cards">
 
-      <div class="contact-info">
-        <span class="badge">Get In Touch</span>
-        <h2>Let's Talk About<br>Your Stationery Needs</h2>
-        <p>Whether you're a school, retailer, or parent — we'd love to hear from you. Reach out and we'll get back to you within 24 hours.</p>
-        <div class="cc-list">
-          <div class="cc">
-            <div class="cc-i">📍</div>
-            <div><span class="cc-lbl">Head Office</span><span class="cc-val">Mumbai, Maharashtra, India</span></div>
-          </div>
-          <div class="cc">
-            <div class="cc-i">📞</div>
-            <div><span class="cc-lbl">Customer Support</span><span class="cc-val">+91 98765 43210</span></div>
-          </div>
-          <div class="cc">
-            <div class="cc-i">✉️</div>
-            <div><span class="cc-lbl">Email Us</span><span class="cc-val">info@successful.in</span></div>
-          </div>
-          <div class="cc">
-            <div class="cc-i">🕐</div>
-            <div><span class="cc-lbl">Working Hours</span><span class="cc-val">Mon–Sat, 9 AM – 6 PM</span></div>
-          </div>
-        </div>
+      <div class="ccard">
+        <div class="ccard-icon">📍</div>
+        <h4>Head Office</h4>
+        <p>64A, Hemanta Basu Sarani, 3rd Floor, Room No. 302, Kolkata, India 700001</p>
+        <a href="https://maps.google.com/?q=64A+Hemanta+Basu+Sarani+Kolkata" target="_blank" class="btn btn-blue">View on Map</a>
       </div>
 
-      <div class="contact-form">
-        <h3>Send Us a Message</h3>
-        <form id="contactForm" onsubmit="handleForm(event)">
-          <div class="form-grid">
-            <div class="fg">
-              <label>Your Name *</label>
-              <input type="text" placeholder="Enter your name" required>
-            </div>
-            <div class="fg">
-              <label>Phone Number *</label>
-              <input type="tel" placeholder="+91 XXXXX XXXXX" required>
-            </div>
-            <div class="fg">
-              <label>Email Address</label>
-              <input type="email" placeholder="your@email.com">
-            </div>
-            <div class="fg">
-              <label>Enquiry Type</label>
-              <select>
-                <option value="">Select enquiry type</option>
-                <option>School Supply Partnership</option>
-                <option>Retail Distributor</option>
-                <option>Product Information</option>
-                <option>Bulk Order</option>
-                <option>Career Opportunity</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fg full">
-              <label>Message</label>
-              <textarea placeholder="Tell us how we can help you…"></textarea>
-            </div>
-          </div>
-          <div class="form-sub">
-            <button type="submit" class="btn btn-blue">Send Message 🚀</button>
-          </div>
-        </form>
-        <div class="form-ok" id="formOk">
-          <span class="ok-e">🎉</span>
-          <h4>Message Sent Successfully!</h4>
-          <p>Thank you for reaching out! Our team will get back to you within 24 hours.</p>
-        </div>
+      <div class="ccard">
+        <div class="ccard-icon">📞</div>
+        <h4>Customer Support</h4>
+        <p>+91 98046 63383</p>
+        <a href="tel:+919804663383" class="btn btn-yellow">Call Us Now</a>
+      </div>
+
+      <div class="ccard">
+        <div class="ccard-icon">✉️</div>
+        <h4>Email Us</h4>
+        <p>sandeeptshaw1976@gmail.com</p>
+        <a href="mailto:sandeeptshaw1976@gmail.com" class="btn btn-blue">Send Email</a>
       </div>
 
     </div>
