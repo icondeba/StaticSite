@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Successful™ — India's trusted school stationery brand. Quality notebooks, art supplies, math instruments and more for students.">
+  <title>Successful™ — School Stationery | Notebooks | Art Supplies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0a2d72;
+      --blue:   #0a3d8f;
+      --bluem:  #1565c0;
+      --sky:    #e3f2fd;
+      --yellow: #FFD600;
+      --orange: #FF6B35;
+      --green:  #00C853;
+      --pink:   #E91E8C;
+      --purple: #7C3AED;
+      --white:  #ffffff;
+      --bg:     #F4F8FF;
+      --text:   #1a2744;
+      --muted:  #6b7a9b;
+      --radius: 20px;
+      --pad:    clamp(60px, 8vw, 100px);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+    .badge {
+      display: inline-block;
+      background: var(--sky); color: var(--blue);
+      font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+      padding: 6px 18px; border-radius: 50px; margin-bottom: 14px;
+    }
+
+    .section-title { text-align: center; margin-bottom: 52px; }
+    .section-title h2 { font-size: clamp(28px, 4vw, 44px); color: var(--navy); line-height: 1.2; }
+    .section-title h2 span { color: var(--bluem); }
+    .section-title p { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 30px; border-radius: 50px;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px;
+      cursor: pointer; border: none; transition: all .3s ease;
+    }
+    .btn-yellow { background: var(--yellow); color: var(--navy); box-shadow: 0 4px 20px rgba(255,214,0,.4); }
+    .btn-yellow:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(255,214,0,.55); }
+    .btn-ghost  { background: rgba(255,255,255,.15); color: white; border: 2px solid rgba(255,255,255,.5); }
+    .btn-ghost:hover { background: rgba(255,255,255,.25); transform: translateY(-3px); }
+    .btn-blue   { background: var(--blue); color: white; box-shadow: 0 4px 20px rgba(10,61,143,.35); }
+    .btn-blue:hover { background: var(--bluem); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(10,61,143,.45); }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      background: transparent;
+      border-bottom: none;
+      transition: background .35s ease, box-shadow .35s ease;
+    }
+    .site-header.scrolled {
+      background: white;
+      box-shadow: 0 4px 28px rgba(10,45,114,.13);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+
+    .logo img { height: 46px; width: auto; }
+
+
+    .logo-fallback { font-family:'Poppins',sans-serif; font-weight:900; font-size:22px; color:white; text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+    .site-header.scrolled .logo-fallback { color: var(--navy); text-shadow: none; }
+
+    .main-nav { display: flex; align-items: center; gap: 4px; }
+    .main-nav a {
+      font-weight: 700; font-size: 14px; color: rgba(255,255,255,.92);
+      padding: 8px 14px; border-radius: 8px; transition: all .2s;
+      text-shadow: 0 1px 6px rgba(0,0,0,.4);
+    }
+    .site-header.scrolled .main-nav a { color: var(--text); text-shadow: none; }
+    .main-nav a:hover { background: rgba(255,255,255,.15); }
+    .site-header.scrolled .main-nav a:hover { background: var(--sky); color: var(--blue); }
+    .nav-cta {
+      background: var(--yellow) !important; color: var(--navy) !important;
+      border-radius: 50px !important; box-shadow: 0 4px 14px rgba(255,214,0,.4);
+      margin-left: 8px;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,214,0,.55) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 26px; height: 3px; border-radius: 3px; background: white; transition: all .3s; }
+    .site-header.scrolled .hamburger span { background: var(--navy); }
+
+    /* mobile drawer */
+    .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1000; }
+    .mob-overlay.open { display: block; }
+    .mob-nav {
+      position: fixed; top: 0; right: 0; width: 290px; height: 100vh;
+      background: white; box-shadow: -8px 0 50px rgba(0,0,0,.18); z-index: 1001;
+      padding: 80px 28px 28px; display: flex; flex-direction: column; gap: 6px;
+      transform: translateX(100%); transition: transform .3s ease;
+    }
+    .mob-nav.open { transform: translateX(0); }
+    .mob-nav a { font-weight: 700; font-size: 16px; color: var(--text); padding: 12px 16px; border-radius: 12px; transition: all .2s; display: block; }
+    .mob-nav a:hover { background: var(--sky); color: var(--blue); }
+    .mob-close { position: absolute; top: 20px; right: 20px; font-size: 26px; cursor: pointer; color: var(--muted); line-height: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(4,15,45,.50) 0%, rgba(10,61,143,.34) 55%, rgba(10,61,143,.14) 100%),
+        url('public/assets/images/wallpaper.jpeg') center center / cover no-repeat;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; padding-top: 76px;
+    }
+    /* top vignette — gives nav contrast without a header box */
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 220px;
+      background: linear-gradient(to bottom, rgba(2,8,30,.72) 0%, rgba(2,8,30,.18) 60%, transparent 100%);
+      z-index: 1; pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 2; }
+    /* smooth bottom wave transition */
+    .hero-wave {
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      line-height: 0; pointer-events: none; z-index: 2;
+    }
+    .hero-wave svg { display: block; width: 100%; height: auto; }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center; position: relative; z-index: 1;
+      padding: 60px 0;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.14); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.22);
+      color: white; padding: 8px 18px; border-radius: 50px;
+      font-size: 13px; font-weight: 700; letter-spacing: .5px; margin-bottom: 22px;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
+
+    .hero h1 { font-size: clamp(36px, 5vw, 66px); line-height: 1.1; color: white; margin-bottom: 20px; }
+    .hero h1 .hi { color: var(--yellow); }
+    .hero-sub { color: rgba(255,255,255,.78); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; margin-bottom: 36px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-kpis { display: flex; gap: 0; margin-top: 48px; }
+    .kpi { text-align: center; padding: 0 28px; }
+    .kpi:not(:first-child) { border-left: 1px solid rgba(255,255,255,.2); }
+    .kpi .n { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(24px,3vw,34px); color:var(--yellow); display:block; line-height:1; }
+    .kpi .l { font-size:12px; color:rgba(255,255,255,.6); font-weight:600; letter-spacing:.5px; margin-top:4px; display:block; }
+
+    /* hero visual */
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+
+    /* mascot */
+    .mascot-wrap {
+      position: relative; display: flex;
+      justify-content: center; align-items: flex-end;
+      max-width: 420px; width: 100%;
+    }
+
+    /* outer — slow body float + gentle sway */
+    .mascot-fly {
+      position: relative;
+      animation: mascotFloat 3.2s ease-in-out infinite;
+      transform-origin: center bottom;
+      will-change: transform;
+    }
+
+    .mascot-img {
+      width: 88%; max-width: 360px; height: auto; display: block;
+      filter: drop-shadow(0 24px 40px rgba(0,0,0,.45));
+    }
+
+    @keyframes mascotFloat {
+      0%,100% { transform: translateY(0px)  rotate(-1.2deg); }
+      50%     { transform: translateY(-24px) rotate(1.2deg);  }
+    }
+
+    .float-pill {
+      position: absolute; background: white; border-radius: 40px;
+      padding: 8px 18px; font-size: 13px; font-weight: 700; color: var(--navy);
+      box-shadow: 0 8px 24px rgba(0,0,0,.18); display: flex; align-items: center; gap: 8px; white-space: nowrap;
+    }
+
+    /* speech bubble — tail points left toward the bee's mouth */
+    .fp1 {
+      top: 7%; right: -14px;
+      animation: floatY 3s ease-in-out infinite;
+      border-radius: 18px;
+      padding: 11px 22px;
+      font-size: 14px;
+    }
+    .fp1::before {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 22px;
+      width: 0; height: 0;
+      border-left: 10px solid transparent;
+      border-right: 22px solid transparent;
+      border-top: 20px solid white;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,.10));
+    }
+    .fp2 { bottom: 2%; left: -10px;  animation: floatY 3s ease-in-out infinite 1.6s; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    /* ── MARQUEE ── */
+    .marquee-strip { background: var(--yellow); padding: 13px 0; overflow: hidden; }
+    .marquee-track { display: flex; animation: marquee 28s linear infinite; width: max-content; }
+    .mi {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 0 28px; font-family:'Poppins',sans-serif;
+      font-weight: 700; font-size: 14px; color: var(--navy); white-space: nowrap;
+    }
+    .mi::before { content: '★'; color: var(--blue); }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── PRODUCTS ── */
+    .products-sec { padding: var(--pad) 0; background: var(--bg); }
+    .products-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+
+    .pc {
+      background: white; border-radius: var(--radius);
+      overflow: hidden; box-shadow: 0 4px 20px rgba(10,45,114,.08);
+      transition: all .35s ease; cursor: default;
+    }
+    .pc:hover { transform: translateY(-8px); box-shadow: 0 18px 44px rgba(10,45,114,.18); }
+    .pc-top { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .pc-body { padding: 24px; }
+    .pc-body h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+    .pc-body p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .pc-foot { display: flex; align-items: center; justify-content: space-between; }
+    .pc-tag { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+    .pc-link { font-size: 13px; font-weight: 700; color: var(--blue); display: flex; align-items: center; gap: 4px; transition: gap .2s; }
+    .pc:hover .pc-link { gap: 8px; }
+
+    .c-blue   .pc-top { background: linear-gradient(135deg,#e3f2fd,#bbdefb); } .c-blue   .pc-tag { background:#e3f2fd; color:#1565c0; }
+    .c-yellow .pc-top { background: linear-gradient(135deg,#fffde7,#fff176); } .c-yellow .pc-tag { background:#fffde7; color:#f57f17; }
+    .c-orange .pc-top { background: linear-gradient(135deg,#fff3e0,#ffcc80); } .c-orange .pc-tag { background:#fff3e0; color:#e65100; }
+    .c-green  .pc-top { background: linear-gradient(135deg,#e8f5e9,#a5d6a7); } .c-green  .pc-tag { background:#e8f5e9; color:#2e7d32; }
+    .c-purple .pc-top { background: linear-gradient(135deg,#ede7f6,#ce93d8); } .c-purple .pc-tag { background:#ede7f6; color:#6a1b9a; }
+    .c-pink   .pc-top { background: linear-gradient(135deg,#fce4ec,#f48fb1); } .c-pink   .pc-tag { background:#fce4ec; color:#880e4f; }
+
+    /* ── ABOUT ── */
+    .about-sec { padding: var(--pad) 0; background: white; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .about-visual { position: relative; }
+    .about-student-wrap {
+      position: relative;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #fff8e1 0%, #fce4ec 40%, #e3f2fd 100%);
+      box-shadow: 0 24px 64px rgba(10,45,114,.14);
+      overflow: hidden;
+      display: flex; align-items: flex-end; justify-content: center;
+      min-height: 420px;
+      padding: 24px 12px 0;
+    }
+    /* decorative blobs */
+    .about-student-wrap::before {
+      content: '';
+      position: absolute; top: -40px; left: -40px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,183,77,.35) 0%, transparent 70%);
+    }
+    .about-student-wrap::after {
+      content: '';
+      position: absolute; bottom: 40px; right: -30px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,64,122,.22) 0%, transparent 70%);
+    }
+    .about-student-img {
+      width: 100%; max-width: 460px; height: auto;
+      display: block; position: relative; z-index: 1;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.12));
+    }
+
+    .float-card {
+      position: absolute; background: white; border-radius: 18px;
+      padding: 14px 18px; box-shadow: 0 12px 36px rgba(0,0,0,.13);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .fc-a { bottom: -22px; right: -22px; animation: floatY 4s ease-in-out infinite; }
+    .fc-b { top: -22px; left: -22px; animation: floatY 4s ease-in-out infinite 2s; }
+    .fc-icon { font-size: 26px; }
+    .fc-n { font-weight: 800; font-size: 18px; color: var(--navy); display: block; }
+    .fc-s { font-size: 12px; color: var(--muted); }
+
+    .about-text .about-features { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .af { display: flex; align-items: flex-start; gap: 14px; }
+    .af-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .af-txt h4 { font-size: 15px; color: var(--navy); margin-bottom: 2px; }
+    .af-txt p  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .about-text p { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 14px; }
+    .about-text h2 { font-size: clamp(26px,3.5vw,40px); color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+
+    /* ── STATS ── */
+    .stats-sec {
+      padding: 72px 0;
+      background: linear-gradient(135deg,#040f2d 0%,#0a3d8f 100%);
+      position: relative; overflow: hidden;
+    }
+    .stats-sec::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(circle at 20% 50%,rgba(255,255,255,.04) 0%,transparent 60%),
+                  radial-gradient(circle at 80% 50%,rgba(255,255,255,.03) 0%,transparent 60%);
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; position: relative; }
+    .stat-box { text-align: center; }
+    .stat-box .si { font-size: 36px; display: block; margin-bottom: 10px; }
+    .stat-box .sn { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(34px,5vw,58px); color:var(--yellow); display:block; line-height:1; }
+    .stat-box .sl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); margin-top: 6px; display: block; }
+
+    /* ── WHY ── */
+    .why-sec { padding: var(--pad) 0; background: var(--bg); }
+    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+    .wc {
+      background: white; border-radius: var(--radius); padding: 34px 26px; text-align: center;
+      box-shadow: 0 4px 20px rgba(10,45,114,.06); transition: all .3s;
+      border-top: 4px solid transparent;
+    }
+    .wc:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,45,114,.15); }
+    .wc:nth-child(1) { border-color: var(--blue); }   .wc:nth-child(1) .wi { background:#e3f2fd; }
+    .wc:nth-child(2) { border-color: var(--yellow); } .wc:nth-child(2) .wi { background:#fffde7; }
+    .wc:nth-child(3) { border-color: var(--green); }  .wc:nth-child(3) .wi { background:#e8f5e9; }
+    .wc:nth-child(4) { border-color: var(--orange); } .wc:nth-child(4) .wi { background:#fff3e0; }
+    .wi { width:70px; height:70px; border-radius:20px; display:flex; align-items:center; justify-content:center; font-size:30px; margin:0 auto 18px; }
+    .wc h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+    .wc p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── EVENTS ── */
+    .events-sec { padding: var(--pad) 0; background: white; }
+    .events-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .ec { border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 20px rgba(10,45,114,.08); transition: all .35s; }
+    .ec:hover { transform: translateY(-8px); box-shadow: 0 18px 44px rgba(10,45,114,.18); }
+    .ec-head { padding: 30px 26px 22px; position: relative; }
+    .ec-date { position:absolute; top:18px; right:18px; background:rgba(255,255,255,.22); border-radius:12px; padding:10px 14px; text-align:center; color:white; }
+    .ec-date .d { font-weight:900; font-size:22px; display:block; line-height:1; }
+    .ec-date .m { font-size:11px; font-weight:700; }
+    .ec-type { display:inline-block; background:rgba(255,255,255,.2); color:white; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 12px; border-radius:50px; margin-bottom:10px; }
+    .ec-head h3 { color: white; font-size: 19px; line-height: 1.3; }
+    .ec-body { background: white; padding: 22px 26px; }
+    .ec-body p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .ec-meta { display:flex; gap:14px; font-size:13px; color:var(--muted); font-weight:600; flex-wrap:wrap; }
+
+    .ev-blue   .ec-head { background: linear-gradient(135deg,#0a3d8f,#1565c0); }
+    .ev-orange .ec-head { background: linear-gradient(135deg,#c84b00,#ff6b35); }
+    .ev-green  .ec-head { background: linear-gradient(135deg,#1b5e20,#00c853); }
+
+    /* ── TESTIMONIALS ── */
+    .testi-sec { padding: var(--pad) 0; background: var(--bg); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .tc {
+      background: white; border-radius: var(--radius); padding: 30px 26px;
+      box-shadow: 0 4px 20px rgba(10,45,114,.07); transition: all .3s;
+    }
+    .tc:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,45,114,.15); }
+    .tc .q { font-family:Georgia,serif; font-size:52px; color:#bbdefb; line-height:.5; display:block; margin-bottom:14px; }
+    .stars { color: var(--yellow); font-size: 13px; margin-bottom: 10px; }
+    .tc-txt { font-size: 15px; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: 22px; }
+    .tc-auth { display: flex; align-items: center; gap: 12px; }
+    .tc-av { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:white; flex-shrink:0; }
+    .tc-name { font-weight:700; font-size:15px; color:var(--navy); display:block; }
+    .tc-role { font-size:12px; color:var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-sec { padding: var(--pad) 0; background: white; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: start; }
+    .contact-info h2 { font-size: clamp(26px,3vw,38px); color: var(--navy); margin-bottom: 14px; }
+    .contact-info > p { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 32px; }
+    .cc-list { display: flex; flex-direction: column; gap: 14px; }
+    .cc { display:flex; align-items:center; gap:14px; padding:18px; background:var(--bg); border-radius:16px; transition:all .25s; }
+    .cc:hover { background:var(--sky); transform:translateX(5px); }
+    .cc-i { width:50px; height:50px; border-radius:13px; background:white; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 3px 10px rgba(0,0,0,.06); flex-shrink:0; }
+    .cc-lbl { font-size:11px; color:var(--muted); font-weight:600; display:block; }
+    .cc-val { font-size:15px; color:var(--navy); font-weight:700; }
+
+    .contact-form { background: var(--bg); border-radius: 28px; padding: 44px 36px; }
+    .contact-form h3 { font-size: 22px; color: var(--navy); margin-bottom: 26px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .fg { display: flex; flex-direction: column; gap: 5px; }
+    .fg.full { grid-column: 1/-1; }
+    .fg label { font-size: 13px; font-weight: 700; color: var(--text); }
+    .fg input, .fg select, .fg textarea {
+      padding: 13px 15px; border: 2px solid transparent; background: white;
+      border-radius: 12px; font-family:'Nunito',sans-serif; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color .2s; width: 100%;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); }
+    .fg textarea { resize: vertical; min-height: 110px; }
+    .form-sub { margin-top: 22px; }
+    .form-sub .btn { width: 100%; justify-content: center; padding: 16px; font-size: 16px; }
+    .form-ok { display: none; text-align: center; padding: 28px 16px; }
+    .form-ok .ok-e { font-size: 56px; display: block; margin-bottom: 10px; }
+    .form-ok h4 { font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+    .form-ok p { font-size: 14px; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    .site-footer { background: #051f5c; padding: 70px 0 0; color: rgba(255,255,255,.65); }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
+      gap: 56px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-logo { height: 52px; margin-bottom: 18px; }
+    .footer-about { font-size: 14px; line-height: 1.7; max-width: 260px; margin-bottom: 22px; }
+    .socials { display: flex; gap: 10px; }
+    .sl {
+      width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+      transition: all .25s; color: rgba(255,255,255,.7); font-weight: 700;
+    }
+    .sl:hover { background: var(--yellow); color: var(--navy); transform: translateY(-3px); }
+
+    .footer-col h4 { color: white; font-size: 15px; margin-bottom: 18px; padding-bottom: 12px; position: relative; }
+    .footer-col h4::after { content:''; position:absolute; bottom:0; left:0; width:30px; height:2px; background:var(--yellow); border-radius:2px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,.55); transition: all .2s; display: flex; align-items: center; gap: 6px; }
+    .footer-col ul li a:hover { color: var(--yellow); transform: translateX(4px); }
+
+    .footer-contacts { display: flex; flex-direction: column; gap: 14px; }
+    .fci { display: flex; align-items: flex-start; gap: 10px; }
+    .fci-e { font-size: 17px; margin-top: 2px; }
+    .fci-b { font-size: 13px; line-height: 1.5; }
+    .fci-b strong { color: white; display: block; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 2px; }
+
+    .footer-bottom {
+      padding: 22px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px;
+    }
+    .fb-links { display: flex; gap: 18px; }
+    .fb-links a { color: rgba(255,255,255,.4); transition: color .2s; }
+    .fb-links a:hover { color: var(--yellow); }
+
+    /* ── SCROLL TOP ── */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 600;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--blue); color: white; border: none;
+      font-size: 20px; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(10,61,143,.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: all .3s;
+    }
+    .scroll-top.vis { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { background: var(--yellow); color: var(--navy); transform: translateY(-3px); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .products-grid { grid-template-columns: repeat(2,1fr); }
+      .why-grid { grid-template-columns: repeat(2,1fr); }
+      .events-grid { grid-template-columns: repeat(2,1fr); }
+      .testi-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 36px; }
+    }
+    @media(max-width:768px){
+      .main-nav { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 40px 0; }
+      .hero-visual { order: -1; }
+      .visual-card { max-width: 300px; padding: 24px; }
+      .hero-sub { max-width: 100%; }
+      .hero-btns { justify-content: center; }
+      .hero-kpis { justify-content: center; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { order: -1; }
+      .fc-b { display: none; }
+      .products-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 36px; }
+      .contact-form { padding: 28px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    }
+    @media(max-width:480px){
+      .why-grid { grid-template-columns: 1fr; }
+      .float-pill { display: none; }
+      .kpi { padding: 0 16px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeNav()"></div>
+
+<!-- MOBILE NAV -->
+<nav class="mob-nav" id="mobNav">
+  <span class="mob-close" onclick="closeNav()">✕</span>
+  <a href="#home"     onclick="closeNav()">🏠 Home</a>
+  <a href="#about"    onclick="closeNav()">ℹ️ About Us</a>
+  <a href="#products" onclick="closeNav()">📦 Products</a>
+  <a href="#events"   onclick="closeNav()">🎉 Events</a>
+  <a href="#contact"  onclick="closeNav()">💼 Career</a>
+  <a href="#contact"  onclick="closeNav()">📞 Contact Us</a>
+  <a href="#contact" class="btn btn-blue" onclick="closeNav()" style="border-radius:14px;justify-content:center;margin-top:10px;">Get In Touch</a>
+</nav>
+
+<!-- HEADER -->
+<header class="site-header" id="hdr">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#home" class="logo">
+        <img src="public/assets/images/logo-transparent.png" alt="Successful™ Logo"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'">
+        <span id="logoFallback" style="display:none;font-family:'Poppins',sans-serif;font-weight:900;font-size:22px;color:white;letter-spacing:-.5px;">✎ SUCCESSFUL™</span>
+      </a>
+      <nav class="main-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#products">Products</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Career</a>
+        <a href="#contact" class="nav-cta">Contact Us</a>
+      </nav>
+      <div class="hamburger" onclick="openNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          India's Trusted School Stationery Brand
+        </div>
+        <h1>Making Every<br>Child's Learning<br><span class="hi">Adventure!</span></h1>
+        <p class="hero-sub">From vibrant notebooks to creative art supplies — Successful™ brings quality, colour, and joy to every student's desk. Trusted by schools across India.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn btn-yellow">📦 Explore Products</a>
+          <a href="#about"    class="btn btn-ghost">Learn More →</a>
+        </div>
+        <div class="hero-kpis">
+          <div class="kpi"><span class="n">500+</span><span class="l">Schools</span></div>
+          <div class="kpi"><span class="n">50K+</span><span class="l">Students</span></div>
+          <div class="kpi"><span class="n">100+</span><span class="l">Products</span></div>
+          <div class="kpi"><span class="n">15+</span><span class="l">States</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="mascot-wrap">
+          <div class="mascot-fly">
+            <img class="mascot-img"
+                 src="public/assets/images/mascot-transparent.png"
+                 alt="Successful Mascot">
+          </div>
+          <div class="float-pill fp1">🐝 BEE a Winner!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- wave divider → matches the marquee yellow below -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFD600"/>
+    </svg>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="mi">Quality Notebooks</span><span class="mi">Art &amp; Craft Supplies</span>
+    <span class="mi">Math Instruments</span><span class="mi">Drawing Books</span>
+    <span class="mi">Scrapbooks</span><span class="mi">Project Files</span>
+    <span class="mi">Geometry Sets</span><span class="mi">Coloring Books</span>
+    <span class="mi">School Essentials</span><span class="mi">Creative Learning</span>
+    <span class="mi">Quality Notebooks</span><span class="mi">Art &amp; Craft Supplies</span>
+    <span class="mi">Math Instruments</span><span class="mi">Drawing Books</span>
+    <span class="mi">Scrapbooks</span><span class="mi">Project Files</span>
+    <span class="mi">Geometry Sets</span><span class="mi">Coloring Books</span>
+    <span class="mi">School Essentials</span><span class="mi">Creative Learning</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-sec" id="products">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">Our Products</span>
+      <h2>Everything a Student <span>Needs</span></h2>
+      <p>From day one of school to the final exam — we have the perfect stationery for every moment of learning.</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="pc c-blue">
+        <div class="pc-top">📚</div>
+        <div class="pc-body">
+          <h3>Notebooks &amp; Writing Books</h3>
+          <p>Premium quality ruled, unruled, A4, long and subject notebooks for every grade and purpose.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">12+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc c-yellow">
+        <div class="pc-top">✏️</div>
+        <div class="pc-body">
+          <h3>Pencils &amp; Writing</h3>
+          <p>HB pencils, mechanical pencils, colour pencils and all writing essentials for all ages.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">8+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc c-orange">
+        <div class="pc-top">🎨</div>
+        <div class="pc-body">
+          <h3>Art &amp; Drawing Books</h3>
+          <p>High-quality drawing books, sketch pads, and art supplies to unleash every child's creativity.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">10+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc c-green">
+        <div class="pc-top">📐</div>
+        <div class="pc-body">
+          <h3>Math Instruments</h3>
+          <p>Geometry boxes, compass sets, protractors, rulers and precision tools for accuracy.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">6+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc c-purple">
+        <div class="pc-top">✂️</div>
+        <div class="pc-body">
+          <h3>Craft &amp; Hobby</h3>
+          <p>Craft paper, scrapbooks, origami supplies and fun hobby materials for creative young minds.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">15+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pc c-pink">
+        <div class="pc-top">📄</div>
+        <div class="pc-body">
+          <h3>Paper Stationery</h3>
+          <p>Project files, composition books, index cards, and premium paper products for school projects.</p>
+          <div class="pc-foot">
+            <span class="pc-tag">9+ Variants</span>
+            <a href="#contact" class="pc-link">Explore →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="container">
+    <div class="about-inner">
+
+      <div class="about-visual">
+        <div class="about-student-wrap">
+          <img class="about-student-img"
+               src="public/assets/images/student.png"
+               alt="Happy students with Successful stationery">
+        </div>
+        <div class="float-card fc-a">
+          <span class="fc-icon">🏫</span>
+          <div><span class="fc-n">500+</span><span class="fc-s">Partner Schools</span></div>
+        </div>
+        <div class="float-card fc-b">
+          <span class="fc-icon">⭐</span>
+          <div><span class="fc-n">4.8/5</span><span class="fc-s">Parent Rating</span></div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <span class="badge">About Successful™</span>
+        <h2>India's Most Loved School Stationery Brand</h2>
+        <p>For over a decade, Successful™ has been India's go-to brand for school stationery. We believe every child deserves the best tools to learn, create, and grow — at a price every family can afford.</p>
+        <p>From neighbourhood stationery shops to leading school bookstores, our products are trusted by millions of students, teachers, and parents across India.</p>
+        <div class="about-features">
+          <div class="af">
+            <div class="af-icon" style="background:#e3f2fd;">🏆</div>
+            <div class="af-txt">
+              <h4>Premium Quality Materials</h4>
+              <p>BIS certified materials ensuring safety and durability for every product we make.</p>
+            </div>
+          </div>
+          <div class="af">
+            <div class="af-icon" style="background:#fffde7;">🎨</div>
+            <div class="af-txt">
+              <h4>Designed for Kids</h4>
+              <p>Fun, colourful, and ergonomically designed to make learning a joyful experience.</p>
+            </div>
+          </div>
+          <div class="af">
+            <div class="af-icon" style="background:#e8f5e9;">🌱</div>
+            <div class="af-txt">
+              <h4>Eco-Friendly Manufacturing</h4>
+              <p>Committed to sustainable practices — good for your child, good for the planet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-sec">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="si">🏫</span>
+        <span class="sn counter" data-target="500">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
+        <span class="sl">Partner Schools</span>
+      </div>
+      <div class="stat-box">
+        <span class="si">🎒</span>
+        <span class="sn counter" data-target="50000">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
+        <span class="sl">Happy Students</span>
+      </div>
+      <div class="stat-box">
+        <span class="si">📦</span>
+        <span class="sn counter" data-target="100">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
+        <span class="sl">Product Variants</span>
+      </div>
+      <div class="stat-box">
+        <span class="si">🗺️</span>
+        <span class="sn counter" data-target="15">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
+        <span class="sl">States Across India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-sec">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">Why Choose Us</span>
+      <h2>What Makes <span>Successful™</span> Special</h2>
+      <p>We go above and beyond to ensure every product delights students, parents, and teachers alike.</p>
+    </div>
+    <div class="why-grid">
+      <div class="wc">
+        <div class="wi">🏆</div>
+        <h3>Certified Quality</h3>
+        <p>BIS certified materials. Parents can trust every item that goes into their child's school bag.</p>
+      </div>
+      <div class="wc">
+        <div class="wi">🎨</div>
+        <h3>Kid-Friendly Design</h3>
+        <p>Bright colours, fun prints, and ergonomic designs that make kids excited about studying.</p>
+      </div>
+      <div class="wc">
+        <div class="wi">💰</div>
+        <h3>Affordable Pricing</h3>
+        <p>Premium quality at prices every family can afford. No compromise on quality or budget.</p>
+      </div>
+      <div class="wc">
+        <div class="wi">🌱</div>
+        <h3>Eco-Conscious</h3>
+        <p>Sustainably sourced materials and eco-friendly manufacturing for a better tomorrow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events-sec" id="events">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">Events &amp; Programs</span>
+      <h2>Celebrating <span>Student Creativity</span></h2>
+      <p>Join our school programs, contests, and workshops designed to inspire the next generation of learners.</p>
+    </div>
+    <div class="events-grid">
+
+      <div class="ec ev-blue">
+        <div class="ec-head">
+          <div class="ec-date"><span class="d">15</span><span class="m">JUN</span></div>
+          <span class="ec-type">Annual Event</span>
+          <h3>School Creativity Week 2026</h3>
+        </div>
+        <div class="ec-body">
+          <p>A week-long celebration of student creativity with workshops, competitions and product launches across partner schools.</p>
+          <div class="ec-meta">
+            <span>📍 Multiple Cities</span>
+            <span>🎒 Open to All Students</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ec ev-orange">
+        <div class="ec-head">
+          <div class="ec-date"><span class="d">22</span><span class="m">JUL</span></div>
+          <span class="ec-type">Contest</span>
+          <h3>National Drawing Contest</h3>
+        </div>
+        <div class="ec-body">
+          <p>Submit your artwork and win exciting prizes! Open to students from Class 1–10 across India. Amazing rewards await!</p>
+          <div class="ec-meta">
+            <span>🏆 Exciting Prizes</span>
+            <span>🖌️ All Age Groups</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ec ev-green">
+        <div class="ec-head">
+          <div class="ec-date"><span class="d">10</span><span class="m">AUG</span></div>
+          <span class="ec-type">Workshop</span>
+          <h3>Paper Craft Workshop</h3>
+        </div>
+        <div class="ec-body">
+          <p>Hands-on origami and paper craft sessions conducted by expert craft artists at schools near you.</p>
+          <div class="ec-meta">
+            <span>🧑‍🎨 Expert Led</span>
+            <span>✂️ Hands-On Fun</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">Testimonials</span>
+      <h2>What <span>Parents &amp; Teachers</span> Say</h2>
+      <p>Real stories from the schools and families who trust Successful™ every day.</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="tc">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">My daughter absolutely loves her Successful notebooks! The quality is outstanding and the colourful covers make her excited to study every day.</p>
+        <div class="tc-auth">
+          <div class="tc-av" style="background:linear-gradient(135deg,#0a3d8f,#1565c0);">P</div>
+          <div><span class="tc-name">Priya Sharma</span><span class="tc-role">Parent, Mumbai</span></div>
+        </div>
+      </div>
+
+      <div class="tc">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">We switched our entire school supply list to Successful™. The geometry boxes are precise and durable. Our students absolutely love them!</p>
+        <div class="tc-auth">
+          <div class="tc-av" style="background:linear-gradient(135deg,#c84b00,#ff6b35);">R</div>
+          <div><span class="tc-name">Ramesh Gupta</span><span class="tc-role">Principal, Delhi Public School</span></div>
+        </div>
+      </div>
+
+      <div class="tc">
+        <span class="q">"</span>
+        <div class="stars">★★★★★</div>
+        <p class="tc-txt">The art supplies from Successful™ are perfect for my class. The quality rivals expensive brands at half the price. Highly recommended!</p>
+        <div class="tc-auth">
+          <div class="tc-av" style="background:linear-gradient(135deg,#1b5e20,#00c853);">A</div>
+          <div><span class="tc-name">Anita Patel</span><span class="tc-role">Art Teacher, Ahmedabad</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="contact-info">
+        <span class="badge">Get In Touch</span>
+        <h2>Let's Talk About<br>Your Stationery Needs</h2>
+        <p>Whether you're a school, retailer, or parent — we'd love to hear from you. Reach out and we'll get back to you within 24 hours.</p>
+        <div class="cc-list">
+          <div class="cc">
+            <div class="cc-i">📍</div>
+            <div><span class="cc-lbl">Head Office</span><span class="cc-val">Mumbai, Maharashtra, India</span></div>
+          </div>
+          <div class="cc">
+            <div class="cc-i">📞</div>
+            <div><span class="cc-lbl">Customer Support</span><span class="cc-val">+91 98765 43210</span></div>
+          </div>
+          <div class="cc">
+            <div class="cc-i">✉️</div>
+            <div><span class="cc-lbl">Email Us</span><span class="cc-val">info@successful.in</span></div>
+          </div>
+          <div class="cc">
+            <div class="cc-i">🕐</div>
+            <div><span class="cc-lbl">Working Hours</span><span class="cc-val">Mon–Sat, 9 AM – 6 PM</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm" onsubmit="handleForm(event)">
+          <div class="form-grid">
+            <div class="fg">
+              <label>Your Name *</label>
+              <input type="text" placeholder="Enter your name" required>
+            </div>
+            <div class="fg">
+              <label>Phone Number *</label>
+              <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+            <div class="fg">
+              <label>Email Address</label>
+              <input type="email" placeholder="your@email.com">
+            </div>
+            <div class="fg">
+              <label>Enquiry Type</label>
+              <select>
+                <option value="">Select enquiry type</option>
+                <option>School Supply Partnership</option>
+                <option>Retail Distributor</option>
+                <option>Product Information</option>
+                <option>Bulk Order</option>
+                <option>Career Opportunity</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg full">
+              <label>Message</label>
+              <textarea placeholder="Tell us how we can help you…"></textarea>
+            </div>
+          </div>
+          <div class="form-sub">
+            <button type="submit" class="btn btn-blue">Send Message 🚀</button>
+          </div>
+        </form>
+        <div class="form-ok" id="formOk">
+          <span class="ok-e">🎉</span>
+          <h4>Message Sent Successfully!</h4>
+          <p>Thank you for reaching out! Our team will get back to you within 24 hours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <img src="public/assets/images/logo-transparent.png" alt="Successful™" class="footer-logo"
+             onerror="this.style.display='none'">
+        <p class="footer-about">India's most trusted school stationery brand — making learning colourful, creative, and joyful for every student.</p>
+        <div class="socials">
+          <a href="#" class="sl" title="Facebook">f</a>
+          <a href="#" class="sl" title="Instagram">📷</a>
+          <a href="#" class="sl" title="YouTube">▶</a>
+          <a href="#" class="sl" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">→ Home</a></li>
+          <li><a href="#about">→ About Us</a></li>
+          <li><a href="#products">→ Products</a></li>
+          <li><a href="#events">→ Events</a></li>
+          <li><a href="#contact">→ Career</a></li>
+          <li><a href="#contact">→ Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Products</h4>
+        <ul>
+          <li><a href="#products">→ Notebooks</a></li>
+          <li><a href="#products">→ Drawing Books</a></li>
+          <li><a href="#products">→ Art Supplies</a></li>
+          <li><a href="#products">→ Math Instruments</a></li>
+          <li><a href="#products">→ Craft Supplies</a></li>
+          <li><a href="#products">→ Paper Stationery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contacts">
+          <div class="fci">
+            <span class="fci-e">📍</span>
+            <div class="fci-b"><strong>Address</strong>Mumbai, Maharashtra, India</div>
+          </div>
+          <div class="fci">
+            <span class="fci-e">📞</span>
+            <div class="fci-b"><strong>Phone</strong>+91 98765 43210</div>
+          </div>
+          <div class="fci">
+            <span class="fci-e">✉️</span>
+            <div class="fci-b"><strong>Email</strong>info@successful.in</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Successful™. All rights reserved. Made with ❤️ in India.</p>
+      <div class="fb-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  const stBtn = document.getElementById('scrollTop');
+
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+    stBtn.classList.toggle('vis', window.scrollY > 400);
+  });
+
+  function openNav() {
+    document.getElementById('mobNav').classList.add('open');
+    document.getElementById('mobOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    document.getElementById('mobNav').classList.remove('open');
+    document.getElementById('mobOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.done) {
+        e.target.dataset.done = '1';
+        const target = +e.target.dataset.target;
+        const dur = 1800, step = target / (dur / 16);
+        let cur = 0;
+        const t = setInterval(() => {
+          cur = Math.min(cur + step, target);
+          e.target.textContent = target >= 1000
+            ? Math.floor(cur).toLocaleString('en-IN')
+            : Math.floor(cur);
+          if (cur >= target) clearInterval(t);
+        }, 16);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => io.observe(c));
+
+  // Contact form
+  function handleForm(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formOk').style.display = 'block';
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const tgt = document.querySelector(a.getAttribute('href'));
+      if (tgt) {
+        e.preventDefault();
+        window.scrollTo({ top: tgt.getBoundingClientRect().top + scrollY - 80, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
