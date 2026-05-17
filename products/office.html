@@ -161,6 +161,41 @@
     @media(max-width:768px) { .main-nav { display: none; } .hamburger { display: flex; } .products-grid { grid-template-columns: repeat(2,1fr); } .sec-header { flex-direction: column; align-items: flex-start; } }
     @media(max-width:480px) { .products-grid { grid-template-columns: 1fr; } }
 
+    /* ── CATEGORY TILES ── */
+    .cat-tiles-sec { padding: 48px 0 32px; }
+    .cat-tiles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .cat-tile { position:relative; border-radius:16px; overflow:hidden; height:200px; display:block; text-decoration:none; box-shadow:0 4px 20px rgba(10,45,114,.1); transition:transform .3s ease,box-shadow .3s ease; }
+    .cat-tile:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(10,45,114,.16); }
+    .cat-tile img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; filter:brightness(.85); }
+    .cat-tile:hover img { transform:scale(1.07); filter:brightness(1); }
+    .cat-tile-overlay { position:absolute; bottom:0; left:0; right:0; padding:11px 16px; background:linear-gradient(90deg,rgba(255,255,255,.96),rgba(255,255,255,.88)); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:space-between; }
+    .cat-tile-name { font-family:'Poppins',sans-serif; font-weight:800; font-size:11px; color:var(--navy); text-transform:uppercase; letter-spacing:.6px; }
+    .cat-tile-count { font-size:11px; font-weight:700; background:var(--sky); color:var(--blue); padding:2px 9px; border-radius:50px; }
+    /* ── SIDEBAR LAYOUT ── */
+    .psb-outer { padding:40px 0 80px; }
+    .mob-subcats { display:none; overflow-x:auto; gap:8px; padding:0 2px 16px; margin-bottom:8px; scrollbar-width:none; }
+    .mob-subcats::-webkit-scrollbar { display:none; }
+    .mob-pill { flex-shrink:0; padding:7px 17px; border-radius:50px; white-space:nowrap; background:white; border:1.5px solid rgba(10,45,114,.15); font-size:12px; font-weight:700; color:var(--navy); text-decoration:none; transition:all .2s; }
+    .mob-pill.active, .mob-pill:hover { background:var(--navy); color:white; border-color:var(--navy); }
+    .psb-layout { display:grid; grid-template-columns:252px 1fr; gap:36px; align-items:start; }
+    .psb-sidebar { position:sticky; top:90px; }
+    .sidebar-card { background:white; border-radius:18px; border:1px solid rgba(10,45,114,.08); padding:22px; box-shadow:0 2px 20px rgba(10,45,114,.07); }
+    .sb-title { font-family:'Poppins',sans-serif; font-size:14px; font-weight:800; color:var(--navy); margin-bottom:12px; padding-bottom:10px; border-bottom:2px solid var(--sky); }
+    .sb-list { list-style:none; display:flex; flex-direction:column; gap:2px; margin-bottom:22px; }
+    .sb-list:last-child { margin-bottom:0; }
+    .sb-link { display:flex; align-items:center; justify-content:space-between; gap:6px; padding:9px 12px; border-radius:10px; font-size:13px; font-weight:700; color:var(--text); transition:all .2s; text-decoration:none; }
+    .sb-link span:first-child { flex:1; }
+    .sb-link:hover { background:var(--sky); color:var(--blue); }
+    .sb-link.active { background:var(--navy); color:white; }
+    .sb-count { background:rgba(10,45,114,.08); color:var(--navy); font-size:11px; font-weight:700; padding:2px 7px; border-radius:50px; flex-shrink:0; }
+    .sb-link.active .sb-count { background:rgba(255,255,255,.2); color:white; }
+    .psb-content .category-sec { padding:0 0 52px; content-visibility:auto; contain-intrinsic-size:0 600px; }
+    .psb-content .category-sec + .category-sec { padding-top:52px; border-top:1px solid rgba(10,45,114,.07); }
+    .psb-content .category-sec:nth-child(even) { background:transparent; }
+    @media(max-width:900px) { .psb-layout { grid-template-columns:1fr; } .psb-sidebar { display:none; } .mob-subcats { display:flex; } }
+    @media(max-width:768px) { .cat-tiles-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:480px) { .cat-tiles-grid { grid-template-columns:1fr; } }
+
     /* ── SCROLL REVEAL SYSTEM ── */
     #scroll-bar { position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--yellow),var(--orange)); z-index:9999; pointer-events:none; }
     .reveal { opacity:0; transition:opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1), border-color .35s, box-shadow .35s; }
@@ -242,75 +277,95 @@
 
 <main>
 
-<!-- POCKET & MEMO -->
-<section class="category-sec" id="pocket">
+<!-- CATEGORY TILES GRID -->
+<section class="cat-tiles-sec">
   <div class="container">
-    <div class="sec-header reveal left">
-      <div class="sec-header-left">
-        <div class="sec-icon" style="background:#fff8e1;">📒</div>
-        <div><h2>Pocket &amp; Memo Notebooks</h2><p>Compact essentials for on-the-go professionals</p></div>
-      </div>
-      <span class="sec-count">4 Products</span>
+    <div class="cat-tiles-grid">
+      <a href="#pocket" class="cat-tile reveal scale">
+        <img src="../public/assets/images/products/pocket-memo/POCKET MEMO.jpg" alt="Pocket &amp; Memo" loading="lazy">
+        <div class="cat-tile-overlay"><span class="cat-tile-name">Pocket &amp; Memo</span><span class="cat-tile-count">4 Products</span></div>
+      </a>
+      <a href="#conference" class="cat-tile reveal scale d1">
+        <img src="../public/assets/images/products/spiral-conference-pad/SPIRAL CONFERENCE PAD.jpg" alt="Conference Pads" loading="lazy">
+        <div class="cat-tile-overlay"><span class="cat-tile-name">Conference &amp; Desk</span><span class="cat-tile-count">2 Products</span></div>
+      </a>
+      <a href="#premium-nb" class="cat-tile reveal scale d2">
+        <img src="../public/assets/images/products/premium-a4-notebook/A4 Premium.jpg" alt="Premium Notebooks" loading="lazy">
+        <div class="cat-tile-overlay"><span class="cat-tile-name">Premium Notebooks</span><span class="cat-tile-count">14 Products</span></div>
+      </a>
+      <a href="#wiro-office" class="cat-tile reveal scale">
+        <img src="../public/assets/images/products/top-pocket-wiro/TOP POCKET WIRO.jpg" alt="Wiro Notebooks" loading="lazy">
+        <div class="cat-tile-overlay"><span class="cat-tile-name">Wiro &amp; PP Cover</span><span class="cat-tile-count">9 Products</span></div>
+      </a>
+      <a href="#files" class="cat-tile reveal scale d1">
+        <img src="../public/assets/images/products/premium-duplicate-book/PREMIUM DUPLICATE BOOK.jpg" alt="Files &amp; Accessories" loading="lazy">
+        <div class="cat-tile-overlay"><span class="cat-tile-name">Files &amp; Accessories</span><span class="cat-tile-count">5 Products</span></div>
+      </a>
     </div>
-    <div class="products-grid" id="grid-pocket"></div>
   </div>
 </section>
 
-<!-- CONFERENCE & DESK -->
-<section class="category-sec" id="conference">
+<!-- SIDEBAR + PRODUCTS -->
+<div class="psb-outer">
   <div class="container">
-    <div class="sec-header reveal left">
-      <div class="sec-header-left">
-        <div class="sec-icon" style="background:#e3f2fd;">📋</div>
-        <div><h2>Conference &amp; Desk Pads</h2><p>Meeting-ready pads and desk notepads</p></div>
-      </div>
-      <span class="sec-count">2 Products</span>
-    </div>
-    <div class="products-grid" id="grid-conference"></div>
-  </div>
-</section>
 
-<!-- PREMIUM NOTEBOOKS -->
-<section class="category-sec" id="premium-nb">
-  <div class="container">
-    <div class="sec-header reveal left">
-      <div class="sec-header-left">
-        <div class="sec-icon" style="background:#e8f5e9;">💼</div>
-        <div><h2>Premium &amp; Case Bound Notebooks</h2><p>Executive-grade hardbound and case-bound notebooks</p></div>
-      </div>
-      <span class="sec-count">14 Products</span>
+    <!-- Mobile pills -->
+    <div class="mob-subcats">
+      <a href="#pocket"     class="mob-pill active" data-target="pocket">Pocket &amp; Memo</a>
+      <a href="#conference" class="mob-pill" data-target="conference">Conference</a>
+      <a href="#premium-nb" class="mob-pill" data-target="premium-nb">Premium</a>
+      <a href="#wiro-office" class="mob-pill" data-target="wiro-office">Wiro</a>
+      <a href="#files"      class="mob-pill" data-target="files">Files</a>
     </div>
-    <div class="products-grid" id="grid-premium-nb"></div>
-  </div>
-</section>
 
-<!-- WIRO & PP NOTEBOOKS -->
-<section class="category-sec" id="wiro-office">
-  <div class="container">
-    <div class="sec-header reveal left">
-      <div class="sec-header-left">
-        <div class="sec-icon" style="background:#ede7f6;">📓</div>
-        <div><h2>Wiro &amp; PP Cover Notebooks</h2><p>Spiral and polypropylene-covered professional notebooks</p></div>
-      </div>
-      <span class="sec-count">9 Products</span>
-    </div>
-    <div class="products-grid" id="grid-wiro-office"></div>
-  </div>
-</section>
+    <div class="psb-layout">
 
-<!-- FILES & ACCESSORIES -->
-<section class="category-sec" id="files">
-  <div class="container">
-    <div class="sec-header reveal left">
-      <div class="sec-header-left">
-        <div class="sec-icon" style="background:#fce4ec;">📁</div>
-        <div><h2>Files, Pads &amp; Accessories</h2><p>Premium cash memos, slip pads, files and duplicate books</p></div>
-      </div>
-      <span class="sec-count">5 Products</span>
-    </div>
-    <div class="products-grid" id="grid-files"></div>
-  </div>
-</section>
+      <!-- STICKY SIDEBAR -->
+      <aside class="psb-sidebar">
+        <div class="sidebar-card">
+          <h3 class="sb-title">Sub Categories</h3>
+          <ul class="sb-list">
+            <li><a href="#pocket"      class="sb-link active" data-target="pocket"><span>Pocket &amp; Memo</span><span class="sb-count">4</span></a></li>
+            <li><a href="#conference"  class="sb-link" data-target="conference"><span>Conference &amp; Desk</span><span class="sb-count">2</span></a></li>
+            <li><a href="#premium-nb"  class="sb-link" data-target="premium-nb"><span>Premium Notebooks</span><span class="sb-count">14</span></a></li>
+            <li><a href="#wiro-office" class="sb-link" data-target="wiro-office"><span>Wiro &amp; PP Cover</span><span class="sb-count">9</span></a></li>
+            <li><a href="#files"       class="sb-link" data-target="files"><span>Files &amp; Accessories</span><span class="sb-count">5</span></a></li>
+          </ul>
+          <h3 class="sb-title">Other Categories</h3>
+          <ul class="sb-list">
+            <li><a href="student.html"       class="sb-link">🎒&nbsp; Student Category</a></li>
+            <li><a href="new-year-diary.html" class="sb-link">📅&nbsp; New Year Diary</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- PRODUCTS CONTENT -->
+      <div class="psb-content">
+        <section class="category-sec" id="pocket">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff8e1;">📒</div><div><h2>Pocket &amp; Memo Notebooks</h2><p>Compact essentials for on-the-go professionals</p></div></div><span class="sec-count">4 Products</span></div>
+          <div class="products-grid" id="grid-pocket"></div>
+        </section>
+        <section class="category-sec" id="conference">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#e3f2fd;">📋</div><div><h2>Conference &amp; Desk Pads</h2><p>Meeting-ready pads and desk notepads</p></div></div><span class="sec-count">2 Products</span></div>
+          <div class="products-grid" id="grid-conference"></div>
+        </section>
+        <section class="category-sec" id="premium-nb">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#e8f5e9;">💼</div><div><h2>Premium &amp; Case Bound Notebooks</h2><p>Executive-grade hardbound and case-bound notebooks</p></div></div><span class="sec-count">14 Products</span></div>
+          <div class="products-grid" id="grid-premium-nb"></div>
+        </section>
+        <section class="category-sec" id="wiro-office">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#ede7f6;">📓</div><div><h2>Wiro &amp; PP Cover Notebooks</h2><p>Spiral and polypropylene-covered professional notebooks</p></div></div><span class="sec-count">9 Products</span></div>
+          <div class="products-grid" id="grid-wiro-office"></div>
+        </section>
+        <section class="category-sec" id="files">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fce4ec;">📁</div><div><h2>Files, Pads &amp; Accessories</h2><p>Premium cash memos, slip pads, files and duplicate books</p></div></div><span class="sec-count">5 Products</span></div>
+          <div class="products-grid" id="grid-files"></div>
+        </section>
+      </div><!-- /psb-content -->
+
+    </div><!-- /psb-layout -->
+  </div><!-- /container -->
+</div><!-- /psb-outer -->
 
 </main>
 
@@ -476,8 +531,23 @@
       card.style.borderColor = '';
     });
   }
-  // Observe static reveal elements (hero, section headers)
+  // Observe static reveal elements (hero, section headers, category tiles)
   document.querySelectorAll('.reveal:not(.prod-card)').forEach(el => revealObs.observe(el));
+
+  // ── SIDEBAR ACTIVE LINK ──
+  const sbLinks   = document.querySelectorAll('.sb-link[data-target]');
+  const mobPills  = document.querySelectorAll('.mob-pill[data-target]');
+  const catSecs   = document.querySelectorAll('.psb-content .category-sec[id]');
+  function setActiveNav(id) {
+    sbLinks.forEach(l  => l.classList.toggle('active', l.dataset.target === id));
+    mobPills.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+  }
+  if (catSecs.length) {
+    const navObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) setActiveNav(e.target.id); });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    catSecs.forEach(s => navObs.observe(s));
+  }
 
   // ── SCROLL PROGRESS BAR ──
   const scrollBar = document.getElementById('scroll-bar');
