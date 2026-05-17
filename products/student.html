@@ -294,7 +294,7 @@
     .sb-link.active { background:var(--navy); color:white; }
     .sb-count { background:rgba(10,45,114,.08); color:var(--navy); font-size:11px; font-weight:700; padding:2px 7px; border-radius:50px; flex-shrink:0; }
     .sb-link.active .sb-count { background:rgba(255,255,255,.2); color:white; }
-    .psb-content .category-sec { padding:0 0 52px; content-visibility:auto; contain-intrinsic-size:0 600px; }
+    .psb-content .category-sec { padding:0 0 52px; }
     .psb-content .category-sec + .category-sec { padding-top:52px; border-top:1px solid rgba(10,45,114,.07); }
     .psb-content .category-sec:nth-child(even) { background:transparent; }
     @media(max-width:900px) { .psb-layout { grid-template-columns:1fr; } .psb-sidebar { display:none; } .mob-subcats { display:flex; } }
@@ -386,37 +386,6 @@
 <main>
 
 <!-- CATEGORY TILES GRID -->
-<section class="cat-tiles-sec">
-  <div class="container">
-    <div class="cat-tiles-grid">
-      <a href="#notebooks" class="cat-tile reveal scale">
-        <img src="../public/assets/images/products/dc-premium/DC Premium.jpg" alt="Notebooks" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Notebooks &amp; Writing</span><span class="cat-tile-count">15 Products</span></div>
-      </a>
-      <a href="#drawing" class="cat-tile reveal scale d1">
-        <img src="../public/assets/images/products/regular-drawing/Regular Srawing.jpg" alt="Drawing Books" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Drawing Books</span><span class="cat-tile-count">10 Products</span></div>
-      </a>
-      <a href="#sketch" class="cat-tile reveal scale d2">
-        <img src="../public/assets/images/products/a4-sketch-book/A4 SUCCESSFUL PREMIUM WIRO SKETCH BOOK.jpg" alt="Sketch Books" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Sketch Books</span><span class="cat-tile-count">5 Products</span></div>
-      </a>
-      <a href="#graph" class="cat-tile reveal scale">
-        <img src="../public/assets/images/products/a4-graph/A4 Graph.jpg" alt="Graph &amp; Lab" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Graph &amp; Lab</span><span class="cat-tile-count">12 Products</span></div>
-      </a>
-      <a href="#wiro" class="cat-tile reveal scale d1">
-        <img src="../public/assets/images/products/a5-one-subject-wiro/A5 ONE SUBJECT WIRO.jpg" alt="Wiro Notebooks" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Wiro Notebooks</span><span class="cat-tile-count">4 Products</span></div>
-      </a>
-      <a href="#craft" class="cat-tile reveal scale d2">
-        <img src="../public/assets/images/products/scrap-book/Scrap Book.jpg" alt="Craft" loading="lazy">
-        <div class="cat-tile-overlay"><span class="cat-tile-name">Craft &amp; Specialty</span><span class="cat-tile-count">14+ Products</span></div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- SIDEBAR + PRODUCTS -->
 <div class="psb-outer">
   <div class="container">
