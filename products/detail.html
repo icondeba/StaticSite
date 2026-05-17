@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail | Successful™ Stationery</title>
+  <meta name="description" content="Product details — Successful™ Stationery">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:#0a2d72; --blue:#0a3d8f; --bluem:#1565c0;
+      --sky:#e3f2fd; --yellow:#FFD600; --white:#ffffff;
+      --bg:#F4F8FF; --text:#1a2744; --muted:#6b7a9b; --radius:20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Nunito',sans-serif; color:var(--text); background:var(--bg); overflow-x:hidden; }
+    h1,h2,h3,h4 { font-family:'Poppins',sans-serif; font-weight:800; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    .container { max-width:1200px; margin:0 auto; padding:0 clamp(16px,4vw,40px); }
+
+    /* HEADER */
+    .site-header { position:fixed; top:0; left:0; right:0; z-index:900; background:rgba(10,45,114,.95); backdrop-filter:blur(12px); box-shadow:0 4px 28px rgba(10,45,114,.2); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; height:72px; }
+    .logo img { height:44px; width:auto; }
+    .main-nav { display:flex; align-items:center; gap:4px; }
+    .main-nav a { font-weight:700; font-size:14px; color:rgba(255,255,255,.9); padding:8px 14px; border-radius:8px; transition:all .2s; }
+    .main-nav a:hover { background:rgba(255,255,255,.15); }
+    .nav-cta { background:var(--yellow) !important; color:var(--navy) !important; border-radius:50px !important; margin-left:8px; }
+    .nav-item { position:relative; }
+    .nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+    .nav-item > a::after { content:'▾'; font-size:11px; opacity:.75; }
+    .dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%) translateY(-6px); background:white; border-radius:16px; min-width:230px; box-shadow:0 16px 48px rgba(10,45,114,.18); padding:8px; opacity:0; visibility:hidden; transition:opacity .22s ease,transform .22s ease,visibility .22s; z-index:800; }
+    .nav-item:hover .dropdown-menu { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .dropdown-menu a { display:flex !important; align-items:center; gap:10px; padding:11px 14px; border-radius:10px; font-size:14px; font-weight:700; color:var(--text) !important; background:none; }
+    .dropdown-menu a:hover { background:var(--sky) !important; color:var(--blue) !important; transform:none !important; }
+    .drop-icon { font-size:20px; }
+    .drop-sub { font-size:11px; color:var(--muted); font-weight:600; display:block; margin-top:1px; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+    .hamburger span { display:block; width:26px; height:3px; border-radius:3px; background:white; }
+    .mob-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1000; }
+    .mob-overlay.open { display:block; }
+    .mob-nav { position:fixed; top:0; right:0; width:290px; height:100vh; background:white; z-index:1001; padding:80px 28px 28px; display:flex; flex-direction:column; gap:6px; transform:translateX(100%); transition:transform .3s ease; }
+    .mob-nav.open { transform:translateX(0); }
+    .mob-nav a { font-weight:700; font-size:15px; color:var(--text); padding:11px 16px; border-radius:12px; transition:all .2s; display:block; }
+    .mob-nav a:hover { background:var(--sky); color:var(--blue); }
+    .mob-close { position:absolute; top:20px; right:20px; font-size:26px; cursor:pointer; color:var(--muted); }
+
+    /* BREADCRUMB BAR */
+    .topbar { background:white; border-bottom:1px solid #e8edf5; padding:0; margin-top:72px; }
+    .topbar-inner { display:flex; align-items:center; justify-content:space-between; height:52px; gap:16px; }
+    .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); }
+    .breadcrumb a { color:var(--muted); transition:color .2s; }
+    .breadcrumb a:hover { color:var(--blue); }
+    .breadcrumb span { color:#cbd5e1; }
+    .breadcrumb strong { color:var(--navy); }
+    .back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--blue); background:var(--sky); padding:7px 16px; border-radius:50px; border:none; cursor:pointer; transition:all .2s; }
+    .back-btn:hover { background:var(--blue); color:white; }
+
+    /* MAIN LAYOUT */
+    .detail-layout { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; padding:48px 0 80px; }
+
+    /* GALLERY */
+    .gallery-col {}
+    .main-img-wrap {
+      background:white; border-radius:24px;
+      box-shadow:0 8px 32px rgba(10,45,114,.1); overflow:hidden;
+      position:relative; margin-bottom:16px;
+      aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+    }
+    .main-img-wrap img { width:100%; height:100%; object-fit:cover; transition:opacity .3s; cursor:zoom-in; }
+    .img-nav { position:absolute; top:50%; transform:translateY(-50%); background:white; border:none; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,.12); font-size:16px; color:var(--navy); transition:all .2s; z-index:5; }
+    .img-nav:hover { background:var(--blue); color:white; transform:translateY(-50%) scale(1.1); }
+    .img-nav.prev { left:12px; }
+    .img-nav.next { right:12px; }
+    .img-nav.hidden { opacity:0; pointer-events:none; }
+    .img-counter { position:absolute; bottom:12px; right:14px; background:rgba(10,45,114,.6); color:white; font-size:11px; font-weight:700; padding:4px 10px; border-radius:50px; }
+    .thumbnails { display:flex; gap:10px; flex-wrap:wrap; }
+    .thumb {
+      width:72px; height:72px; border-radius:12px; overflow:hidden;
+      border:2px solid transparent; cursor:pointer; background:white;
+      box-shadow:0 2px 10px rgba(10,45,114,.08); transition:all .2s; flex-shrink:0;
+    }
+    .thumb.active { border-color:var(--blue); box-shadow:0 4px 16px rgba(10,61,143,.25); }
+    .thumb:hover { border-color:var(--bluem); transform:translateY(-2px); }
+    .thumb img { width:100%; height:100%; object-fit:contain; padding:4px; }
+    .no-img-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; font-size:80px; color:#dde3f0; }
+    .no-img-placeholder span { font-size:15px; color:var(--muted); font-weight:700; font-family:'Poppins',sans-serif; }
+
+    /* INFO */
+    .info-col { position:sticky; top:96px; }
+    .cat-badge { display:inline-flex; align-items:center; gap:6px; background:var(--sky); color:var(--blue); font-size:12px; font-weight:700; padding:5px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:.5px; margin-bottom:16px; }
+    .info-col h1 { font-size:clamp(22px,2.5vw,32px); color:var(--navy); line-height:1.25; margin-bottom:20px; }
+    .divider { height:1px; background:#e8edf5; margin:24px 0; }
+    .feature-list { display:flex; flex-direction:column; gap:12px; }
+    .feat { display:flex; align-items:flex-start; gap:12px; }
+    .feat-dot { width:22px; height:22px; border-radius:50%; background:var(--sky); display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; margin-top:2px; }
+    .feat span { font-size:14px; color:var(--muted); line-height:1.6; }
+    .feat span strong { color:var(--navy); display:block; margin-bottom:2px; }
+    .action-btns { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+    .btn-enquire { display:inline-flex; align-items:center; gap:8px; background:var(--yellow); color:var(--navy); font-weight:800; font-size:14px; padding:13px 26px; border-radius:50px; border:none; cursor:pointer; font-family:'Poppins',sans-serif; box-shadow:0 4px 18px rgba(255,214,0,.4); transition:all .3s; }
+    .btn-enquire:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(255,214,0,.55); }
+    .btn-back-cat { display:inline-flex; align-items:center; gap:8px; background:var(--sky); color:var(--blue); font-weight:700; font-size:14px; padding:13px 22px; border-radius:50px; border:none; cursor:pointer; font-family:'Poppins',sans-serif; transition:all .3s; }
+    .btn-back-cat:hover { background:var(--blue); color:white; transform:translateY(-3px); }
+    .quality-badges { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+    .qb { display:inline-flex; align-items:center; gap:6px; background:#f0f4ff; border:1px solid #d0daf7; border-radius:50px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--navy); }
+
+    /* LIGHTBOX */
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.88); z-index:2000; align-items:center; justify-content:center; }
+    .lightbox.open { display:flex; }
+    .lb-img { max-width:90vw; max-height:88vh; object-fit:contain; border-radius:12px; }
+    .lb-close { position:fixed; top:18px; right:22px; font-size:34px; color:white; cursor:pointer; opacity:.8; transition:opacity .2s; background:none; border:none; }
+    .lb-close:hover { opacity:1; }
+    .lb-prev, .lb-next { position:fixed; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); border:none; color:white; font-size:28px; cursor:pointer; padding:16px 20px; border-radius:12px; transition:all .2s; }
+    .lb-prev { left:16px; } .lb-next { right:16px; }
+    .lb-prev:hover, .lb-next:hover { background:rgba(255,255,255,.25); }
+
+    /* RELATED / MORE FROM CATEGORY */
+    .related-sec { padding:60px 0; background:white; }
+    .related-sec h2 { font-size:24px; color:var(--navy); margin-bottom:32px; }
+    .related-sec h2 span { color:var(--bluem); }
+
+    /* FOOTER */
+    .site-footer { background:#051f5c; padding:48px 0 0; color:rgba(255,255,255,.65); }
+    .footer-inner { display:flex; align-items:flex-start; justify-content:space-between; gap:40px; flex-wrap:wrap; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.08); }
+    .footer-brand img { height:46px; margin-bottom:14px; }
+    .footer-brand p { font-size:13px; max-width:240px; line-height:1.7; }
+    .footer-col h4 { color:white; font-size:14px; margin-bottom:14px; padding-bottom:10px; position:relative; }
+    .footer-col h4::after { content:''; position:absolute; bottom:0; left:0; width:28px; height:2px; background:var(--yellow); border-radius:2px; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+    .footer-col ul li a { font-size:13px; color:rgba(255,255,255,.55); transition:all .2s; }
+    .footer-col ul li a:hover { color:var(--yellow); }
+    .footer-bottom { padding:18px 0; font-size:12px; text-align:center; }
+
+    @media(max-width:900px) { .detail-layout { grid-template-columns:1fr; gap:36px; } .info-col { position:static; } }
+    @media(max-width:768px) { .main-nav { display:none; } .hamburger { display:flex; } .thumbnails .thumb { width:60px; height:60px; } }
+    @media(max-width:480px) { .action-btns { flex-direction:column; } .btn-enquire, .btn-back-cat { justify-content:center; } }
+  </style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1, event)">&#8249;</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1, event)">&#8250;</button>
+</div>
+
+<div class="mob-overlay" id="mobOverlay" onclick="closeNav()"></div>
+<nav class="mob-nav" id="mobNav">
+  <span class="mob-close" onclick="closeNav()">✕</span>
+  <a href="../index.html" onclick="closeNav()">🏠 Home</a>
+  <a href="../index.html#about" onclick="closeNav()">ℹ️ About Us</a>
+  <span style="display:block;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:10px 16px 4px;">PRODUCTS</span>
+  <a href="student.html"        onclick="closeNav()" style="padding-left:28px;">🎒 Student Category</a>
+  <a href="office.html"         onclick="closeNav()" style="padding-left:28px;">💼 Office Category</a>
+  <a href="new-year-diary.html" onclick="closeNav()" style="padding-left:28px;">📅 New Year Diary</a>
+  <a href="../index.html#events" onclick="closeNav()">🎉 Events</a>
+  <a href="../index.html#contact" onclick="closeNav()">📞 Contact Us</a>
+</nav>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../public/assets/images/logo-transparent.png" alt="Successful™ Logo"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'">
+        <span id="logoFallback" style="display:none;font-family:'Poppins',sans-serif;font-weight:900;font-size:20px;color:white;">✎ SUCCESSFUL™</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#about">About Us</a>
+        <div class="nav-item">
+          <a href="#">Products</a>
+          <div class="dropdown-menu">
+            <a href="student.html"><span class="drop-icon">🎒</span><span><strong>Student Category</strong><span class="drop-sub">Notebooks, Drawing &amp; More</span></span></a>
+            <a href="office.html"><span class="drop-icon">💼</span><span><strong>Office Category</strong><span class="drop-sub">Professional Stationery</span></span></a>
+            <a href="new-year-diary.html"><span class="drop-icon">📅</span><span><strong>New Year Diary</strong><span class="drop-sub">Premium Yearly Planners</span></span></a>
+          </div>
+        </div>
+        <a href="../index.html#events">Events</a>
+        <a href="../index.html#contact">Career</a>
+        <a href="../index.html#contact" class="nav-cta">Contact Us</a>
+      </nav>
+      <div class="hamburger" onclick="openNav()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <div class="breadcrumb" id="breadcrumb">
+        <a href="../index.html">Home</a><span>/</span>
+        <a href="#">Products</a><span>/</span>
+        <a href="#" id="catLink">Category</a><span>/</span>
+        <strong id="bcProductName">Product</strong>
+      </div>
+      <button class="back-btn" onclick="history.back()">← Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="detail-layout">
+
+      <!-- GALLERY -->
+      <div class="gallery-col">
+        <div class="main-img-wrap" id="mainImgWrap">
+          <div class="no-img-placeholder" id="noImgPlaceholder">
+            <span>📚</span>
+            <span>Loading…</span>
+          </div>
+          <img id="mainImg" src="" alt="" style="display:none;" onclick="openLightbox(currentIdx)">
+          <button class="img-nav prev hidden" id="btnPrev" onclick="changeImg(-1)">&#8249;</button>
+          <button class="img-nav next hidden" id="btnNext" onclick="changeImg(1)">&#8250;</button>
+          <span class="img-counter" id="imgCounter" style="display:none;"></span>
+        </div>
+        <div class="thumbnails" id="thumbnails"></div>
+      </div>
+
+      <!-- INFO -->
+      <div class="info-col">
+        <div class="cat-badge" id="catBadge">📦 Category</div>
+        <h1 id="productName">Loading…</h1>
+        <div class="divider"></div>
+        <div class="feature-list">
+          <div class="feat"><div class="feat-dot">✓</div><span><strong>Premium Quality</strong>BIS certified materials — safe, durable, and reliable for every use.</span></div>
+          <div class="feat"><div class="feat-dot">✓</div><span><strong>Trusted Brand</strong>Successful™ has been India's preferred stationery brand for over a decade.</span></div>
+          <div class="feat"><div class="feat-dot">✓</div><span><strong>Wide Availability</strong>Available at school bookstores and leading stationery shops across India.</span></div>
+          <div class="feat"><div class="feat-dot">✓</div><span><strong>Bulk Orders Welcome</strong>Competitive pricing for schools, institutions and corporate orders.</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="quality-badges">
+          <span class="qb">🏆 BIS Certified</span>
+          <span class="qb">🌱 Eco-Friendly</span>
+          <span class="qb">📦 Bulk Available</span>
+        </div>
+        <div class="action-btns">
+          <a href="../index.html#contact" class="btn-enquire">📞 Enquire Now</a>
+          <button class="btn-back-cat" id="btnBackCat" onclick="history.back()">← Back to Category</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../public/assets/images/logo-transparent.png" alt="Successful™" onerror="this.style.display='none'">
+        <p>India's most trusted school stationery brand — making learning colourful and joyful.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="student.html">Student Category</a></li>
+          <li><a href="office.html">Office Category</a></li>
+          <li><a href="new-year-diary.html">New Year Diary</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#about">About Us</a></li>
+          <li><a href="../index.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Successful™. All rights reserved. Made with ❤️ in India.</div>
+  </div>
+</footer>
+
+<script>
+  // ── PARSE URL PARAMS ──
+  const params  = new URLSearchParams(location.search);
+  const id      = params.get('id')   || '';
+  const name    = params.get('name') || 'Product';
+  const cat     = params.get('cat')  || 'student';
+  const imgsRaw = params.get('imgs') || '';
+  const images  = imgsRaw ? imgsRaw.split('|') : [];
+
+  const IMG_BASE = `../public/assets/images/products/${id}/`;
+
+  // ── SET META ──
+  document.title = `${name} | Successful™ Stationery`;
+  document.getElementById('productName').textContent = name;
+  document.getElementById('bcProductName').textContent = name;
+
+  const catLabels = { student:'🎒 Student', office:'💼 Office', diary:'📅 Diary' };
+  const catHrefs  = { student:'student.html', office:'office.html', diary:'new-year-diary.html' };
+  document.getElementById('catBadge').textContent = catLabels[cat] || '📦 Product';
+  document.getElementById('catLink').textContent  = cat.charAt(0).toUpperCase() + cat.slice(1) + ' Category';
+  document.getElementById('catLink').href         = catHrefs[cat] || 'student.html';
+
+  // ── GALLERY STATE ──
+  let currentIdx = 0;
+
+  function buildGallery() {
+    if (!images.length) return;
+
+    const mainImg   = document.getElementById('mainImg');
+    const noImg     = document.getElementById('noImgPlaceholder');
+    const counter   = document.getElementById('imgCounter');
+    const btnPrev   = document.getElementById('btnPrev');
+    const btnNext   = document.getElementById('btnNext');
+    const thumbWrap = document.getElementById('thumbnails');
+
+    noImg.style.display  = 'none';
+    mainImg.style.display = 'block';
+    counter.style.display = 'block';
+
+    function setImg(idx) {
+      currentIdx = idx;
+      const src = IMG_BASE + encodeURIComponent(images[idx]);
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src     = src;
+        mainImg.alt     = name;
+        mainImg.decoding = 'async';
+        mainImg.style.opacity = '1';
+        mainImg.style.transition = 'opacity .25s';
+      }, 100);
+      counter.textContent = `${idx + 1} / ${images.length}`;
+      btnPrev.classList.toggle('hidden', idx === 0);
+      btnNext.classList.toggle('hidden', idx === images.length - 1);
+      document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+    }
+
+    images.forEach((imgFile, i) => {
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb' + (i === 0 ? ' active' : '');
+      const src = IMG_BASE + encodeURIComponent(imgFile);
+      thumb.innerHTML = `<img src="${src}" alt="${name} view ${i+1}" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">`;
+      thumb.addEventListener('click', () => setImg(i));
+      thumbWrap.appendChild(thumb);
+    });
+
+    setImg(0);
+
+    mainImg.onerror = () => {
+      mainImg.style.display = 'none';
+      noImg.style.display   = 'flex';
+      noImg.innerHTML = '<span>📚</span><span>Image coming soon</span>';
+    };
+
+    // Keyboard nav
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' && currentIdx < images.length - 1) setImg(currentIdx + 1);
+      if (e.key === 'ArrowLeft'  && currentIdx > 0)                 setImg(currentIdx - 1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    window.changeImg = (dir) => setImg(Math.max(0, Math.min(images.length - 1, currentIdx + dir)));
+  }
+
+  buildGallery();
+
+  // ── LIGHTBOX ──
+  window.openLightbox = (idx) => {
+    if (!images.length) return;
+    document.getElementById('lbImg').src = IMG_BASE + encodeURIComponent(images[idx]);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeLightbox = () => {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.lbNav = (dir, e) => {
+    e.stopPropagation();
+    const next = Math.max(0, Math.min(images.length - 1, currentIdx + dir));
+    currentIdx = next;
+    document.getElementById('lbImg').src = IMG_BASE + encodeURIComponent(images[next]);
+  };
+
+  // ── NAV ──
+  function openNav()  { document.getElementById('mobNav').classList.add('open'); document.getElementById('mobOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeNav() { document.getElementById('mobNav').classList.remove('open'); document.getElementById('mobOverlay').classList.remove('open'); document.body.style.overflow=''; }
+</script>
+</body>
+</html>

@@ -215,6 +215,29 @@
     }
     .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,214,0,.55) !important; }
 
+    /* ── DROPDOWN ── */
+    .nav-item { position: relative; }
+    .nav-item > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-item > a::after { content: '▾'; font-size: 11px; opacity: .75; }
+    .dropdown-menu {
+      position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px);
+      background: white; border-radius: 16px; min-width: 230px;
+      box-shadow: 0 16px 48px rgba(10,45,114,.18); padding: 8px;
+      opacity: 0; visibility: hidden;
+      transition: opacity .22s ease, transform .22s ease, visibility .22s;
+      z-index: 800;
+    }
+    .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a {
+      display: flex !important; align-items: center; gap: 10px;
+      padding: 11px 14px; border-radius: 10px;
+      font-size: 14px; font-weight: 700; color: var(--text) !important;
+      text-shadow: none !important; background: none;
+    }
+    .dropdown-menu a:hover { background: var(--sky) !important; color: var(--blue) !important; transform: none !important; }
+    .drop-icon { font-size: 20px; }
+    .drop-sub { font-size: 11px; color: var(--muted); font-weight: 600; display: block; margin-top: 1px; }
+
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
     .hamburger span { display: block; width: 26px; height: 3px; border-radius: 3px; background: white; transition: all .3s; }
     .site-header.scrolled .hamburger span { background: var(--navy); }
@@ -623,7 +646,10 @@
   <span class="mob-close" onclick="closeNav()">✕</span>
   <a href="#home"     onclick="closeNav()">🏠 Home</a>
   <a href="#about"    onclick="closeNav()">ℹ️ About Us</a>
-  <a href="#products" onclick="closeNav()">📦 Products</a>
+  <span style="display:block;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:10px 16px 4px;">PRODUCTS</span>
+  <a href="products/student.html"        onclick="closeNav()" style="padding-left:28px;">🎒 Student Category</a>
+  <a href="products/office.html"         onclick="closeNav()" style="padding-left:28px;">💼 Office Category</a>
+  <a href="products/new-year-diary.html" onclick="closeNav()" style="padding-left:28px;">📅 New Year Diary</a>
   <a href="#events"   onclick="closeNav()">🎉 Events</a>
   <a href="#contact"  onclick="closeNav()">💼 Career</a>
   <a href="#contact"  onclick="closeNav()">📞 Contact Us</a>
@@ -642,7 +668,23 @@
       <nav class="main-nav">
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
-        <a href="#products">Products</a>
+        <div class="nav-item">
+          <a href="#products">Products</a>
+          <div class="dropdown-menu">
+            <a href="products/student.html">
+              <span class="drop-icon">🎒</span>
+              <span><strong>Student Category</strong><span class="drop-sub">Notebooks, Drawing &amp; More</span></span>
+            </a>
+            <a href="products/office.html">
+              <span class="drop-icon">💼</span>
+              <span><strong>Office Category</strong><span class="drop-sub">Professional Stationery</span></span>
+            </a>
+            <a href="products/new-year-diary.html">
+              <span class="drop-icon">📅</span>
+              <span><strong>New Year Diary</strong><span class="drop-sub">Premium Yearly Planners</span></span>
+            </a>
+          </div>
+        </div>
         <a href="#events">Events</a>
         <a href="#contact">Career</a>
         <a href="#contact" class="nav-cta">Contact Us</a>
@@ -1082,12 +1124,9 @@
       <div class="footer-col">
         <h4>Our Products</h4>
         <ul>
-          <li><a href="#products">→ Notebooks</a></li>
-          <li><a href="#products">→ Drawing Books</a></li>
-          <li><a href="#products">→ Art Supplies</a></li>
-          <li><a href="#products">→ Math Instruments</a></li>
-          <li><a href="#products">→ Craft Supplies</a></li>
-          <li><a href="#products">→ Paper Stationery</a></li>
+          <li><a href="products/student.html">→ Student Category</a></li>
+          <li><a href="products/office.html">→ Office Category</a></li>
+          <li><a href="products/new-year-diary.html">→ New Year Diary</a></li>
         </ul>
       </div>
       <div class="footer-col">

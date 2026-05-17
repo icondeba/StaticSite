@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office Category | Successful™ Stationery</title>
+  <meta name="description" content="Explore Successful™ Office Category – professional notebooks, conference pads, pocket memos, case-bound notebooks and more for the modern workplace.">
+  <link rel="canonical" href="https://www.successful.ind.in/products/office.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0a2d72; --blue:   #0a3d8f; --bluem:  #1565c0;
+      --sky:    #e3f2fd; --yellow: #FFD600; --orange: #FF6B35;
+      --green:  #00C853; --white:  #ffffff; --bg:     #F4F8FF;
+      --text:   #1a2744; --muted:  #6b7a9b; --radius: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--bg); overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 900; background: rgba(10,45,114,.95); backdrop-filter: blur(12px); box-shadow: 0 4px 28px rgba(10,45,114,.2); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo img { height: 44px; width: auto; }
+    .main-nav { display: flex; align-items: center; gap: 4px; }
+    .main-nav a { font-weight: 700; font-size: 14px; color: rgba(255,255,255,.9); padding: 8px 14px; border-radius: 8px; transition: all .2s; }
+    .main-nav a:hover, .main-nav a.active { background: rgba(255,255,255,.15); }
+    .nav-cta { background: var(--yellow) !important; color: var(--navy) !important; border-radius: 50px !important; margin-left: 8px; }
+    .nav-item { position: relative; }
+    .nav-item > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-item > a::after { content: '▾'; font-size: 11px; opacity: .75; }
+    .dropdown-menu { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px); background: white; border-radius: 16px; min-width: 230px; box-shadow: 0 16px 48px rgba(10,45,114,.18); padding: 8px; opacity: 0; visibility: hidden; transition: opacity .22s ease, transform .22s ease, visibility .22s; z-index: 800; }
+    .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: flex !important; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 10px; font-size: 14px; font-weight: 700; color: var(--text) !important; background: none; }
+    .dropdown-menu a:hover { background: var(--sky) !important; color: var(--blue) !important; transform: none !important; }
+    .drop-icon { font-size: 20px; }
+    .drop-sub { font-size: 11px; color: var(--muted); font-weight: 600; display: block; margin-top: 1px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 26px; height: 3px; border-radius: 3px; background: white; }
+    .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1000; }
+    .mob-overlay.open { display: block; }
+    .mob-nav { position: fixed; top: 0; right: 0; width: 290px; height: 100vh; background: white; box-shadow: -8px 0 50px rgba(0,0,0,.18); z-index: 1001; padding: 80px 28px 28px; display: flex; flex-direction: column; gap: 6px; transform: translateX(100%); transition: transform .3s ease; }
+    .mob-nav.open { transform: translateX(0); }
+    .mob-nav a { font-weight: 700; font-size: 15px; color: var(--text); padding: 11px 16px; border-radius: 12px; transition: all .2s; display: block; }
+    .mob-nav a:hover { background: var(--sky); color: var(--blue); }
+    .mob-close { position: absolute; top: 20px; right: 20px; font-size: 26px; cursor: pointer; color: var(--muted); }
+
+    .page-hero { padding: 120px 0 64px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(255,214,0,.1) 0%, transparent 70%); }
+    .page-hero .container { position: relative; z-index: 1; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+    .breadcrumb a { color: rgba(255,255,255,.6); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--yellow); }
+    .breadcrumb span { color: rgba(255,255,255,.35); }
+    .page-hero h1 { font-size: clamp(32px,5vw,56px); color: white; line-height: 1.15; margin-bottom: 14px; }
+    .page-hero h1 span { color: var(--yellow); }
+    .page-hero p { color: rgba(255,255,255,.72); font-size: clamp(14px,1.4vw,17px); max-width: 540px; line-height: 1.7; }
+    .hero-stats { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+    .hs .n { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 28px; color: var(--yellow); display: block; }
+    .hs .l { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 600; }
+    .hero-wave { position: absolute; bottom: -2px; left: 0; right: 0; line-height: 0; z-index: 2; }
+    .hero-wave svg { display: block; width: 100%; }
+
+    .category-sec { padding: 64px 0; content-visibility: auto; contain-intrinsic-size: 0 700px; }
+    .category-sec:nth-child(even) { background: white; }
+
+    @keyframes shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+    .prod-img-wrap::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(90deg, #e8edf5 25%, #f4f7fc 50%, #e8edf5 75%);
+      background-size: 600px 100%;
+      animation: shimmer 1.4s infinite linear;
+      transition: opacity .4s;
+    }
+    .prod-img-wrap.loaded::before { opacity: 0; pointer-events: none; }
+    .sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; gap: 12px; }
+    .sec-header-left { display: flex; align-items: center; gap: 14px; }
+    .sec-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .sec-header h2 { font-size: clamp(20px,2.5vw,28px); color: var(--navy); }
+    .sec-header p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+    .sec-count { background: var(--sky); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 50px; white-space: nowrap; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
+
+    .prod-card {
+      background: #ffffff;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(10,45,114,.1);
+      display: flex; flex-direction: column;
+      transform-style: preserve-3d; will-change: transform;
+      transition: border-color .4s, box-shadow .4s;
+      box-shadow: 0 2px 16px rgba(10,45,114,.07), 0 1px 4px rgba(0,0,0,.04);
+    }
+    .prod-card.has-image { cursor: pointer; }
+    .prod-card.has-image:hover {
+      border-color: rgba(10,61,143,.25);
+      box-shadow: 0 16px 56px rgba(10,45,114,.15), 0 4px 16px rgba(10,45,114,.08);
+    }
+
+    .prod-top {
+      padding: 20px 22px 18px;
+      background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+      border-bottom: 1px solid rgba(10,45,114,.05);
+    }
+    .prod-cat-lbl {
+      display: inline-flex; align-items: center;
+      background: var(--navy); color: var(--yellow);
+      padding: 3px 12px; border-radius: 50px;
+      font-size: 9px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 11px;
+      box-shadow: 0 2px 8px rgba(10,45,114,.2);
+    }
+    .prod-top h3 { font-family:'Poppins',sans-serif; font-weight:700; font-size:17px; color:var(--navy); line-height:1.3; margin:0; }
+
+    .prod-img-wrap { position:relative; height:230px; overflow:hidden; flex-shrink:0; background:linear-gradient(145deg,#eef2ff 0%,#e4eaf8 100%); }
+    .prod-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform .55s ease; }
+    .prod-card.has-image:hover .prod-img-wrap img { transform:scale(1.08); }
+    .prod-img-dark { position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(10,45,114,.12) 100%); transition:background .4s; }
+    .prod-card.has-image:hover .prod-img-dark { background:linear-gradient(180deg,rgba(10,45,114,.04) 0%,rgba(10,45,114,.18) 100%); }
+    .prod-reveal { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .32s; background:rgba(10,45,114,.04); }
+    .prod-card.has-image:hover .prod-reveal { opacity:1; }
+    .prod-reveal-btn {
+      background: var(--navy); color: var(--yellow);
+      font-family:'Poppins',sans-serif; font-weight:800; font-size:13px;
+      padding:11px 28px; border-radius:50px;
+      box-shadow:0 8px 28px rgba(10,45,114,.4);
+      transform:translateY(14px); transition:transform .38s cubic-bezier(.22,.61,.36,1);
+      display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+    }
+    .prod-card.has-image:hover .prod-reveal-btn { transform:translateY(0); }
+
+    .prod-no-img-wrap { height:230px; background:linear-gradient(145deg,#f0f4ff 0%,#e8edf8 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+    .prod-no-img-wrap .ni-icon { font-size:52px; opacity:.25; }
+    .prod-no-img-wrap .ni-lbl { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(10,45,114,.3); }
+
+    .prod-bottom { padding:14px 22px; display:flex; gap:28px; margin-top:auto; background:#f8faff; border-top:1px solid rgba(10,45,114,.07); }
+    .pm { display:flex; flex-direction:column; gap:3px; }
+    .pml { font-size:9px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--bluem); }
+    .pmv { font-size:12px; font-weight:700; color:var(--navy); }
+
+    @keyframes shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+    .prod-img-wrap::before { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(90deg,#e4eaf8 25%,#f0f4ff 50%,#e4eaf8 75%); background-size:600px 100%; animation:shimmer 1.4s infinite linear; transition:opacity .4s; }
+    .prod-img-wrap.loaded::before { opacity:0; }
+
+    .site-footer { background: #051f5c; padding: 48px 0 0; color: rgba(255,255,255,.65); margin-top: 80px; }
+    .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-brand img { height: 46px; margin-bottom: 14px; }
+    .footer-brand p { font-size: 13px; max-width: 240px; line-height: 1.7; }
+    .footer-col h4 { color: white; font-size: 14px; margin-bottom: 14px; padding-bottom: 10px; position: relative; }
+    .footer-col h4::after { content:''; position:absolute; bottom:0; left:0; width:28px; height:2px; background:var(--yellow); border-radius:2px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,.55); transition: all .2s; }
+    .footer-col ul li a:hover { color: var(--yellow); }
+    .footer-bottom { padding: 18px 0; font-size: 12px; text-align: center; }
+
+    @media(max-width:768px) { .main-nav { display: none; } .hamburger { display: flex; } .products-grid { grid-template-columns: repeat(2,1fr); } .sec-header { flex-direction: column; align-items: flex-start; } }
+    @media(max-width:480px) { .products-grid { grid-template-columns: 1fr; } }
+
+    /* ── SCROLL REVEAL SYSTEM ── */
+    #scroll-bar { position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--yellow),var(--orange)); z-index:9999; pointer-events:none; }
+    .reveal { opacity:0; transition:opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1), border-color .35s, box-shadow .35s; }
+    .reveal.up    { transform:translateY(48px); }
+    .reveal.left  { transform:translateX(-54px); }
+    .reveal.right { transform:translateX(54px); }
+    .reveal.scale { transform:scale(0.88) translateY(24px); }
+    .reveal.active { opacity:1; transform:none; }
+    .reveal.d1 { transition-delay:.12s; }
+    .reveal.d2 { transition-delay:.26s; }
+    .reveal.d3 { transition-delay:.42s; }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+<div class="mob-overlay" id="mobOverlay" onclick="closeNav()"></div>
+<nav class="mob-nav" id="mobNav">
+  <span class="mob-close" onclick="closeNav()">✕</span>
+  <a href="../index.html" onclick="closeNav()">🏠 Home</a>
+  <a href="../index.html#about" onclick="closeNav()">ℹ️ About Us</a>
+  <span style="display:block;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:10px 16px 4px;">PRODUCTS</span>
+  <a href="student.html"        onclick="closeNav()" style="padding-left:28px;">🎒 Student Category</a>
+  <a href="office.html"         onclick="closeNav()" style="padding-left:28px;">💼 Office Category</a>
+  <a href="new-year-diary.html" onclick="closeNav()" style="padding-left:28px;">📅 New Year Diary</a>
+  <a href="../index.html#events" onclick="closeNav()">🎉 Events</a>
+  <a href="../index.html#contact" onclick="closeNav()">📞 Contact Us</a>
+</nav>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../public/assets/images/logo-transparent.png" alt="Successful™ Logo"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'">
+        <span id="logoFallback" style="display:none;font-family:'Poppins',sans-serif;font-weight:900;font-size:20px;color:white;">✎ SUCCESSFUL™</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#about">About Us</a>
+        <div class="nav-item">
+          <a href="#" class="active">Products</a>
+          <div class="dropdown-menu">
+            <a href="student.html"><span class="drop-icon">🎒</span><span><strong>Student Category</strong><span class="drop-sub">Notebooks, Drawing &amp; More</span></span></a>
+            <a href="office.html"><span class="drop-icon">💼</span><span><strong>Office Category</strong><span class="drop-sub">Professional Stationery</span></span></a>
+            <a href="new-year-diary.html"><span class="drop-icon">📅</span><span><strong>New Year Diary</strong><span class="drop-sub">Premium Yearly Planners</span></span></a>
+          </div>
+        </div>
+        <a href="../index.html#events">Events</a>
+        <a href="../index.html#contact">Career</a>
+        <a href="../index.html#contact" class="nav-cta">Contact Us</a>
+      </nav>
+      <div class="hamburger" onclick="openNav()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb reveal up">
+      <a href="../index.html">Home</a><span>/</span>
+      <a href="#">Products</a><span>/</span>
+      <span style="color:var(--yellow);">Office Category</span>
+    </div>
+    <h1 class="reveal up d1">Office <span>Category</span></h1>
+    <p class="reveal up d2">Professional stationery crafted for the modern workplace — premium notebooks, conference pads, pocket memos, case-bound notebooks and more.</p>
+    <div class="hero-stats reveal up d3">
+      <div class="hs"><span class="n">50+</span><span class="l">Products</span></div>
+      <div class="hs"><span class="n">Premium</span><span class="l">Quality</span></div>
+      <div class="hs"><span class="n">Corporate</span><span class="l">Grade</span></div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#F4F8FF"/>
+    </svg>
+  </div>
+</section>
+
+<main>
+
+<!-- POCKET & MEMO -->
+<section class="category-sec" id="pocket">
+  <div class="container">
+    <div class="sec-header reveal left">
+      <div class="sec-header-left">
+        <div class="sec-icon" style="background:#fff8e1;">📒</div>
+        <div><h2>Pocket &amp; Memo Notebooks</h2><p>Compact essentials for on-the-go professionals</p></div>
+      </div>
+      <span class="sec-count">4 Products</span>
+    </div>
+    <div class="products-grid" id="grid-pocket"></div>
+  </div>
+</section>
+
+<!-- CONFERENCE & DESK -->
+<section class="category-sec" id="conference">
+  <div class="container">
+    <div class="sec-header reveal left">
+      <div class="sec-header-left">
+        <div class="sec-icon" style="background:#e3f2fd;">📋</div>
+        <div><h2>Conference &amp; Desk Pads</h2><p>Meeting-ready pads and desk notepads</p></div>
+      </div>
+      <span class="sec-count">2 Products</span>
+    </div>
+    <div class="products-grid" id="grid-conference"></div>
+  </div>
+</section>
+
+<!-- PREMIUM NOTEBOOKS -->
+<section class="category-sec" id="premium-nb">
+  <div class="container">
+    <div class="sec-header reveal left">
+      <div class="sec-header-left">
+        <div class="sec-icon" style="background:#e8f5e9;">💼</div>
+        <div><h2>Premium &amp; Case Bound Notebooks</h2><p>Executive-grade hardbound and case-bound notebooks</p></div>
+      </div>
+      <span class="sec-count">14 Products</span>
+    </div>
+    <div class="products-grid" id="grid-premium-nb"></div>
+  </div>
+</section>
+
+<!-- WIRO & PP NOTEBOOKS -->
+<section class="category-sec" id="wiro-office">
+  <div class="container">
+    <div class="sec-header reveal left">
+      <div class="sec-header-left">
+        <div class="sec-icon" style="background:#ede7f6;">📓</div>
+        <div><h2>Wiro &amp; PP Cover Notebooks</h2><p>Spiral and polypropylene-covered professional notebooks</p></div>
+      </div>
+      <span class="sec-count">9 Products</span>
+    </div>
+    <div class="products-grid" id="grid-wiro-office"></div>
+  </div>
+</section>
+
+<!-- FILES & ACCESSORIES -->
+<section class="category-sec" id="files">
+  <div class="container">
+    <div class="sec-header reveal left">
+      <div class="sec-header-left">
+        <div class="sec-icon" style="background:#fce4ec;">📁</div>
+        <div><h2>Files, Pads &amp; Accessories</h2><p>Premium cash memos, slip pads, files and duplicate books</p></div>
+      </div>
+      <span class="sec-count">5 Products</span>
+    </div>
+    <div class="products-grid" id="grid-files"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../public/assets/images/logo-transparent.png" alt="Successful™" onerror="this.style.display='none'">
+        <p>India's most trusted school stationery brand — making learning colourful and joyful.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="student.html">Student Category</a></li>
+          <li><a href="office.html">Office Category</a></li>
+          <li><a href="new-year-diary.html">New Year Diary</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../index.html#about">About Us</a></li>
+          <li><a href="../index.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Successful™. All rights reserved. Made with ❤️ in India.</div>
+  </div>
+</footer>
+
+<script>
+  const IMG = '../public/assets/images/products/';
+  const noImgIcons = ['💼','📋','📒','📓','🗒️','📑','📁','📂','🖊️','📎'];
+
+  const sections = {
+    'grid-pocket': [
+      { id: 'successful-pocket-notebook', name: 'SUCCESSFUL POCKET NOTEBOOK', images: ['SUCCESSFUL POCKET NOTEBOOK.jpg','SUCCESSFUL POCKET NOTEBOOK 2.jpg'] },
+      { id: 'pocket-memo',                name: 'POCKET MEMO',                images: ['POCKET MEMO.jpg','POCKET MEMO 2.jpg'] },
+      { id: 'top-pocket-wiro',            name: 'TOP POCKET WIRO',            images: ['TOP POCKET WIRO.jpg','TOP POCKET WIRO 2.jpg'] },
+      { id: null, name: 'CHAMP HARD BOUND NOTEBOOK', images: [] },
+    ],
+    'grid-conference': [
+      { id: 'desk-note-pad',        name: 'DESK NOTE PAD',        images: ['DESK NOTE PAD.jpg','DESK NOTE PAD 2.jpg'] },
+      { id: 'spiral-conference-pad',name: 'SPIRAL CONFERENCE PAD', images: ['SPIRAL CONFERENCE PAD.jpg','SPIRAL CONFERENCE PAD 2.jpg'] },
+    ],
+    'grid-premium-nb': [
+      { id: null, name: 'CHAMP A5 CASE BOUND NOTEBOOK',                  images: [] },
+      { id: null, name: 'CHAMP A5 CASE BOUND NOTEBOOK MAGNET LOCK',      images: [] },
+      { id: null, name: 'CHAMP A5 CASE BOUND NOTEBOOK LEATHER LITE',     images: [] },
+      { id: null, name: 'A5 PIHU NOTEBOOK WITH LOCK',                    images: [] },
+      { id: null, name: 'A5 PIHU NOTEBOOK WITH MOBILE POCKET',           images: [] },
+      { id: null, name: 'EXECUTIVE PIHU NOTEBOOK WITH LOCK',             images: [] },
+      { id: null, name: 'CHAMP EXECUTIVE CASE BOUND NOTEBOOK',           images: [] },
+      { id: null, name: 'CHAMP EXECUTIVE CASE BOUND NOTEBOOK LEATHER LITE', images: [] },
+      { id: null, name: 'CHAMP B6 CASE BOUND NOTEBOOK',                  images: [] },
+      { id: null, name: 'CHAMP A6 CASE BOUND NOTEBOOK',                  images: [] },
+      { id: null, name: 'CHAMP POCKET CASE BOUND NOTEBOOK',              images: [] },
+      { id: null, name: 'CHAMP CASE BOUND NOTEBOOK',                     images: [] },
+      { id: null, name: 'CHAMP CROWN NOTEBOOK',                          images: [] },
+    ],
+    'grid-wiro-office': [
+      { id: null, name: 'A5 PREMIUM NEON WIRO NOTEBOOK',    images: [] },
+      { id: null, name: 'B5 1 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'B5 5 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'A5 1 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'A5 5 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'A6 1 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'A6 4 SUBJECT BLACK P.P NOTEBOOK',  images: [] },
+      { id: null, name: 'A7 POCKET BLACK P.P NOTEBOOK',     images: [] },
+    ],
+    'grid-files': [
+      { id: 'premium-duplicate-book', name: 'PREMIUM DUPLICATE BOOK', images: ['PREMIUM DUPLICATE BOOK.jpg','PREMIUM DUPLICATE BOOK 2.jpg'] },
+      { id: null, name: 'PREMIUM CASH MEMO',           images: [] },
+      { id: null, name: 'SLIP PAD',                    images: [] },
+      { id: null, name: 'STICK FILE',                  images: [] },
+      { id: null, name: 'MY CLEAR BAG (PLASTIC FILE)', images: [] },
+      { id: null, name: 'COVER FILE',                  images: [] },
+    ],
+  };
+
+  const sectionTypes = {
+    'grid-pocket':     'Pocket Notebook',
+    'grid-conference': 'Conference Pad',
+    'grid-premium-nb': 'Premium Notebook',
+    'grid-wiro-office':'Wiro Notebook',
+    'grid-files':      'Files & Stationery',
+  };
+
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('active');
+      if (e.target.classList.contains('has-image')) apply3DTilt(e.target);
+      revealObs.unobserve(e.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  function buildGrid(gridId, products) {
+    const container = document.getElementById(gridId);
+    if (!container) return;
+    const type = sectionTypes[gridId] || 'Office';
+    products.forEach((p, i) => {
+      const hasImg   = p.id && p.images.length > 0;
+      const thumbSrc = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.images[0])}` : null;
+      const detailUrl = hasImg ? `detail.html?id=${p.id}&name=${encodeURIComponent(p.name)}&cat=office&imgs=${encodeURIComponent(p.images.join('|'))}` : '#';
+      const card = document.createElement('div');
+      card.className = 'prod-card' + (hasImg ? ' has-image' : '');
+      card.innerHTML = `
+        <div class="prod-top">
+          <span class="prod-cat-lbl">${type}</span>
+          <h3>${p.name}</h3>
+        </div>
+        <div class="prod-img-wrap${hasImg ? '' : ' loaded'}">
+          ${hasImg
+            ? `<img src="${thumbSrc}" alt="${p.name}" loading="lazy" decoding="async"
+                 onload="this.parentElement.classList.add('loaded')"
+                 onerror="this.parentElement.classList.add('loaded')">
+               <div class="prod-img-dark"></div>
+               <div class="prod-reveal"><span class="prod-reveal-btn">View Product →</span></div>`
+            : `<div class="prod-no-img-wrap"><span class="ni-icon">${noImgIcons[i%noImgIcons.length]}</span><span class="ni-lbl">Image Coming Soon</span></div>`}
+        </div>
+        <div class="prod-bottom">
+          <div class="pm"><span class="pml">Category</span><span class="pmv">Office</span></div>
+          <div class="pm"><span class="pml">Type</span><span class="pmv">${type}</span></div>
+        </div>`;
+      card.classList.add('reveal', 'scale');
+      card.style.transitionDelay = `${(i % 4) * 0.12}s`;
+      if (hasImg) {
+        card.addEventListener('click', () => { window.location.href = detailUrl; });
+      }
+      container.appendChild(card);
+      revealObs.observe(card);
+    });
+  }
+
+  Object.keys(sections).forEach(id => buildGrid(id, sections[id]));
+
+  function openNav()  { document.getElementById('mobNav').classList.add('open'); document.getElementById('mobOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { document.getElementById('mobNav').classList.remove('open'); document.getElementById('mobOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ── 3D TILT EFFECT ──
+  function apply3DTilt(card) {
+    card.addEventListener('mouseenter', () => {
+      card.style.boxShadow   = '0 24px 56px rgba(10,45,114,.22)';
+      card.style.borderColor = 'var(--blue)';
+    });
+    card.addEventListener('mousemove', e => {
+      const r  = card.getBoundingClientRect();
+      const x  = e.clientX - r.left;
+      const y  = e.clientY - r.top;
+      const cx = r.width  / 2;
+      const cy = r.height / 2;
+      const rX = ((y - cy) / cy) * -10;
+      const rY = ((x - cx) / cx) *  10;
+      card.style.transition = 'box-shadow .3s, border-color .3s';
+      card.style.transform  = `perspective(700px) rotateX(${rX}deg) rotateY(${rY}deg) scale(1.03)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition  = 'transform .55s ease, box-shadow .4s ease, border-color .4s ease';
+      card.style.transform   = '';
+      card.style.boxShadow   = '';
+      card.style.borderColor = '';
+    });
+  }
+  // Observe static reveal elements (hero, section headers)
+  document.querySelectorAll('.reveal:not(.prod-card)').forEach(el => revealObs.observe(el));
+
+  // ── SCROLL PROGRESS BAR ──
+  const scrollBar = document.getElementById('scroll-bar');
+  function updateScrollBar() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (max > 0) scrollBar.style.width = Math.min(100, (window.scrollY / max) * 100) + '%';
+  }
+  window.addEventListener('scroll', updateScrollBar, { passive: true });
+
+  // ── HERO PARALLAX ──
+  const heroEl   = document.querySelector('.page-hero');
+  const heroCont = heroEl.querySelector('.container');
+  function heroParallax() {
+    const y = window.scrollY;
+    if (y < heroEl.offsetHeight * 1.5) heroCont.style.transform = `translateY(${y * 0.22}px)`;
+    else heroCont.style.transform = '';
+  }
+  window.addEventListener('scroll', heroParallax, { passive: true });
+</script>
+</body>
+</html>
+
