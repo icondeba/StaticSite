@@ -105,9 +105,14 @@
       text-transform: uppercase; margin-bottom: 8px;
     }
 
-    .prod-img-wrap { position: relative; height: 240px; overflow: hidden; background: #d8dce4; }
-    .prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
-    .prod-card.has-image:hover .prod-img-wrap img { transform: scale(1.06); }
+    .prod-img-wrap {
+      position: relative; height: 240px; overflow: hidden;
+      background: #eaebee;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px; box-sizing: border-box;
+    }
+    .prod-img-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform .55s ease; border-radius: 4px; }
+    .prod-card.has-image:hover .prod-img-wrap img { transform: scale(1.05); }
 
     /* Info overlay — slides up on hover */
     .prod-hover-info {
@@ -131,7 +136,7 @@
     }
 
     .prod-no-img-wrap {
-      height: 240px; background: #e4e7ed;
+      height: 240px; background: #eaebee;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px;
     }
     .prod-no-img-wrap .ni-icon { font-size: 42px; opacity: .2; }
