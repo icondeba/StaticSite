@@ -119,71 +119,70 @@
     .sec-count { background: var(--sky); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 50px; white-space: nowrap; }
 
     /* ── PRODUCT GRID ── */
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
 
     .prod-card {
-      background: #f0f2f5;
-      border-radius: 14px; overflow: hidden;
-      position: relative;
-      transition: box-shadow .35s;
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      background: #ffffff;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,.06);
+      transition: box-shadow .35s, transform .35s;
+      display: flex; flex-direction: column;
     }
     .prod-card.has-image { cursor: pointer; }
-    .prod-card.has-image:hover { box-shadow: 0 14px 40px rgba(0,0,0,.15); }
-
-    .prod-cat-lbl {
-      display: inline-flex; align-items: center;
-      background: var(--navy); color: var(--yellow);
-      padding: 3px 10px; border-radius: 50px;
-      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
-      text-transform: uppercase; margin-bottom: 8px;
+    .prod-card:hover {
+      box-shadow: 0 14px 48px rgba(0,0,0,.13);
+      transform: translateY(-5px);
     }
 
-    .prod-img-wrap {
-      position: relative; height: 240px; overflow: hidden;
-      background: #eaebee;
+    /* Image area */
+    .prod-img-area {
+      position: relative; height: 250px; overflow: hidden;
+      background: #f6f6f6;
       display: flex; align-items: center; justify-content: center;
-      padding: 12px; box-sizing: border-box;
+      padding: 18px; box-sizing: border-box;
     }
-    .prod-img-wrap img { width: 100%; height: 100%; object-fit: contain; transition: transform .55s ease; border-radius: 4px; }
-    .prod-card.has-image:hover .prod-img-wrap img { transform: scale(1.05); }
+    .prod-img-area img {
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      transition: transform .5s ease;
+    }
+    .prod-card:hover .prod-img-area img { transform: scale(1.06); }
 
-    /* Info overlay — slides up on hover */
-    .prod-hover-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 14px 15px 13px;
-      background: rgba(240,242,245,.88);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      transform: translateY(100%);
-      transition: transform .38s cubic-bezier(.22,.61,.36,1);
-    }
-    .prod-card.has-image:hover .prod-hover-info { transform: translateY(0); }
-    .prod-hover-info h3 {
-      font-family: 'Poppins', sans-serif; font-weight: 700;
-      font-size: 13px; color: var(--navy); line-height: 1.3; margin: 0 0 10px;
-    }
-    .prod-hover-btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--navy); color: var(--yellow);
-      font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 11px;
-      padding: 7px 15px; border-radius: 50px;
-    }
-
-    .prod-no-img-wrap {
-      height: 240px; background: #eaebee;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px;
-    }
-    .prod-no-img-wrap .ni-icon { font-size: 42px; opacity: .2; }
-    .prod-no-img-wrap .ni-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; color:var(--navy); text-align:center; line-height:1.3; opacity:.55; }
-    .prod-no-img-wrap .ni-lbl { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,45,114,.25); }
-
+    /* Shimmer skeleton */
     @keyframes shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
-    .prod-img-wrap::before {
+    .prod-img-area::before {
       content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
-      background: linear-gradient(90deg,#cdd1d9 25%,#e0e3e9 50%,#cdd1d9 75%);
+      background: linear-gradient(90deg,#ebebeb 25%,#f5f5f5 50%,#ebebeb 75%);
       background-size:600px 100%; animation:shimmer 1.4s infinite linear; transition:opacity .4s;
     }
-    .prod-img-wrap.loaded::before { opacity:0; }
+    .prod-img-area.loaded::before { opacity:0; }
+
+    /* Empty placeholder */
+    .prod-img-area--empty { flex-direction: column; gap: 10px; }
+    .ni-icon { font-size: 46px; opacity: .18; }
+    .ni-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; color:var(--navy); text-align:center; opacity:.4; line-height:1.35; max-width:160px; }
+
+    /* Info strip — always visible */
+    .prod-info {
+      padding: 18px 22px 22px;
+      border-top: 1px solid rgba(0,0,0,.05);
+      flex: 1; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .prod-meta {
+      font-size: 10px; font-weight: 700; color: #aaa; letter-spacing: 1px;
+      text-transform: uppercase; display: block; margin-bottom: 7px;
+    }
+    .prod-info h3 {
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      font-size: 16px; color: var(--navy); line-height: 1.3; margin: 0 0 14px;
+    }
+    .prod-view-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800;
+      color: var(--bluem); letter-spacing: .8px; text-transform: uppercase;
+      transition: gap .2s, color .2s;
+    }
+    .prod-card.has-image:hover .prod-view-link { gap: 10px; color: var(--navy); }
+    .prod-view-link--muted { color: #bbb; }
 
     /* ── FOOTER ── */
     .site-footer { background: #051f5c; padding: 48px 0 0; color: rgba(255,255,255,.65); margin-top: 80px; }
@@ -557,18 +556,23 @@
       const card = document.createElement('div');
       card.className = 'prod-card' + (hasImg ? ' has-image' : '');
       card.innerHTML = `
-        <div class="prod-img-wrap${hasImg ? '' : ' loaded'}">
+        <div class="prod-img-area${hasImg ? '' : ' prod-img-area--empty loaded'}">
           ${hasImg
             ? `<img src="${thumbSrc}" alt="${p.name}" loading="lazy" decoding="async"
                  onload="this.parentElement.classList.add('loaded')"
-                 onerror="this.parentElement.classList.add('loaded')">
-               <div class="prod-hover-info">
-                 <span class="prod-cat-lbl">${type}</span>
-                 <h3>${p.name}</h3>
-                 <span class="prod-hover-btn">View Product →</span>
-               </div>`
-            : `<div class="prod-no-img-wrap"><span class="ni-icon">${noImgIcons[i % noImgIcons.length]}</span><span class="ni-name">${p.name}</span><span class="ni-lbl">Coming Soon</span></div>`
+                 onerror="this.parentElement.classList.add('loaded')">`
+            : `<span class="ni-icon">${noImgIcons[i % noImgIcons.length]}</span>
+               <span class="ni-name">${p.name}</span>`
           }
+        </div>
+        <div class="prod-info">
+          <div>
+            <span class="prod-meta">${type} &middot; Student</span>
+            <h3>${p.name}</h3>
+          </div>
+          ${hasImg
+            ? `<span class="prod-view-link">VIEW PRODUCT &nbsp;→</span>`
+            : `<span class="prod-view-link prod-view-link--muted">IMAGE COMING SOON</span>`}
         </div>`;
 
       card.classList.add('reveal', 'scale');
