@@ -464,11 +464,11 @@
       background: radial-gradient(circle at 20% 50%,rgba(255,255,255,.04) 0%,transparent 60%),
                   radial-gradient(circle at 80% 50%,rgba(255,255,255,.03) 0%,transparent 60%);
     }
-    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 40px; position: relative; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; position: relative; }
     .stat-box { text-align: center; }
     .stat-box .si { font-size: 36px; display: block; margin-bottom: 10px; }
     .stat-box .sn { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(34px,5vw,58px); color:var(--yellow); display:block; line-height:1; }
-    .stat-box .sl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); margin-top: 6px; display: block; }
+    .stat-box .sl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); margin-top: 6px; display: block; white-space: nowrap; }
 
     /* ── WHY ── */
     .why-sec { padding: var(--pad) 0; background: var(--bg); }
@@ -712,9 +712,8 @@
           <a href="#about"    class="btn btn-ghost">Learn More →</a>
         </div>
         <div class="hero-kpis">
-          <div class="kpi"><span class="n">100+</span><span class="l">Schools</span></div>
-          <div class="kpi"><span class="n">50K+</span><span class="l">Students</span></div>
-          <div class="kpi"><span class="n">500+</span><span class="l">Products</span></div>
+          <div class="kpi"><span class="n">100+</span><span class="l">Partner Schools</span></div>
+          <div class="kpi"><span class="n">500+</span><span class="l">Product Variants</span></div>
           <div class="kpi"><span class="n">Pan India</span><span class="l">Presence</span></div>
         </div>
       </div>
@@ -835,18 +834,13 @@
         <span class="sl">Partner Schools</span>
       </div>
       <div class="stat-box">
-        <span class="si">🎒</span>
-        <span class="sn counter" data-target="50000">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
-        <span class="sl">Happy Students</span>
-      </div>
-      <div class="stat-box">
         <span class="si">📦</span>
         <span class="sn counter" data-target="500">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
         <span class="sl">Product Variants</span>
       </div>
       <div class="stat-box">
         <span class="si">🗺️</span>
-        <span class="sn" style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(28px,4vw,48px);color:var(--yellow);">Pan India</span>
+        <span class="sn" style="font-size:clamp(32px,4.5vw,52px);">Pan India</span>
         <span class="sl">Presence</span>
       </div>
     </div>
