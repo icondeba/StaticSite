@@ -303,7 +303,11 @@
 
     .hero h1 { font-size: clamp(20px, 2.2vw, 34px); line-height: 1.15; color: white; margin-bottom: 12px; }
     .hero h1 .hi { color: var(--yellow); }
-    .hero-sub { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65; margin-bottom: 0; }
+    .hero-sub { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65; margin-bottom: 0; transition: opacity .6s ease; }
+    .hero-badge { transition: opacity .5s ease; }
+    .hero-cursor { display: inline-block; color: var(--yellow); font-weight: 300; animation: blink .75s step-end infinite; }
+    .hero-cursor.done { display: none; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 
 
@@ -679,12 +683,12 @@
   <div class="container">
     <div class="hero-inner">
       <div class="hero-card">
-        <div class="hero-badge">
+        <div class="hero-badge" id="heroBadge" style="opacity:0">
           <span class="dot"></span>
           India's Trusted School Stationery Brand
         </div>
-        <h1>Quality on Every Page,<br><span class="hi">for Every Purpose</span></h1>
-        <p class="hero-sub">Premium stationery for students, professionals, and creators — Successful<span class="cm">©</span> brings BIS-certified quality to classrooms, offices, and desks across India.</p>
+        <h1 id="heroH1" aria-label="Quality on Every Page, for Every Purpose"><span id="heroLine1"></span><br><span class="hi" id="heroLine2"></span><span class="hero-cursor" id="heroCursor">|</span></h1>
+        <p class="hero-sub" id="heroSub" style="opacity:0">Premium stationery for students, professionals, and creators — Successful<span class="cm">©</span> brings BIS-certified quality to classrooms, offices, and desks across India.</p>
       </div>
     </div>
   </div>
@@ -1191,6 +1195,41 @@
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formOk').style.display = 'block';
   }
+
+  // Hero typewriter animation
+  (function() {
+    const badge   = document.getElementById('heroBadge');
+    const line1El = document.getElementById('heroLine1');
+    const line2El = document.getElementById('heroLine2');
+    const cursor  = document.getElementById('heroCursor');
+    const sub     = document.getElementById('heroSub');
+    const LINE1   = 'Quality on Every Page,';
+    const LINE2   = 'for Every Purpose';
+    const SPEED   = 42;
+
+    function typeText(el, text, cb) {
+      let i = 0;
+      const tick = setInterval(() => {
+        el.textContent += text[i++];
+        if (i >= text.length) { clearInterval(tick); if (cb) cb(); }
+      }, SPEED);
+    }
+
+    // 1. Fade in badge
+    badge.style.opacity = '1';
+
+    // 2. After badge fades, type line 1
+    setTimeout(() => {
+      typeText(line1El, LINE1, () => {
+        // 3. Type line 2
+        typeText(line2El, LINE2, () => {
+          // 4. Remove cursor, fade in sub
+          cursor.classList.add('done');
+          sub.style.opacity = '1';
+        });
+      });
+    }, 600);
+  })();
 
   // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
