@@ -161,11 +161,9 @@
     .ni-icon { font-size: 46px; opacity: .18; }
     .ni-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; color:var(--navy); text-align:center; opacity:.4; line-height:1.35; max-width:160px; }
 
-    /* Dual image layout (drawing books) */
-    .prod-img-dual { padding: 10px; gap: 6px; }
-    .img-half { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 10px; background: #efefef; }
-    .img-half img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-    .prod-card:hover .img-half img { transform: scale(1.07); }
+    /* Drawing books: 2 cards per row */
+    #grid-drawing { grid-template-columns: repeat(2, 1fr); }
+    @media(max-width:480px) { #grid-drawing { grid-template-columns: 1fr; } }
 
     /* Info strip — always visible */
     .prod-info {
@@ -555,44 +553,23 @@
     const container = document.getElementById(gridId);
     if (!container) return;
     const type = sectionTypes[gridId] || 'Student';
-    const isDual = gridId === 'grid-drawing';
     products.forEach((p, i) => {
       const hasImg  = p.id && p.images.length > 0;
-      const dual    = isDual && hasImg && p.images.length >= 2;
-      const src0    = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.images[0])}` : null;
-      const src1    = dual   ? `${IMG}${p.id}/${encodeURIComponent(p.images[1])}` : null;
+      const thumbSrc = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.images[0])}` : null;
       const detailUrl = hasImg ? `detail.html?id=${p.id}&name=${encodeURIComponent(p.name)}&cat=student&imgs=${encodeURIComponent(p.images.join('|'))}` : '#';
 
       const card = document.createElement('div');
       card.className = 'prod-card' + (hasImg ? ' has-image' : '');
-
-      let imgHtml;
-      if (!hasImg) {
-        imgHtml = `<div class="prod-img-area prod-img-area--empty loaded">
-          <span class="ni-icon">${noImgIcons[i % noImgIcons.length]}</span>
-          <span class="ni-name">${p.name}</span>
-        </div>`;
-      } else if (dual) {
-        imgHtml = `<div class="prod-img-area prod-img-dual">
-          <div class="img-half">
-            <img src="${src0}" alt="${p.name}" loading="lazy" decoding="async"
-              onload="this.closest('.prod-img-area').classList.add('loaded')"
-              onerror="this.closest('.prod-img-area').classList.add('loaded')">
-          </div>
-          <div class="img-half">
-            <img src="${src1}" alt="${p.name} alt view" loading="lazy" decoding="async">
-          </div>
-        </div>`;
-      } else {
-        imgHtml = `<div class="prod-img-area">
-          <img src="${src0}" alt="${p.name}" loading="lazy" decoding="async"
-            onload="this.parentElement.classList.add('loaded')"
-            onerror="this.parentElement.classList.add('loaded')">
-        </div>`;
-      }
-
       card.innerHTML = `
-        ${imgHtml}
+        <div class="prod-img-area${hasImg ? '' : ' prod-img-area--empty loaded'}">
+          ${hasImg
+            ? `<img src="${thumbSrc}" alt="${p.name}" loading="lazy" decoding="async"
+                 onload="this.parentElement.classList.add('loaded')"
+                 onerror="this.parentElement.classList.add('loaded')">`
+            : `<span class="ni-icon">${noImgIcons[i % noImgIcons.length]}</span>
+               <span class="ni-name">${p.name}</span>`
+          }
+        </div>
         <div class="prod-info">
           <div>
             <span class="prod-meta">${type} &middot; Student</span>
