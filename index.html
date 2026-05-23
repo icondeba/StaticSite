@@ -261,9 +261,9 @@
       min-height: 100vh;
       background:
         linear-gradient(135deg, rgba(4,15,45,.50) 0%, rgba(10,61,143,.34) 55%, rgba(10,61,143,.14) 100%),
-        url('public/assets/images/wallpaper.jpg') center center / cover no-repeat;
+        url('public/assets/images/wallpaper.jpg') center bottom / cover no-repeat;
       position: relative; overflow: hidden;
-      display: flex; align-items: center; padding-top: 76px;
+      display: flex; align-items: flex-start; padding-top: 76px;
     }
     /* top vignette — gives nav contrast without a header box */
     .hero::before {
@@ -281,90 +281,32 @@
     .hero-wave svg { display: block; width: 100%; height: auto; }
 
     .hero-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center; position: relative; z-index: 1;
-      padding: 60px 0;
+      display: flex; align-items: flex-start; justify-content: flex-start;
+      position: relative; z-index: 1; padding: 16px 0 0;
+    }
+
+    .hero-card {
+      max-width: 46%; padding: 0;
     }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,.14); backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,.22);
-      color: white; padding: 8px 18px; border-radius: 50px;
-      font-size: 13px; font-weight: 700; letter-spacing: .5px; margin-bottom: 22px;
+      color: white; padding: 6px 14px; border-radius: 50px;
+      font-size: 11px; font-weight: 700; letter-spacing: .5px; margin-bottom: 14px;
     }
     .hero-badge .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
 
-    .hero h1 { font-size: clamp(36px, 5vw, 66px); line-height: 1.1; color: white; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(20px, 2.2vw, 34px); line-height: 1.15; color: white; margin-bottom: 12px; }
     .hero h1 .hi { color: var(--yellow); }
-    .hero-sub { color: rgba(255,255,255,.78); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.75; margin-bottom: 36px; max-width: 480px; }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-sub { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65; margin-bottom: 0; }
 
-    .hero-kpis { display: flex; gap: 0; margin-top: 48px; }
-    .kpi { text-align: center; padding: 0 28px; }
-    .kpi:not(:first-child) { border-left: 1px solid rgba(255,255,255,.2); }
-    .kpi .n { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(24px,3vw,34px); color:var(--yellow); display:block; line-height:1; }
-    .kpi .l { font-size:12px; color:rgba(255,255,255,.6); font-weight:600; letter-spacing:.5px; margin-top:4px; display:block; }
 
-    /* hero visual */
-    .hero-visual { display: flex; justify-content: center; align-items: center; }
-
-    /* mascot */
-    .mascot-wrap {
-      position: relative; display: flex;
-      justify-content: center; align-items: flex-end;
-      max-width: 420px; width: 100%;
-    }
-
-    /* outer — slow body float + gentle sway */
-    .mascot-fly {
-      position: relative;
-      animation: mascotFloat 3.2s ease-in-out infinite;
-      transform-origin: center bottom;
-      will-change: transform;
-    }
-
-    .mascot-img {
-      width: 88%; max-width: 360px; height: auto; display: block;
-      filter: drop-shadow(0 24px 40px rgba(0,0,0,.45));
-    }
-
-    @keyframes mascotFloat {
-      0%,100% { transform: translateY(0px)  rotate(-1.2deg); }
-      50%     { transform: translateY(-24px) rotate(1.2deg);  }
-    }
-
-    .float-pill {
-      position: absolute; background: white; border-radius: 40px;
-      padding: 8px 18px; font-size: 13px; font-weight: 700; color: var(--navy);
-      box-shadow: 0 8px 24px rgba(0,0,0,.18); display: flex; align-items: center; gap: 8px; white-space: nowrap;
-    }
-
-    /* speech bubble — tail points left toward the bee's mouth */
-    .fp1 {
-      top: 7%; right: -14px;
-      animation: floatY 3s ease-in-out infinite;
-      border-radius: 18px;
-      padding: 11px 22px;
-      font-size: 14px;
-    }
-    .fp1::before {
-      content: '';
-      position: absolute;
-      bottom: -18px;
-      left: 22px;
-      width: 0; height: 0;
-      border-left: 10px solid transparent;
-      border-right: 22px solid transparent;
-      border-top: 20px solid white;
-      filter: drop-shadow(0 4px 4px rgba(0,0,0,.10));
-    }
-    .fp2 { bottom: 2%; left: -10px;  animation: floatY 3s ease-in-out infinite 1.6s; }
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
     /* ── MARQUEE ── */
-    .marquee-strip { background: var(--yellow); padding: 13px 0; overflow: hidden; }
+    .marquee-strip { background: var(--yellow); padding: 8px 0; overflow: hidden; }
     .marquee-track { display: flex; animation: marquee 28s linear infinite; width: max-content; }
     .mi {
       display: inline-flex; align-items: center; gap: 10px;
@@ -402,56 +344,86 @@
 
     /* ── ABOUT ── */
     .about-sec { padding: var(--pad) 0; background: white; }
-    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 
+    .abt-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-bottom: 72px; }
+
+    /* image side */
     .about-visual { position: relative; }
     .about-student-wrap {
-      position: relative;
-      border-radius: 32px;
-      background: linear-gradient(145deg, #fff8e1 0%, #fce4ec 40%, #e3f2fd 100%);
+      position: relative; border-radius: 32px;
+      background: linear-gradient(145deg,#fff8e1 0%,#fce4ec 40%,#e3f2fd 100%);
       box-shadow: 0 24px 64px rgba(10,45,114,.14);
-      overflow: hidden;
-      display: flex; align-items: flex-end; justify-content: center;
-      min-height: 420px;
-      padding: 24px 12px 0;
+      overflow: hidden; display: flex; align-items: flex-end; justify-content: center;
+      min-height: 420px; padding: 24px 12px 0;
     }
-    /* decorative blobs */
     .about-student-wrap::before {
-      content: '';
-      position: absolute; top: -40px; left: -40px;
-      width: 220px; height: 220px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,183,77,.35) 0%, transparent 70%);
+      content:''; position:absolute; top:-40px; left:-40px;
+      width:220px; height:220px; border-radius:50%;
+      background:radial-gradient(circle,rgba(255,183,77,.35) 0%,transparent 70%);
     }
     .about-student-wrap::after {
-      content: '';
-      position: absolute; bottom: 40px; right: -30px;
-      width: 180px; height: 180px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,64,122,.22) 0%, transparent 70%);
+      content:''; position:absolute; bottom:40px; right:-30px;
+      width:180px; height:180px; border-radius:50%;
+      background:radial-gradient(circle,rgba(236,64,122,.22) 0%,transparent 70%);
     }
-    .about-student-img {
-      width: 100%; max-width: 460px; height: auto;
-      display: block; position: relative; z-index: 1;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,.12));
-    }
+    .about-student-img { width:100%; max-width:460px; height:auto; display:block; position:relative; z-index:1; filter:drop-shadow(0 8px 24px rgba(0,0,0,.12)); }
+    .float-card { position:absolute; background:white; border-radius:18px; padding:14px 18px; box-shadow:0 12px 36px rgba(0,0,0,.13); display:flex; align-items:center; gap:12px; }
+    .fc-a { bottom:-18px; right:-18px; animation:floatY 4s ease-in-out infinite; }
+    .fc-b { top:-18px; left:-18px; animation:floatY 4s ease-in-out infinite 2s; }
+    .fc-icon { font-size:26px; }
+    .fc-n { font-weight:800; font-size:18px; color:var(--navy); display:block; }
+    .fc-s { font-size:12px; color:var(--muted); }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
-    .float-card {
-      position: absolute; background: white; border-radius: 18px;
-      padding: 14px 18px; box-shadow: 0 12px 36px rgba(0,0,0,.13);
-      display: flex; align-items: center; gap: 12px;
-    }
-    .fc-a { bottom: -22px; right: -22px; animation: floatY 4s ease-in-out infinite; }
-    .fc-b { top: -22px; left: -22px; animation: floatY 4s ease-in-out infinite 2s; }
-    .fc-icon { font-size: 26px; }
-    .fc-n { font-weight: 800; font-size: 18px; color: var(--navy); display: block; }
-    .fc-s { font-size: 12px; color: var(--muted); }
+    /* text side */
+    .abt-intro-text .badge { margin-bottom: 16px; }
+    .abt-intro-text h2 { font-size: clamp(26px,3.5vw,40px); color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+    .abt-lead { font-size: 16px; color: var(--text); line-height: 1.8; margin-bottom: 14px; font-weight: 500; }
+    .abt-intro-text p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 14px; }
+    .abt-highlights { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 28px; }
+    .abt-hl { background: var(--sky); border-radius: 16px; padding: 18px 12px; text-align: center; }
+    .abt-hl-n { font-family:'Poppins',sans-serif; font-weight:900; font-size:26px; color:var(--navy); display:block; line-height:1; }
+    .abt-hl-l { font-size:10px; color:var(--muted); font-weight:600; letter-spacing:.5px; margin-top:6px; display:block; }
 
-    .about-text .about-features { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
-    .af { display: flex; align-items: flex-start; gap: 14px; }
-    .af-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .af-txt h4 { font-size: 15px; color: var(--navy); margin-bottom: 2px; }
-    .af-txt p  { font-size: 13px; color: var(--muted); line-height: 1.5; }
-    .about-text p { color: var(--muted); font-size: 16px; line-height: 1.8; margin-bottom: 14px; }
-    .about-text h2 { font-size: clamp(26px,3.5vw,40px); color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+    .abt-block { margin-bottom: 60px; }
+    .abt-block-title { font-family:'Poppins',sans-serif; font-size:clamp(20px,2.5vw,26px); color:var(--navy); margin-bottom:8px; }
+    .abt-block-sub { color:var(--muted); font-size:15px; line-height:1.7; margin-bottom:28px; max-width:660px; }
+
+    .facilities-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .facility-card { background:var(--bg); border-radius:20px; padding:28px 24px; border:2px solid transparent; transition:all .3s; }
+    .facility-card:hover { border-color:var(--blue); transform:translateY(-4px); box-shadow:0 12px 32px rgba(10,45,114,.1); }
+    .fac-icon { font-size:32px; margin-bottom:12px; display:block; }
+    .facility-card h4 { color:var(--navy); font-size:16px; margin-bottom:4px; }
+    .facility-card p { color:var(--muted); font-size:13px; margin-bottom:12px; }
+    .fac-tag { background:var(--sky); color:var(--blue); font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; letter-spacing:.5px; display:inline-block; }
+
+    .portfolio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .portfolio-card { border-radius:20px; padding:32px 28px; transition:transform .3s; }
+    .portfolio-card:hover { transform:translateY(-4px); }
+    .pc-blue { background:linear-gradient(135deg,#e3f2fd,#bbdefb); }
+    .pc-green { background:linear-gradient(135deg,#e8f5e9,#c8e6c9); }
+    .pc-orange { background:linear-gradient(135deg,#fff8e1,#ffecb3); }
+    .pc-icon { font-size:36px; margin-bottom:14px; display:block; }
+    .portfolio-card h4 { color:var(--navy); font-size:17px; margin-bottom:10px; }
+    .portfolio-card p { color:var(--text); font-size:14px; line-height:1.6; }
+
+    .abt-vision { background:var(--navy); border-radius:28px; padding:52px 48px; margin-bottom:60px; }
+    .abt-vision-quote { text-align:center; margin-bottom:44px; }
+    .vision-tag { background:var(--yellow); color:var(--navy); font-size:11px; font-weight:800; padding:6px 16px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; display:inline-block; }
+    .abt-vision-quote blockquote { font-family:'Poppins',sans-serif; font-size:clamp(18px,2.5vw,28px); color:white; font-weight:700; margin:18px 0 0; line-height:1.4; }
+    .pillars-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .pillar { background:rgba(255,255,255,.08); border-radius:16px; padding:24px 20px; border:1px solid rgba(255,255,255,.1); transition:background .3s; }
+    .pillar:hover { background:rgba(255,255,255,.14); }
+    .pillar-icon { font-size:28px; margin-bottom:12px; display:block; }
+    .pillar h4 { color:white; font-size:14px; margin-bottom:8px; }
+    .pillar p { color:rgba(255,255,255,.65); font-size:13px; line-height:1.6; }
+
+    .abt-why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .abt-why-card { background:white; border-radius:20px; padding:32px 28px; box-shadow:0 4px 20px rgba(10,45,114,.06); border:1px solid rgba(10,45,114,.06); transition:all .3s; }
+    .abt-why-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(10,45,114,.12); }
+    .awc-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; }
+    .abt-why-card h4 { color:var(--navy); font-size:17px; margin-bottom:10px; }
+    .abt-why-card p { color:var(--muted); font-size:14px; line-height:1.7; }
 
     /* ── STATS ── */
     .stats-sec {
@@ -465,10 +437,12 @@
                   radial-gradient(circle at 80% 50%,rgba(255,255,255,.03) 0%,transparent 60%);
     }
     .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; position: relative; }
-    .stat-box { text-align: center; }
+    .stat-box { text-align: center; display: flex; flex-direction: column; align-items: center; }
     .stat-box .si { font-size: 36px; display: block; margin-bottom: 10px; }
-    .stat-box .sn { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(34px,5vw,58px); color:var(--yellow); display:block; line-height:1; }
-    .stat-box .sl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); margin-top: 6px; display: block; white-space: nowrap; }
+    .sn-wrap { display: flex; align-items: baseline; justify-content: center; gap: 2px; margin-bottom: 8px; }
+    .stat-box .sn { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(34px,5vw,58px); color:var(--yellow); line-height:1; }
+    .sn-plus { font-family:'Poppins',sans-serif; font-weight:900; font-size:clamp(34px,5vw,58px); color:var(--yellow); line-height:1; }
+    .stat-box .stat-lbl { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); display: block; white-space: nowrap; }
 
     /* ── WHY ── */
     .why-sec { padding: var(--pad) 0; background: var(--bg); }
@@ -612,15 +586,18 @@
     @media(max-width:768px){
       .main-nav { display: none; }
       .hamburger { display: flex; }
-      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; padding: 40px 0; }
-      .hero-visual { order: -1; }
-      .visual-card { max-width: 300px; padding: 24px; }
+      .hero-inner { text-align: center; padding: 20px 0 0; justify-content: center; }
+      .hero-card { max-width: 100%; }
       .hero-sub { max-width: 100%; }
-      .hero-btns { justify-content: center; }
-      .hero-kpis { justify-content: center; }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .abt-intro { grid-template-columns: 1fr; gap: 48px; }
       .about-visual { order: -1; }
       .fc-b { display: none; }
+      .abt-highlights { grid-template-columns: repeat(4,1fr); }
+      .facilities-grid { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .abt-why-grid { grid-template-columns: 1fr; }
+      .abt-vision { padding: 36px 24px; }
       .products-grid { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
@@ -630,7 +607,6 @@
     }
     @media(max-width:480px){
       .why-grid { grid-template-columns: 1fr; }
-      .float-pill { display: none; }
       .kpi { padding: 0 16px; }
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
     }
@@ -700,42 +676,17 @@
 <section class="hero" id="home">
   <div class="container">
     <div class="hero-inner">
-      <div class="hero-content">
+      <div class="hero-card">
         <div class="hero-badge">
           <span class="dot"></span>
           India's Trusted School Stationery Brand
         </div>
         <h1>Making Every<br>Child's Learning<br><span class="hi">Adventure!</span></h1>
         <p class="hero-sub">From vibrant notebooks to creative art supplies — Successful™ brings quality, colour, and joy to every student's desk. Trusted by schools across India.</p>
-        <div class="hero-btns">
-          <a href="#products" class="btn btn-yellow">📦 Explore Products</a>
-          <a href="#about"    class="btn btn-ghost">Learn More →</a>
-        </div>
-        <div class="hero-kpis">
-          <div class="kpi"><span class="n">100+</span><span class="l">Partner Schools</span></div>
-          <div class="kpi"><span class="n">500+</span><span class="l">Product Variants</span></div>
-          <div class="kpi"><span class="n">Pan India</span><span class="l">Presence</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="mascot-wrap">
-          <div class="mascot-fly">
-            <img class="mascot-img"
-                 src="public/assets/images/mascot-transparent.png"
-                 alt="Successful Mascot">
-          </div>
-          <div class="float-pill fp1">🐝 BEE a Winner!</div>
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- wave divider → matches the marquee yellow below -->
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFD600"/>
-    </svg>
-  </div>
 </section>
 
 <!-- MARQUEE -->
@@ -772,8 +723,9 @@
 <!-- ABOUT -->
 <section class="about-sec" id="about">
   <div class="container">
-    <div class="about-inner">
 
+    <!-- Intro -->
+    <div class="abt-intro">
       <div class="about-visual">
         <div class="about-student-wrap">
           <img class="about-student-img"
@@ -782,45 +734,128 @@
         </div>
         <div class="float-card fc-a">
           <span class="fc-icon">🏫</span>
-          <div><span class="fc-n">500+</span><span class="fc-s">Partner Schools</span></div>
+          <div><span class="fc-n">100+</span><span class="fc-s">Partner Schools</span></div>
         </div>
         <div class="float-card fc-b">
-          <span class="fc-icon">⭐</span>
-          <div><span class="fc-n">4.8/5</span><span class="fc-s">Parent Rating</span></div>
+          <span class="fc-icon">📚</span>
+          <div><span class="fc-n">300+</span><span class="fc-s">Notebook Varieties</span></div>
         </div>
       </div>
-
-      <div class="about-text">
+      <div class="abt-intro-text">
         <span class="badge">About Successful™</span>
-        <h2>India's Most Loved School Stationery Brand</h2>
-        <p>For over a decade, Successful™ has been India's go-to brand for school stationery. We believe every child deserves the best tools to learn, create, and grow — at a price every family can afford.</p>
-        <p>From neighbourhood stationery shops to leading school bookstores, our products are trusted by millions of students, teachers, and parents across India.</p>
-        <div class="about-features">
-          <div class="af">
-            <div class="af-icon" style="background:#e3f2fd;">🏆</div>
-            <div class="af-txt">
-              <h4>Premium Quality Materials</h4>
-              <p>BIS certified materials ensuring safety and durability for every product we make.</p>
-            </div>
-          </div>
-          <div class="af">
-            <div class="af-icon" style="background:#fffde7;">🎨</div>
-            <div class="af-txt">
-              <h4>Designed for Kids</h4>
-              <p>Fun, colourful, and ergonomically designed to make learning a joyful experience.</p>
-            </div>
-          </div>
-          <div class="af">
-            <div class="af-icon" style="background:#e8f5e9;">🌱</div>
-            <div class="af-txt">
-              <h4>Eco-Friendly Manufacturing</h4>
-              <p>Committed to sustainable practices — good for your child, good for the planet.</p>
-            </div>
-          </div>
+        <h2>Success Paper Products</h2>
+        <p class="abt-lead">Founded in 2005 by industry veteran <strong>Vikash Jain</strong>, Success Paper Products has grown from a strong regional manufacturer in Eastern India into a dynamic force in the Indian stationery ecosystem.</p>
+        <p>Under our flagship brand <em>'Successful'</em>, we design, manufacture, and distribute high-volume, cost-efficient paper and plastic stationery solutions for students, professionals, and institutions. With over two decades of deep industry expertise, we blend robust manufacturing with an agile supply chain to deliver premium quality at competitive price points.</p>
+        <div class="abt-highlights">
+          <div class="abt-hl"><span class="abt-hl-n">2005</span><span class="abt-hl-l">Year Founded</span></div>
+          <div class="abt-hl"><span class="abt-hl-n">20+</span><span class="abt-hl-l">Yrs Experience</span></div>
+          <div class="abt-hl"><span class="abt-hl-n">3</span><span class="abt-hl-l">Mfg. Units</span></div>
+          <div class="abt-hl"><span class="abt-hl-n">300+</span><span class="abt-hl-l">Varieties</span></div>
         </div>
       </div>
-
     </div>
+
+    <!-- Infrastructure -->
+    <div class="abt-block">
+      <h3 class="abt-block-title">Our Infrastructure &amp; Scale</h3>
+      <p class="abt-block-sub">Three state-of-the-art manufacturing facilities strategically located across West Bengal, optimized for high-volume production, stringent quality control, and sustainable scaling.</p>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <span class="fac-icon">🏭</span>
+          <h4>Howrah Unit 1</h4>
+          <p>Howrah, West Bengal</p>
+          <span class="fac-tag">Advanced Manufacturing</span>
+        </div>
+        <div class="facility-card">
+          <span class="fac-icon">🏭</span>
+          <h4>Howrah Unit 2</h4>
+          <p>Howrah, West Bengal</p>
+          <span class="fac-tag">Advanced Manufacturing</span>
+        </div>
+        <div class="facility-card">
+          <span class="fac-icon">🏭</span>
+          <h4>Subhashgram Unit</h4>
+          <p>South 24 Parganas, West Bengal</p>
+          <span class="fac-tag">Advanced Manufacturing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Portfolio -->
+    <div class="abt-block">
+      <h3 class="abt-block-title">Our Product Portfolio</h3>
+      <p class="abt-block-sub">A diverse and comprehensive range built to meet the evolving needs of the modern consumer — from classrooms to boardrooms.</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-card pc-blue">
+          <span class="pc-icon">📚</span>
+          <h4>Student Notebooks</h4>
+          <p>Over <strong>300+ varieties</strong> tailored for different academic levels and regional preferences.</p>
+        </div>
+        <div class="portfolio-card pc-green">
+          <span class="pc-icon">💼</span>
+          <h4>Office &amp; Professional</h4>
+          <p>Premium New Year diaries, case-bound registers, and executive logs.</p>
+        </div>
+        <div class="portfolio-card pc-orange">
+          <span class="pc-icon">🎒</span>
+          <h4>Plastic &amp; School Essentials</h4>
+          <p>High-grade plastic files, book cover rolls, exam boards, and science items.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="abt-vision">
+      <div class="abt-vision-quote">
+        <span class="vision-tag">Our Vision</span>
+        <blockquote>"Building India's Next Multi-Regional Stationery Brand."</blockquote>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <span class="pillar-icon">🗺️</span>
+          <h4>Pan-India Transformation</h4>
+          <p>Expanding brand presence across every corner of the country.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🏭</span>
+          <h4>Multi-Regional Manufacturing</h4>
+          <p>Wider geographic footprint to optimize logistics and localized supply.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🛒</span>
+          <h4>Omnichannel Distribution</h4>
+          <p>Strengthening both offline dealer networks and modern online retail channels.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🌏</span>
+          <h4>Global Reach</h4>
+          <p>Targeted exports to the Middle East and other high-potential international markets.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="abt-block">
+      <h3 class="abt-block-title">Why Choose Success Paper Products?</h3>
+      <div class="abt-why-grid">
+        <div class="abt-why-card">
+          <div class="awc-icon" style="background:#e3f2fd;">🏆</div>
+          <h4>Proven Leadership</h4>
+          <p>Guided by a promoter with 20+ years of hands-on expertise in vendor management and cost optimization.</p>
+        </div>
+        <div class="abt-why-card">
+          <div class="awc-icon" style="background:#fffde7;">💎</div>
+          <h4>Uncompromised Value</h4>
+          <p>Exceptional manufacturing efficiencies allow us to pass cost advantages directly to customers without sacrificing quality.</p>
+        </div>
+        <div class="abt-why-card">
+          <div class="awc-icon" style="background:#e8f5e9;">🤝</div>
+          <h4>Trusted Relationships</h4>
+          <p>Built on strong, enduring partnerships with dealers, distributors, and institutional clients nationwide.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -830,18 +865,24 @@
     <div class="stats-grid">
       <div class="stat-box">
         <span class="si">🏫</span>
-        <span class="sn counter" data-target="100">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
-        <span class="sl">Partner Schools</span>
+        <div class="sn-wrap">
+          <span class="sn counter" data-target="100">0</span><span class="sn-plus">+</span>
+        </div>
+        <span class="stat-lbl">Partner Schools</span>
       </div>
       <div class="stat-box">
         <span class="si">📦</span>
-        <span class="sn counter" data-target="500">0</span><span style="font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(34px,5vw,58px);color:var(--yellow);">+</span>
-        <span class="sl">Product Variants</span>
+        <div class="sn-wrap">
+          <span class="sn counter" data-target="500">0</span><span class="sn-plus">+</span>
+        </div>
+        <span class="stat-lbl">Product Variants</span>
       </div>
       <div class="stat-box">
         <span class="si">🗺️</span>
-        <span class="sn" style="font-size:clamp(32px,4.5vw,52px);">Pan India</span>
-        <span class="sl">Presence</span>
+        <div class="sn-wrap">
+          <span class="sn">Pan India</span>
+        </div>
+        <span class="stat-lbl">Presence</span>
       </div>
     </div>
   </div>
