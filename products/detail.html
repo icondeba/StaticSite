@@ -109,6 +109,14 @@
     .quality-badges { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
     .qb { display:inline-flex; align-items:center; gap:6px; background:#f0f4ff; border:1px solid #d0daf7; border-radius:50px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--navy); }
 
+    /* Product specs */
+    .spec-section { margin-bottom:18px; }
+    .spec-label { font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; margin-bottom:8px; }
+    .spec-pills { display:flex; flex-wrap:wrap; gap:6px; }
+    .spec-pill { padding:4px 13px; border-radius:50px; font-size:12px; font-weight:700; }
+    .spec-pill.pages { background:#e3f2fd; color:#0a3d8f; border:1px solid #bbdefb; }
+    .spec-pill.ruling { background:#fff8e1; color:#e65100; border:1px solid #ffe082; }
+
     /* LIGHTBOX */
     .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,.88); z-index:2000; align-items:center; justify-content:center; }
     .lightbox.open { display:flex; }
@@ -230,6 +238,17 @@
       <div class="info-col">
         <div class="cat-badge" id="catBadge">📦 Category</div>
         <h1 id="productName">Loading…</h1>
+        <div id="specsBlock" style="display:none;">
+          <div class="divider"></div>
+          <div class="spec-section" id="pagesSection" style="display:none;">
+            <div class="spec-label">📄 Available Pages</div>
+            <div class="spec-pills" id="pagesPills"></div>
+          </div>
+          <div class="spec-section" id="rulingSection" style="display:none;">
+            <div class="spec-label">📏 Ruling Options</div>
+            <div class="spec-pills" id="rulingPills"></div>
+          </div>
+        </div>
         <div class="divider"></div>
         <div class="feature-list">
           <div class="feat"><div class="feat-dot">✓</div><span><strong>Premium Quality</strong>BIS certified materials — safe, durable, and reliable for every use.</span></div>
@@ -282,6 +301,73 @@
 </footer>
 
 <script>
+  // ── PRODUCT SPECS (pages & ruling from catalogue) ──
+  const RULING_LABELS = {
+    'R/L':'Ruled','P/L':'Plain','F/L':'Four Line','D/L':'Double Line',
+    '1"':'1" Rule','1/2"':'Half Inch','1/4"':'Quarter Inch',
+    'BROAD RULE':'Broad Rule','BROAD F/L':'Broad Four Line',
+    '3LINE':'Three Line','3IN1(R/L+F/L+1/2")':'3-in-1 Combo',
+    '3IN1(D/L+F/L+1/2")':'3-in-1 (D/L)','PRACTICAL':'Practical',
+    'PRAC':'Practical','PR':'Practical','1/2"PRACTICAL':'Half Inch Practical',
+    'N/S':'Unruled','WHITE':'White Pages',
+  };
+  const PRODUCT_SPECS = {
+    'dc-premium':            { pages:'60/92/120/148/172/220',              ruling:'R/L,P/L,F/L,D/L,1",1/2"PRACTICAL,3IN1(R/L+F/L+1/2"),BROAD RULE' },
+    'dc-normal':             { pages:'24/52/80/100/120/140/172',           ruling:'R/L,P/L,F/L,D/L,1",1/2",1/4",3IN1(R/L+F/L+1/2"),3IN1(D/L+F/L+1/2"),3LINE,BROAD F/L' },
+    'brown-dc-premium':      { pages:'120/172',                            ruling:'R/L,P/L,F/L,D/L,1",1/2"PRACTICAL,3IN1(R/L+F/L+1/2"),BROAD RULE' },
+    'brown-dc-normal':       { pages:'52/68/80/100/120/140/172/240',       ruling:'R/L,P/L,F/L,D/L,1",1/2",1/4",3IN1(R/L+F/L+1/2"),3IN1(D/L+F/L+1/2"),3LINE,BROAD F/L' },
+    'premium-a4-notebook':   { pages:'80/120/140/160/180/220/300/400',     ruling:'P/L,R/L,F/L' },
+    'premium-a4-spiral':     { pages:'180/220/300/400/500',                ruling:'P/L,R/L' },
+    'a4-neon-wiro':          { pages:'306',                                ruling:'P/L,R/L,F/L' },
+    'a4-notebook-normal':    { pages:'40/52/72/92/120/140/172/220/300/400',ruling:'P/L,R/L,F/L,1/2"' },
+    'a4-brown-premium':      { pages:'140/180',                            ruling:'P/L,R/L,F/L' },
+    'a4-brown-normal':       { pages:'52/72/92/120/140/172/220/300/400',   ruling:'P/L,R/L,F/L,1/2"' },
+    'premium-long-notebook': { pages:'80/120/160/240/320',                 ruling:'P/L,R/L' },
+    'normal-long-notebook':  { pages:'44/60/80/112/120/160/228/320',       ruling:'P/L,R/L,F/L,1/2"' },
+    'mini-long-notebook':    { pages:'120/172/240',                        ruling:'P/L,R/L' },
+    'success-big-stitch':    { pages:'64/96/120/160',                      ruling:'P/L,R/L,F/L,1/2",1",1/4" PR' },
+    'success-small-stitch':  { pages:'24/56',                              ruling:'P/L,R/L,F/L,D/L,PRAC,3LINE' },
+    'regular-drawing':       { pages:'28/40/64/96/120/160',                ruling:'WHITE' },
+    'a4-premium-drawing':    { pages:'32/60',                              ruling:'N/S' },
+    'a4-normal-drawing':     { pages:'20/32/44/56/80/100',                 ruling:'N/S' },
+    'a4-brown-drawing':      { pages:'32/56/80',                           ruling:'N/S' },
+    'big-drawing-premium':   { pages:'36',                                 ruling:'N/S' },
+    'big-drawing-white':     { pages:'64',                                 ruling:'WHITE' },
+    'jumbo-drawing':         { pages:'36/60/80',                           ruling:'N/S' },
+    'a6-sketch-book':        { pages:'72',                                 ruling:'N/S' },
+    'a5-sketch-book':        { pages:'72',                                 ruling:'N/S' },
+    'a4-sketch-book':        { pages:'72',                                 ruling:'N/S' },
+    'a3-sketch-book':        { pages:'72',                                 ruling:'N/S' },
+    'a3-regular-sketch-book':{ pages:'72',                                 ruling:'N/S' },
+    'a4-graph':              { pages:'36/64',                              ruling:'' },
+    'small-graph':           { pages:'24/52',                              ruling:'' },
+    'math-practical':        { pages:'60',                                 ruling:'' },
+    'scrap-book':            { pages:'32',                                 ruling:'' },
+    'soft-cover-lab':        { pages:'60',                                 ruling:'' },
+    'hard-binding-lab':      { pages:'80/100/148',                         ruling:'' },
+    'premium-fitting':       { pages:'28 Sheets',                          ruling:'' },
+    'premium-zoology-fitting':{ pages:'28 Sheets',                         ruling:'' },
+    'successful-pocket-notebook':{ pages:'84',                             ruling:'R/L,P/L' },
+    'pocket-memo':           { pages:'44/100',                             ruling:'R/L' },
+    'top-pocket-wiro':       { pages:'40/100',                             ruling:'R/L' },
+    'desk-note-pad':         { pages:'14/32/80',                           ruling:'R/L,P/L' },
+    'spiral-conference-pad': { pages:'80',                                 ruling:'R/L,P/L' },
+    'a5-one-subject-wiro':   { pages:'100',                                ruling:'R/L,P/L' },
+    'b4-one-subject-wiro':   { pages:'92',                                 ruling:'R/L' },
+    'b6-one-subject-wiro':   { pages:'92',                                 ruling:'R/L' },
+    'premium-duplicate-book':{ pages:'No.8 / No.12 / No.16',              ruling:'' },
+    'premium-cash-memo':     { pages:'No.12',                              ruling:'' },
+    'slip-pad':              { pages:'No.11 / No.22 / No.33',              ruling:'R/L,P/L' },
+    'champ-a5':              { pages:'200',                                ruling:'R/L' },
+    'champ-a5-magnet':       { pages:'200',                                ruling:'R/L' },
+    'champ-executive':       { pages:'200',                                ruling:'R/L' },
+    'champ-b6':              { pages:'200',                                ruling:'R/L' },
+    'champ-a6':              { pages:'160',                                ruling:'R/L' },
+    'champ-pocket':          { pages:'200',                                ruling:'R/L' },
+    'champ-case-bound':      { pages:'100/200',                            ruling:'R/L' },
+    'champ-crown':           { pages:'100/200',                            ruling:'R/L' },
+  };
+
   // ── PARSE URL PARAMS ──
   const params  = new URLSearchParams(location.search);
   const id      = params.get('id')   || '';
@@ -302,6 +388,37 @@
   document.getElementById('catBadge').textContent = catLabels[cat] || '📦 Product';
   document.getElementById('catLink').textContent  = cat.charAt(0).toUpperCase() + cat.slice(1) + ' Category';
   document.getElementById('catLink').href         = catHrefs[cat] || 'student.html';
+
+  // ── RENDER SPECS ──
+  const spec = PRODUCT_SPECS[id];
+  if (spec) {
+    document.getElementById('specsBlock').style.display = '';
+
+    if (spec.pages) {
+      const pSec = document.getElementById('pagesSection');
+      const pPills = document.getElementById('pagesPills');
+      pSec.style.display = '';
+      spec.pages.split('/').forEach(p => {
+        const s = document.createElement('span');
+        s.className = 'spec-pill pages';
+        s.textContent = p.trim();
+        pPills.appendChild(s);
+      });
+    }
+
+    if (spec.ruling) {
+      const rSec = document.getElementById('rulingSection');
+      const rPills = document.getElementById('rulingPills');
+      rSec.style.display = '';
+      spec.ruling.split(',').forEach(r => {
+        const key = r.trim();
+        const s = document.createElement('span');
+        s.className = 'spec-pill ruling';
+        s.textContent = RULING_LABELS[key] || key;
+        rPills.appendChild(s);
+      });
+    }
+  }
 
   // ── GALLERY STATE ──
   let currentIdx = 0;
