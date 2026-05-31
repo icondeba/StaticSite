@@ -414,16 +414,49 @@
     .portfolio-card h4 { color:var(--navy); font-size:17px; margin-bottom:10px; }
     .portfolio-card p { color:var(--text); font-size:14px; line-height:1.6; }
 
-    .abt-vision { background:var(--navy); border-radius:28px; padding:52px 48px; margin-bottom:60px; }
-    .abt-vision-quote { text-align:center; margin-bottom:44px; }
-    .vision-tag { background:var(--yellow); color:var(--navy); font-size:11px; font-weight:800; padding:6px 16px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; display:inline-block; }
-    .abt-vision-quote blockquote { font-family:'Poppins',sans-serif; font-size:clamp(18px,2.5vw,28px); color:white; font-weight:700; margin:18px 0 0; line-height:1.4; }
-    .pillars-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-    .pillar { background:rgba(255,255,255,.08); border-radius:16px; padding:24px 20px; border:1px solid rgba(255,255,255,.1); transition:background .3s; }
-    .pillar:hover { background:rgba(255,255,255,.14); }
-    .pillar-icon { font-size:28px; margin-bottom:12px; display:block; }
-    .pillar h4 { color:white; font-size:14px; margin-bottom:8px; }
-    .pillar p { color:rgba(255,255,255,.65); font-size:13px; line-height:1.6; }
+    .abt-vision {
+      background: linear-gradient(135deg, #040f2d 0%, #0a2d72 50%, #0d3a8a 100%);
+      border-radius: 32px; padding: 60px 52px; margin-bottom: 60px;
+      position: relative; overflow: hidden;
+    }
+    .abt-vision::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,214,0,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .abt-vision::after {
+      content: ''; position: absolute; bottom: -60px; left: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(10,61,143,.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .abt-vision-quote { text-align:center; margin-bottom:52px; position:relative; z-index:1; }
+    .vision-tag { background:var(--yellow); color:var(--navy); font-size:11px; font-weight:800; padding:7px 20px; border-radius:20px; letter-spacing:1.5px; text-transform:uppercase; display:inline-block; }
+    .abt-vision-quote blockquote { font-family:'Poppins',sans-serif; font-size:clamp(20px,2.8vw,32px); color:white; font-weight:800; margin:20px 0 0; line-height:1.3; }
+
+    .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; z-index:1; }
+    .pillar {
+      background: rgba(255,255,255,.07);
+      border-radius: 20px; padding: 32px 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-top: 3px solid transparent;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .pillar:nth-child(1) { border-top-color: var(--yellow); }
+    .pillar:nth-child(2) { border-top-color: #00e5ff; }
+    .pillar:nth-child(3) { border-top-color: var(--green); }
+    .pillar:hover { background:rgba(255,255,255,.13); transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,.25); }
+    .pillar-icon-wrap {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 20px;
+    }
+    .pillar:nth-child(1) .pillar-icon-wrap { background: rgba(255,214,0,.15); }
+    .pillar:nth-child(2) .pillar-icon-wrap { background: rgba(0,229,255,.12); }
+    .pillar:nth-child(3) .pillar-icon-wrap { background: rgba(0,200,83,.12); }
+    .pillar h4 { color:white; font-size:16px; font-weight:700; margin-bottom:10px; }
+    .pillar p { color:rgba(255,255,255,.7); font-size:14px; line-height:1.7; }
 
     .abt-why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
     .abt-why-card { background:white; border-radius:20px; padding:32px 28px; box-shadow:0 4px 20px rgba(10,45,114,.06); border:1px solid rgba(10,45,114,.06); transition:all .3s; }
@@ -605,7 +638,8 @@
       .abt-highlights { grid-template-columns: repeat(4,1fr); }
       .facilities-grid { grid-template-columns: 1fr; }
       .portfolio-grid { grid-template-columns: 1fr; }
-      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .abt-vision { padding: 40px 28px; }
       .abt-why-grid { grid-template-columns: 1fr; }
       .abt-vision { padding: 36px 24px; }
       .products-grid { grid-template-columns: 1fr; }
@@ -820,22 +854,17 @@
       </div>
       <div class="pillars-grid">
         <div class="pillar">
-          <span class="pillar-icon">🗺️</span>
+          <div class="pillar-icon-wrap">🗺️</div>
           <h4>Pan-India Transformation</h4>
           <p>Expanding brand presence across every corner of the country.</p>
         </div>
-        <!-- <div class="pillar">
-          <span class="pillar-icon">🏭</span>
-          <h4>Multi-Regional Manufacturing</h4>
-          <p>Wider geographic footprint to optimize logistics and localized supply.</p>
-        </div> -->
         <div class="pillar">
-          <span class="pillar-icon">🛒</span>
+          <div class="pillar-icon-wrap">🛒</div>
           <h4>Omnichannel Distribution</h4>
           <p>Strengthening both offline dealer networks and modern online retail channels.</p>
         </div>
         <div class="pillar">
-          <span class="pillar-icon">🌏</span>
+          <div class="pillar-icon-wrap">🌏</div>
           <h4>Global Reach</h4>
           <p>Actively exporting to the Middle East, with a strategic focus on expanding into other high-growth international markets.</p>
         </div>
