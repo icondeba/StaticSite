@@ -289,7 +289,11 @@
         rgba(4,15,45,.40) 42%,
         rgba(4,15,45,.10) 65%,
         transparent 80%);
+      transition: opacity .6s ease;
     }
+    .hero-overlay.hidden { opacity: 0; }
+    .hero-card { transition: opacity .6s ease; }
+    .hero-card.hidden { opacity: 0; pointer-events: none; }
     /* Slide controls */
     .slide-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -1362,6 +1366,8 @@
     const dots     = document.querySelectorAll('.slide-dot');
     const progress = document.getElementById('slideProgress');
     const heroEl   = document.querySelector('.hero');
+    const heroCard = document.querySelector('.hero-card');
+    const heroOverlay = document.querySelector('.hero-overlay');
     const DURATION = 6000;
     let cur = 0, timer, paused = false;
 
@@ -1371,6 +1377,9 @@
       cur = (n + slides.length) % slides.length;
       slides[cur].classList.add('active');
       dots[cur].classList.add('active');
+      const hideText = cur === 1;
+      heroCard.classList.toggle('hidden', hideText);
+      heroOverlay.classList.toggle('hidden', hideText);
       if (!paused) startProgress();
       resetTimer();
     }
