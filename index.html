@@ -147,7 +147,7 @@
       --pad:    clamp(60px, 8vw, 100px);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
     h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; font-weight: 800; }
     img { max-width: 100%; display: block; }
@@ -248,9 +248,9 @@
     .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1000; }
     .mob-overlay.open { display: block; }
     .mob-nav {
-      position: fixed; top: 0; right: 0; width: 290px; height: 100vh;
+      position: fixed; top: 0; right: 0; width: min(290px, 100vw); height: 100vh; height: 100dvh;
       background: white; box-shadow: -8px 0 50px rgba(0,0,0,.18); z-index: 1001;
-      padding: 80px 28px 28px; display: flex; flex-direction: column; gap: 6px;
+      padding: 80px 28px 28px; display: flex; flex-direction: column; gap: 6px; overflow-y: auto;
       transform: translateX(100%); transition: transform .3s ease;
     }
     .mob-nav.open { transform: translateX(0); }
@@ -277,11 +277,20 @@
     .hero-slides { position: absolute; inset: 0; z-index: 0; }
     .hero-slide {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center center;
       opacity: 0; transition: opacity 1.4s cubic-bezier(.4,0,.2,1);
       will-change: opacity;
+      overflow: hidden;
     }
     .hero-slide.active { opacity: 1; }
+    .hero-slide:nth-child(1) { background-color: #007f83; }
+    .hero-slide:nth-child(2) { background-color: #a2a2a2; }
+    .hero-slide picture,
+    .hero-slide img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      display: block;
+    }
+    .hero-slide img { object-fit: cover; object-position: center center; }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background: linear-gradient(to right,
@@ -702,48 +711,101 @@
 
     /* ── RESPONSIVE ── */
 
-@media(max-width:1024px){
+    @media(max-width:1024px){
       .products-grid { grid-template-columns: repeat(2,1fr); }
       .why-grid { grid-template-columns: repeat(2,1fr); }
       .events-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: repeat(2,1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 36px; }
-      .contact-cards { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+      .contact-cards { grid-template-columns: repeat(2,1fr); }
+      .contact-cards .ccard:last-child { grid-column: 1 / -1; max-width: 480px; width: 100%; justify-self: center; }
     }
     @media(max-width:900px){
-      .hero-card { max-width: 100%; }
-      .hero-right { display: none; }
-    }
-    @media(max-width:768px){
       .main-nav { display: none; }
       .hamburger { display: flex; }
+      .hero-card { max-width: 100%; }
+      .hero-right { display: none; }
+      .abt-intro { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { order: -1; max-width: 640px; width: 100%; margin: 0 auto; }
+      .abt-intro-text { min-width: 0; }
+    }
+    @media(max-width:768px){
       .hero-inner { flex-direction: column; text-align: center; padding: 20px 0 0; align-items: center; }
       .hero-card { max-width: 100%; }
       .hero-right { display: none; }
       .hero-sub { max-width: 100%; }
-      .abt-intro { grid-template-columns: 1fr; gap: 48px; }
-      .about-visual { order: -1; }
       .fc-b { display: none; }
-      .abt-highlights { grid-template-columns: repeat(4,1fr); }
       .facilities-grid { grid-template-columns: 1fr; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .pillars-grid { grid-template-columns: 1fr; }
-      .abt-vision { padding: 40px 28px; }
       .abt-why-grid { grid-template-columns: 1fr; }
       .abt-vision { padding: 36px 24px; }
       .products-grid { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
       .contact-cards { grid-template-columns: 1fr; }
+      .contact-cards .ccard:last-child { grid-column: auto; max-width: none; }
       .footer-top { grid-template-columns: 1fr; gap: 28px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .fb-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media(max-width:640px){
+      :root { --pad: 52px; }
+      .container { padding-left: 16px; padding-right: 16px; }
+      .site-header .container { padding-left: 16px; padding-right: 16px; }
+      .header-inner { height: 68px; }
+      .logo img { height: 48px; }
+      .hero { min-height: 100svh; padding-top: 68px; }
+      .hero::before { height: 170px; }
+      .hero-slide:nth-child(1) img { object-position: center bottom; }
+      .hero-slide:nth-child(1)::after {
+        content: ''; position: absolute; inset: 0; pointer-events: none;
+        background: linear-gradient(to bottom, rgba(0,48,72,.98) 0%, rgba(0,72,83,.88) 38%, rgba(0,82,87,.45) 48%, transparent 58%);
+      }
+      .hero-slide:nth-child(2) img { object-position: center center; }
+      .hero-inner { padding-top: 8px; }
+      .hero-badge { font-size: 9px; padding: 5px 10px; margin-bottom: 12px; max-width: 100%; }
+      .hero h1 { font-size: clamp(18px, 5.4vw, 22px); line-height: 1.18; }
+      .hero-sub { font-size: 11px; line-height: 1.5; }
+      .slide-btn { top: auto; bottom: 20px; width: 36px; height: 36px; font-size: 18px; }
+      .slide-btn--prev { left: 12px; }
+      .slide-btn--next { right: 12px; }
+      .slide-dots { bottom: 29px; }
+      .section-title { margin-bottom: 34px; }
+      .section-title h2 { font-size: clamp(25px, 8vw, 34px); }
+      .section-title p { font-size: 14px; line-height: 1.6; }
+      .about-student-wrap { min-height: 320px; border-radius: 20px; }
+      .fc-a { right: 0; bottom: -16px; }
+      .abt-highlights { grid-template-columns: repeat(2,1fr); gap: 10px; }
+      .abt-block { margin-bottom: 44px; }
+      .facility-card, .portfolio-card, .pillar, .abt-why-card, .wc, .tc { padding: 24px 20px; }
+      .abt-vision { padding: 30px 18px; border-radius: 20px; margin-bottom: 44px; }
+      .abt-vision-quote { margin-bottom: 32px; }
+      .stats-sec { padding: 52px 0; }
+      .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact-cards { gap: 18px; }
+      .ccard { padding: 30px 20px; }
+      .ccard p, .fci-b { overflow-wrap: anywhere; }
+      .site-footer { padding-top: 52px; }
+      .scroll-top { right: 16px; bottom: 16px; }
     }
     @media(max-width:480px){
       .hero h1 { white-space: normal; }
       .why-grid { grid-template-columns: 1fr; }
       .kpi { padding: 0 16px; }
-      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
+      .mob-nav { padding-left: 20px; padding-right: 20px; }
+    }
+    @media(max-height:600px) and (orientation:landscape){
+      .header-inner { height: 64px; }
+      .logo img { height: 46px; }
+      .hero { padding-top: 64px; min-height: 100svh; }
+      .hero-inner { padding-top: 6px; justify-content: flex-start; }
+      .hero-card { max-width: 62%; }
+      .hero-badge { margin-bottom: 8px; }
+      .hero h1 { margin-bottom: 8px; white-space: normal; font-size: clamp(17px, 3.4vw, 22px); line-height: 1.15; }
+      .hero-sub { display: none; }
+      .slide-dots { bottom: 18px; }
     }
   </style>
 </head>
@@ -810,8 +872,20 @@
 
   <!-- Slide backgrounds -->
   <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('public/assets/images/banner-2.jpg')"></div>
-    <div class="hero-slide"        style="background-image:url('public/assets/images/banner-3.jpg')"></div>
+    <div class="hero-slide active">
+      <picture>
+        <source media="(max-width: 640px) and (orientation: portrait)" srcset="public/assets/images/banner-2-mobile.jpg">
+        <source media="(max-width: 900px) and (orientation: portrait)" srcset="public/assets/images/banner-2-tablet.jpg">
+        <img src="public/assets/images/banner-2.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
+      </picture>
+    </div>
+    <div class="hero-slide">
+      <picture>
+        <source media="(max-width: 640px) and (orientation: portrait)" srcset="public/assets/images/banner-3-mobile.jpg">
+        <source media="(max-width: 900px) and (orientation: portrait)" srcset="public/assets/images/banner-3-tablet.jpg">
+        <img src="public/assets/images/banner-3.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      </picture>
+    </div>
   </div>
 
   <!-- Left-to-right gradient for text legibility -->
