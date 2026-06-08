@@ -271,7 +271,7 @@
       background: linear-gradient(to bottom, rgba(2,8,30,.5) 0%, rgba(2,8,30,.12) 60%, transparent 100%);
       z-index: 3; pointer-events: none;
     }
-    .hero .container { position: relative; z-index: 3; }
+    .hero .container { position: relative; z-index: 3; width: 100%; }
 
     /* ── HERO SLIDESHOW ── */
     .hero-slides { position: absolute; inset: 0; z-index: 0; }
@@ -292,8 +292,8 @@
       transition: opacity .6s ease;
     }
     .hero-overlay.hidden { opacity: 0; }
-    .hero-card { transition: opacity .6s ease; }
-    .hero-card.hidden { opacity: 0; pointer-events: none; }
+    .hero-inner { transition: opacity .6s ease; }
+    .hero-inner.hidden { opacity: 0; pointer-events: none; }
     /* Slide controls */
     .slide-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -346,12 +346,34 @@
     .hero-wave svg { display: block; width: 100%; height: auto; }
 
     .hero-inner {
-      display: flex; align-items: flex-start; justify-content: flex-start;
-      position: relative; z-index: 1; padding: 16px 0 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; position: relative; z-index: 1; padding: 20px 0 0;
     }
 
     .hero-card {
-      max-width: 46%; padding: 0;
+      flex: 1 1 auto; min-width: 0; max-width: 680px; padding: 0;
+    }
+
+    /* Right-side stat cards */
+    .hero-right {
+      flex: 0 0 260px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .hero-stat-card {
+      background: rgba(255,255,255,.12); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.22); border-radius: 16px;
+      padding: 20px 10px; text-align: center;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .hero-stat-card:hover { background: rgba(255,255,255,.2); transform: translateY(-4px); }
+    .hsc-num {
+      display: block; font-family: 'Poppins',sans-serif;
+      font-size: 28px; font-weight: 900; color: var(--yellow); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .hsc-lbl {
+      font-size: 10px; color: rgba(255,255,255,.82); font-weight: 600;
+      letter-spacing: .5px; text-transform: uppercase;
     }
 
     .hero-badge {
@@ -365,7 +387,7 @@
     .hero-badge .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
 
-    .hero h1 { font-size: clamp(20px, 2.2vw, 34px); line-height: 1.15; color: white; margin-bottom: 12px; }
+    .hero h1 { font-size: clamp(20px, 2.1vw, 32px); line-height: 1.2; color: white; margin-bottom: 12px; white-space: nowrap; }
     .hero h1 .hi { color: var(--yellow); }
     .hero-sub { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65; margin-bottom: 0; transition: opacity .6s ease; }
     .hero-badge { transition: opacity .5s ease; }
@@ -689,11 +711,16 @@
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 36px; }
       .contact-cards { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
     }
+    @media(max-width:900px){
+      .hero-card { max-width: 100%; }
+      .hero-right { display: none; }
+    }
     @media(max-width:768px){
       .main-nav { display: none; }
       .hamburger { display: flex; }
-      .hero-inner { text-align: center; padding: 20px 0 0; justify-content: center; }
+      .hero-inner { flex-direction: column; text-align: center; padding: 20px 0 0; align-items: center; }
       .hero-card { max-width: 100%; }
+      .hero-right { display: none; }
       .hero-sub { max-width: 100%; }
       .abt-intro { grid-template-columns: 1fr; gap: 48px; }
       .about-visual { order: -1; }
@@ -713,6 +740,7 @@
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
     @media(max-width:480px){
+      .hero h1 { white-space: normal; }
       .why-grid { grid-template-columns: 1fr; }
       .kpi { padding: 0 16px; }
       .stats-grid { grid-template-columns: repeat(2,1fr); gap: 24px; }
@@ -797,8 +825,28 @@
           <span class="dot"></span>
           India's Trusted School Stationery Brand
         </div>
-        <h1 id="heroH1" aria-label="Quality on Every Page, for Every Purpose"><span id="heroLine1"></span><br><span class="hi" id="heroLine2"></span><span class="hero-cursor" id="heroCursor">|</span></h1>
-        <p class="hero-sub" id="heroSub" style="opacity:0">Premium stationery for students, professionals, and creators — Successful<span class="cm">©</span> brings trusted quality to classrooms, offices, and desks across India.</p>
+        <h1 id="heroH1" aria-label="Quality on Every Page, for Every Purpose"><span id="heroLine1"></span><span class="hi" id="heroLine2"></span><span class="hero-cursor" id="heroCursor">|</span></h1>
+        <p class="hero-sub" id="heroSub" style="opacity:0">Premium stationery for students, professionals, and creators — Successful<span class="cm">©</span> brings trusted quality to<br>classrooms, offices, and desks across India.</p>
+      </div>
+
+      <!-- Right: stat cards -->
+      <div class="hero-right">
+        <div class="hero-stat-card">
+          <span class="hsc-num">500+</span>
+          <span class="hsc-lbl">Schools Trusted</span>
+        </div>
+        <div class="hero-stat-card">
+          <span class="hsc-num">15+</span>
+          <span class="hsc-lbl">States Covered</span>
+        </div>
+        <div class="hero-stat-card">
+          <span class="hsc-num">50+</span>
+          <span class="hsc-lbl">Product Lines</span>
+        </div>
+        <div class="hero-stat-card">
+          <span class="hsc-num">25+</span>
+          <span class="hsc-lbl">Years of Trust</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1321,7 +1369,7 @@
     const line2El = document.getElementById('heroLine2');
     const cursor  = document.getElementById('heroCursor');
     const sub     = document.getElementById('heroSub');
-    const LINE1   = 'Quality on Every Page,';
+    const LINE1   = 'Quality on Every Page, ';
     const LINE2   = 'for Every Purpose';
     const SPEED   = 42;
 
@@ -1366,7 +1414,7 @@
     const dots     = document.querySelectorAll('.slide-dot');
     const progress = document.getElementById('slideProgress');
     const heroEl   = document.querySelector('.hero');
-    const heroCard = document.querySelector('.hero-card');
+    const heroCard = document.querySelector('.hero-inner');
     const heroOverlay = document.querySelector('.hero-overlay');
     const DURATION = 6000;
     let cur = 0, timer, paused = false;
