@@ -758,12 +758,8 @@
       .logo img { height: 48px; }
       .hero { min-height: 100svh; padding-top: 68px; }
       .hero::before { height: 170px; }
-      .hero-slide:nth-child(1) img { object-position: center bottom; }
-      .hero-slide:nth-child(1)::after {
-        content: ''; position: absolute; inset: 0; pointer-events: none;
-        background: linear-gradient(to bottom, rgba(0,48,72,.98) 0%, rgba(0,72,83,.88) 38%, rgba(0,82,87,.45) 48%, transparent 58%);
-      }
-      .hero-slide:nth-child(2) img { object-position: center center; }
+      /* Show full banner image on mobile — no cropping */
+      .hero-slide img { object-fit: contain; object-position: center center; }
       .hero-inner { padding-top: 8px; }
       .hero-badge { font-size: 9px; padding: 5px 10px; margin-bottom: 12px; max-width: 100%; }
       .hero h1 { font-size: clamp(18px, 5.4vw, 22px); line-height: 1.18; }
@@ -874,15 +870,13 @@
   <div class="hero-slides">
     <div class="hero-slide active">
       <picture>
-        <source media="(max-width: 640px) and (orientation: portrait)" srcset="public/assets/images/banner-2-mobile-v3.jpg">
-        <source media="(max-width: 1200px) and (orientation: portrait)" srcset="public/assets/images/banner-2-tablet-v3.jpg">
+        <source type="image/webp" srcset="public/assets/images/banner-2-desktop.webp">
         <img src="public/assets/images/banner-2.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
       </picture>
     </div>
     <div class="hero-slide">
       <picture>
-        <source media="(max-width: 640px) and (orientation: portrait)" srcset="public/assets/images/banner-3-mobile-v3.jpg">
-        <source media="(max-width: 1200px) and (orientation: portrait)" srcset="public/assets/images/banner-3-tablet-v3.jpg">
+        <source type="image/webp" srcset="public/assets/images/banner-3-desktop.webp">
         <img src="public/assets/images/banner-3.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
       </picture>
     </div>
@@ -903,25 +897,6 @@
         <p class="hero-sub" id="heroSub" style="opacity:0">Premium stationery for students, professionals, and creators — Successful<span class="cm">©</span> brings trusted quality to<br>classrooms, offices, and desks across India.</p>
       </div>
 
-      <!-- Right: stat cards -->
-      <div class="hero-right">
-        <div class="hero-stat-card">
-          <span class="hsc-num">500+</span>
-          <span class="hsc-lbl">Schools Trusted</span>
-        </div>
-        <div class="hero-stat-card">
-          <span class="hsc-num">15+</span>
-          <span class="hsc-lbl">States Covered</span>
-        </div>
-        <div class="hero-stat-card">
-          <span class="hsc-num">50+</span>
-          <span class="hsc-lbl">Product Lines</span>
-        </div>
-        <div class="hero-stat-card">
-          <span class="hsc-num">25+</span>
-          <span class="hsc-lbl">Years of Trust</span>
-        </div>
-      </div>
     </div>
   </div>
 
