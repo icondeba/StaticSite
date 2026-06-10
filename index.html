@@ -271,7 +271,11 @@
       background: linear-gradient(to bottom, rgba(2,8,30,.5) 0%, rgba(2,8,30,.12) 60%, transparent 100%);
       z-index: 3; pointer-events: none;
     }
-    .hero .container { position: relative; z-index: 3; width: 100%; }
+    .hero .container {
+      position: relative; z-index: 3; width: 100%; max-width: none;
+      padding-left: clamp(84px, 10.5vw, 202px);
+      padding-right: clamp(32px, 5vw, 96px);
+    }
 
     /* ── HERO SLIDESHOW ── */
     .hero-slides { position: absolute; inset: 0; z-index: 0; }
@@ -356,12 +360,14 @@
 
     .hero-inner {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; position: relative; z-index: 1; padding: 20px 0 0;
+      gap: 40px; position: relative; z-index: 1; padding: 35px 0 0;
+      width: min(40vw, 760px);
     }
 
     .hero-card {
-      flex: 1 1 auto; min-width: 0; max-width: 680px; padding: 0;
+      flex: 1 1 auto; min-width: 0; width: 100%; max-width: none; padding: 0;
     }
+    .hero-card > * { max-width: 100%; }
 
     /* Right-side stat cards */
     .hero-right {
@@ -396,9 +402,15 @@
     .hero-badge .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:.6} }
 
-    .hero h1 { font-size: clamp(20px, 2.1vw, 32px); line-height: 1.2; color: white; margin-bottom: 12px; white-space: nowrap; }
+    .hero h1 {
+      font-size: clamp(17px, 1.9vw, 36px); line-height: 1.2; color: white;
+      margin-bottom: 12px; white-space: nowrap;
+    }
     .hero h1 .hi { color: var(--yellow); }
-    .hero-sub { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65; margin-bottom: 0; transition: opacity .6s ease; }
+    .hero-sub {
+      color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.65;
+      margin-bottom: 0; transition: opacity .6s ease; text-wrap: pretty;
+    }
     .hero-badge { transition: opacity .5s ease; }
     .hero-cursor { display: inline-block; color: var(--yellow); font-weight: 300; animation: blink .75s step-end infinite; }
     .hero-cursor.done { display: none; }
@@ -721,10 +733,18 @@
       .contact-cards { grid-template-columns: repeat(2,1fr); }
       .contact-cards .ccard:last-child { grid-column: 1 / -1; max-width: 480px; width: 100%; justify-self: center; }
     }
+    @media(max-width:1200px) and (orientation:portrait){
+      .hero .container { padding-left: 16px; padding-right: 16px; }
+      .hero-inner {
+        width: min(68vw, 620px); margin-left: auto; margin-right: auto;
+        text-align: center; align-items: center;
+      }
+      .hero h1 { white-space: normal; text-wrap: balance; }
+    }
     @media(max-width:900px){
       .main-nav { display: none; }
       .hamburger { display: flex; }
-      .hero-card { max-width: 100%; }
+      .hero-inner { width: min(68vw, 620px); margin-left: auto; margin-right: auto; }
       .hero-right { display: none; }
       .abt-intro { grid-template-columns: 1fr; gap: 48px; }
       .about-visual { order: -1; max-width: 640px; width: 100%; margin: 0 auto; }
@@ -732,7 +752,6 @@
     }
     @media(max-width:768px){
       .hero-inner { flex-direction: column; text-align: center; padding: 20px 0 0; align-items: center; }
-      .hero-card { max-width: 100%; }
       .hero-right { display: none; }
       .hero-sub { max-width: 100%; }
       .fc-b { display: none; }
@@ -754,14 +773,16 @@
       :root { --pad: 52px; }
       .container { padding-left: 16px; padding-right: 16px; }
       .site-header .container { padding-left: 16px; padding-right: 16px; }
+      .hero .container { padding-left: 16px; padding-right: 16px; }
       .header-inner { height: 68px; }
       .logo img { height: 48px; }
       .hero { min-height: 100svh; padding-top: 68px; }
       .hero::before { height: 170px; }
-      .hero-inner { padding-top: 8px; }
-      .hero-badge { font-size: 9px; padding: 5px 10px; margin-bottom: 12px; max-width: 100%; }
-      .hero h1 { font-size: clamp(18px, 5.4vw, 22px); line-height: 1.18; }
-      .hero-sub { font-size: 11px; line-height: 1.5; }
+      .hero-inner { width: min(68vw, 270px); padding-top: 0; }
+      .hero-badge { gap: 5px; font-size: clamp(6.5px, 2vw, 8px); padding: 4px 7px; margin-bottom: 9px; }
+      .hero-badge .dot { width: 6px; height: 6px; }
+      .hero h1 { font-size: clamp(14px, 4.2vw, 17px); line-height: 1.16; margin-bottom: 6px; }
+      .hero-sub { font-size: clamp(7.5px, 2.3vw, 9px); line-height: 1.4; }
       .slide-btn { top: auto; bottom: 20px; width: 36px; height: 36px; font-size: 18px; }
       .slide-btn--prev { left: 12px; }
       .slide-btn--next { right: 12px; }
@@ -785,7 +806,6 @@
       .scroll-top { right: 16px; bottom: 16px; }
     }
     @media(max-width:480px){
-      .hero h1 { white-space: normal; }
       .why-grid { grid-template-columns: 1fr; }
       .kpi { padding: 0 16px; }
       .mob-nav { padding-left: 20px; padding-right: 20px; }
