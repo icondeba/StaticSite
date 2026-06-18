@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallary | Successful</title>
+  <meta name="description" content="Photo Gallary from Successful events and exhibitions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #073070;
+      --blue: #0a3d8f;
+      --bluem: #1762c8;
+      --yellow: #ffd600;
+      --sky: #e7f4ff;
+      --bg: #f6f9fe;
+      --muted: #6f7f9c;
+      --ink: #10234a;
+      --line: rgba(10,45,114,.11);
+      --shadow: 0 18px 54px rgba(10,45,114,.14);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      background: #f7f9fc;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
+    .cm { font-size: .62em; vertical-align: super; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 900;
+      background: rgba(7,48,112,.88);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(7,48,112,.14);
+    }
+    .header-inner { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .logo { display: flex; align-items: center; flex-shrink: 0; }
+    .logo img { height: 54px; object-fit: contain; }
+    .main-nav { display: flex; align-items: center; gap: 26px; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: white; }
+    .main-nav a { opacity: .9; transition: opacity .2s, color .2s; }
+    .main-nav a:hover, .main-nav a.active { opacity: 1; color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--navy) !important;
+      padding: 11px 20px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(255,214,0,.32);
+    }
+    .hamburger { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 4px; }
+
+    .mob-overlay { position: fixed; inset: 0; background: rgba(2,13,34,.56); z-index: 1000; opacity: 0; visibility: hidden; transition: .25s; }
+    .mob-overlay.open { opacity: 1; visibility: visible; }
+    .mob-nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(310px, 100vw);
+      height: 100vh;
+      height: 100dvh;
+      background: white;
+      z-index: 1001;
+      padding: 84px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      box-shadow: -20px 0 60px rgba(7,48,112,.18);
+    }
+    .mob-nav.open { transform: translateX(0); }
+    .mob-close { position: absolute; top: 24px; right: 24px; color: var(--navy); font-size: 24px; cursor: pointer; }
+    .mob-nav a { padding: 13px 14px; border-radius: 12px; font-weight: 800; color: var(--navy); }
+    .mob-nav a:hover, .mob-nav a.active { background: var(--sky); color: var(--blue); }
+
+    .page-hero {
+      padding: 132px 0 54px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(7,48,112,.96), rgba(23,98,200,.78)),
+        url('public/assets/images/photo-gallary/event-001.jpeg') center/cover;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: auto -10% -42px;
+      height: 86px;
+      background: #f7f9fc;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,214,0,.16);
+      color: var(--yellow);
+      border: 1px solid rgba(255,214,0,.28);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(40px, 8vw, 82px);
+      line-height: .98;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+    .hero-copy {
+      max-width: 620px;
+      font-size: clamp(16px, 1.6vw, 18px);
+      line-height: 1.65;
+      color: rgba(255,255,255,.84);
+    }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .stat {
+      min-width: 124px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .stat strong { display: block; font-family: 'Poppins', sans-serif; font-size: 24px; color: var(--yellow); line-height: 1; }
+    .stat span { display: block; margin-top: 5px; font-size: 12px; color: rgba(255,255,255,.78); font-weight: 700; }
+
+    .gallery-section { padding: 42px 0 82px; }
+    .toolbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(10,45,114,.1);
+    }
+    .toolbar h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      color: var(--navy);
+      line-height: 1.15;
+    }
+    .toolbar p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+    .count-pill {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 8px 28px rgba(10,45,114,.07);
+    }
+    .gallery-grid {
+      columns: 5 220px;
+      column-gap: 14px;
+    }
+    .photo-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      margin: 0 0 14px;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      border-radius: 10px;
+      background: #eef3f9;
+      border: 1px solid rgba(10,45,114,.1);
+      box-shadow: 0 6px 18px rgba(10,45,114,.07);
+      cursor: zoom-in;
+      line-height: 0;
+      isolation: isolate;
+      vertical-align: top;
+      animation: photoReveal .46s cubic-bezier(.22,.61,.36,1) both;
+      transform-origin: center bottom;
+    }
+    .photo-card:nth-child(10n + 2) { animation-delay: 35ms; }
+    .photo-card:nth-child(10n + 3) { animation-delay: 70ms; }
+    .photo-card:nth-child(10n + 4) { animation-delay: 105ms; }
+    .photo-card:nth-child(10n + 5) { animation-delay: 140ms; }
+    .photo-card:nth-child(10n + 6) { animation-delay: 175ms; }
+    .photo-card:nth-child(10n + 7) { animation-delay: 210ms; }
+    .photo-card:nth-child(10n + 8) { animation-delay: 245ms; }
+    .photo-card:nth-child(10n + 9) { animation-delay: 280ms; }
+    .photo-card:nth-child(10n) { animation-delay: 315ms; }
+    .photo-card img {
+      width: 100%;
+      height: auto;
+      transition: transform .45s ease, filter .45s ease;
+    }
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 48%, rgba(4,20,51,.5));
+      opacity: 0;
+      transition: opacity .25s ease;
+      z-index: 1;
+    }
+    .photo-card:hover img { transform: scale(1.035); filter: saturate(1.04) contrast(1.02); }
+    .photo-card:hover::after { opacity: 1; }
+
+    @keyframes photoReveal {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(.985);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .load-area { display: flex; justify-content: center; margin-top: 34px; }
+    .see-more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 168px;
+      height: 50px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(255,214,0,.36);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .see-more:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,214,0,.46); }
+    .see-more[hidden] { display: none; }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(2,11,30,.88);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity .24s ease;
+    }
+    .lightbox.open { display: flex; opacity: 1; }
+    .lightbox img {
+      max-width: min(1080px, 100%);
+      max-height: min(780px, calc(100vh - 120px));
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.46);
+      background: white;
+      animation: lightboxIn .26s cubic-bezier(.22,.61,.36,1) both;
+    }
+    .lb-btn {
+      position: absolute;
+      border: 0;
+      background: rgba(255,255,255,.12);
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: background .2s ease;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.24); }
+    .lb-close {
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 28px;
+      line-height: 1;
+    }
+    .lb-nav {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 58px;
+      border-radius: 16px;
+      font-size: 34px;
+    }
+    .lb-prev { left: 22px; }
+    .lb-next { right: 22px; }
+
+    @keyframes lightboxIn {
+      from { opacity: 0; transform: translateY(12px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .site-footer { background: #051f5c; padding: 58px 0 0; color: rgba(255,255,255,.68); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 44px; padding-bottom: 38px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { height: 52px; margin-bottom: 16px; }
+    .footer-about { font-size: 14px; line-height: 1.7; max-width: 320px; }
+    .footer-col h4 { color: white; font-family: 'Poppins', sans-serif; font-size: 15px; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: grid; gap: 10px; }
+    .footer-col a { color: rgba(255,255,255,.7); font-size: 14px; transition: color .2s; }
+    .footer-col a:hover { color: var(--yellow); }
+    .footer-bottom { padding: 20px 0; font-size: 13px; text-align: center; }
+
+    @media (max-width: 980px) {
+      .main-nav { display: none; }
+      .hamburger { display: flex; }
+      .gallery-grid { columns: 4 190px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, 1320px); }
+      .header-inner { height: 70px; }
+      .logo img { height: 48px; }
+      .page-hero { padding: 116px 0 56px; }
+      .toolbar { align-items: flex-start; flex-direction: column; }
+      .gallery-grid { columns: 2 150px; column-gap: 12px; }
+      .photo-card { margin-bottom: 12px; border-radius: 9px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .lb-nav { top: auto; bottom: 24px; transform: none; }
+      .lb-prev { left: calc(50% - 60px); }
+      .lb-next { right: calc(50% - 60px); }
+    }
+    @media (max-width: 460px) {
+      .gallery-grid { columns: 1; }
+      .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .stat { min-width: 0; padding: 12px 10px; text-align: center; }
+      .stat strong { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mob-overlay" id="mobOverlay" onclick="closeNav()"></div>
+  <nav class="mob-nav" id="mobNav">
+    <span class="mob-close" onclick="closeNav()">x</span>
+    <a href="index.html" onclick="closeNav()">Home</a>
+    <a href="index.html#about" onclick="closeNav()">About Us</a>
+    <a href="products/student.html" onclick="closeNav()">Student Category</a>
+    <a href="products/office.html" onclick="closeNav()">Office Category</a>
+    <a href="products/new-year-diary.html" onclick="closeNav()">New Year Diary</a>
+    <a href="photo-gallary.html" class="active" onclick="closeNav()">Photo Gallary</a>
+    <a href="index.html#events" onclick="closeNav()">Events</a>
+    <a href="index.html#contact" onclick="closeNav()">Contact Us</a>
+  </nav>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="public/assets/images/logo-transparent.png" alt="Successful Logo">
+        </a>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About Us</a>
+          <a href="index.html#products">Products</a>
+          <a href="photo-gallary.html" class="active">Photo Gallary</a>
+          <a href="index.html#events">Events</a>
+          <a href="index.html#contact" class="nav-cta">Contact Us</a>
+        </nav>
+        <div class="hamburger" onclick="openNav()" aria-label="Open menu" role="button" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Events & Exhibitions</span>
+          <h1>Photo Gallary</h1>
+          <p class="hero-copy">A curated look at Successful<span class="cm">©</span> events, exhibitions, stalls, and on-ground brand moments across India.</p>
+          <div class="hero-stats">
+            <div class="stat"><strong id="totalPhotos">93</strong><span>Photos</span></div>
+            <div class="stat"><strong>Events</strong><span>Highlights</span></div>
+            <div class="stat"><strong>India</strong><span>On Ground</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <div class="toolbar">
+          <div>
+            <h2>Event Moments</h2>
+            <p>Highlights from stalls, exhibitions, and customer moments with Successful<span class="cm">©</span>.</p>
+          </div>
+          <span class="count-pill" id="galleryCount" aria-live="polite">Showing 0 of 0</span>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+
+        <div class="load-area">
+          <button class="see-more" id="seeMoreBtn" type="button">See More</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+    <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Close photo">x</button>
+    <button class="lb-btn lb-nav lb-prev" type="button" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+    <img src="" alt="" id="lbImg">
+    <button class="lb-btn lb-nav lb-next" type="button" id="lbNext" aria-label="Next photo">&#8250;</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="public/assets/images/logo-transparent.png" alt="Successful" class="footer-logo">
+          <p class="footer-about">India's trusted school stationery brand, connecting with schools, retailers, students, and families through quality products and active events.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="photo-gallary.html">Photo Gallary</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products/student.html">Student Category</a></li>
+            <li><a href="products/office.html">Office Category</a></li>
+            <li><a href="products/new-year-diary.html">New Year Diary</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">Copyright 2026 Successful<span class="cm">©</span>. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const photos = [
+      { src: 'public/assets/images/photo-gallary/event-001.jpeg', alt: 'Successful event photo 1' },
+      { src: 'public/assets/images/photo-gallary/event-002.jpeg', alt: 'Successful event photo 2' },
+      { src: 'public/assets/images/photo-gallary/event-003.jpeg', alt: 'Successful event photo 3' },
+      { src: 'public/assets/images/photo-gallary/event-004.jpeg', alt: 'Successful event photo 4' },
+      { src: 'public/assets/images/photo-gallary/event-005.jpeg', alt: 'Successful event photo 5' },
+      { src: 'public/assets/images/photo-gallary/event-006.jpeg', alt: 'Successful event photo 6' },
+      { src: 'public/assets/images/photo-gallary/event-007.jpeg', alt: 'Successful event photo 7' },
+      { src: 'public/assets/images/photo-gallary/event-008.jpeg', alt: 'Successful event photo 8' },
+      { src: 'public/assets/images/photo-gallary/event-009.jpeg', alt: 'Successful event photo 9' },
+      { src: 'public/assets/images/photo-gallary/event-010.jpeg', alt: 'Successful event photo 10' },
+      { src: 'public/assets/images/photo-gallary/event-011.jpeg', alt: 'Successful event photo 11' },
+      { src: 'public/assets/images/photo-gallary/event-012.jpeg', alt: 'Successful event photo 12' },
+      { src: 'public/assets/images/photo-gallary/event-013.jpeg', alt: 'Successful event photo 13' },
+      { src: 'public/assets/images/photo-gallary/event-014.jpeg', alt: 'Successful event photo 14' },
+      { src: 'public/assets/images/photo-gallary/event-015.jpeg', alt: 'Successful event photo 15' },
+      { src: 'public/assets/images/photo-gallary/event-016.jpeg', alt: 'Successful event photo 16' },
+      { src: 'public/assets/images/photo-gallary/event-017.jpeg', alt: 'Successful event photo 17' },
+      { src: 'public/assets/images/photo-gallary/event-018.jpeg', alt: 'Successful event photo 18' },
+      { src: 'public/assets/images/photo-gallary/event-019.jpeg', alt: 'Successful event photo 19' },
+      { src: 'public/assets/images/photo-gallary/event-020.jpeg', alt: 'Successful event photo 20' },
+      { src: 'public/assets/images/photo-gallary/event-021.jpeg', alt: 'Successful event photo 21' },
+      { src: 'public/assets/images/photo-gallary/event-022.jpeg', alt: 'Successful event photo 22' },
+      { src: 'public/assets/images/photo-gallary/event-023.jpeg', alt: 'Successful event photo 23' },
+      { src: 'public/assets/images/photo-gallary/event-024.jpeg', alt: 'Successful event photo 24' },
+      { src: 'public/assets/images/photo-gallary/event-025.jpeg', alt: 'Successful event photo 25' },
+      { src: 'public/assets/images/photo-gallary/event-026.jpeg', alt: 'Successful event photo 26' },
+      { src: 'public/assets/images/photo-gallary/event-027.jpeg', alt: 'Successful event photo 27' },
+      { src: 'public/assets/images/photo-gallary/event-028.jpeg', alt: 'Successful event photo 28' },
+      { src: 'public/assets/images/photo-gallary/event-029.jpeg', alt: 'Successful event photo 29' },
+      { src: 'public/assets/images/photo-gallary/event-030.jpeg', alt: 'Successful event photo 30' },
+      { src: 'public/assets/images/photo-gallary/event-031.jpeg', alt: 'Successful event photo 31' },
+      { src: 'public/assets/images/photo-gallary/event-032.jpeg', alt: 'Successful event photo 32' },
+      { src: 'public/assets/images/photo-gallary/event-033.jpeg', alt: 'Successful event photo 33' },
+      { src: 'public/assets/images/photo-gallary/event-034.jpeg', alt: 'Successful event photo 34' },
+      { src: 'public/assets/images/photo-gallary/event-035.jpeg', alt: 'Successful event photo 35' },
+      { src: 'public/assets/images/photo-gallary/event-036.jpeg', alt: 'Successful event photo 36' },
+      { src: 'public/assets/images/photo-gallary/event-037.jpeg', alt: 'Successful event photo 37' },
+      { src: 'public/assets/images/photo-gallary/event-038.jpeg', alt: 'Successful event photo 38' },
+      { src: 'public/assets/images/photo-gallary/event-039.jpeg', alt: 'Successful event photo 39' },
+      { src: 'public/assets/images/photo-gallary/event-040.jpeg', alt: 'Successful event photo 40' },
+      { src: 'public/assets/images/photo-gallary/event-041.jpeg', alt: 'Successful event photo 41' },
+      { src: 'public/assets/images/photo-gallary/event-042.jpeg', alt: 'Successful event photo 42' },
+      { src: 'public/assets/images/photo-gallary/event-043.jpeg', alt: 'Successful event photo 43' },
+      { src: 'public/assets/images/photo-gallary/event-044.jpeg', alt: 'Successful event photo 44' },
+      { src: 'public/assets/images/photo-gallary/event-045.jpeg', alt: 'Successful event photo 45' },
+      { src: 'public/assets/images/photo-gallary/event-046.jpeg', alt: 'Successful event photo 46' },
+      { src: 'public/assets/images/photo-gallary/event-047.jpeg', alt: 'Successful event photo 47' },
+      { src: 'public/assets/images/photo-gallary/event-048.jpeg', alt: 'Successful event photo 48' },
+      { src: 'public/assets/images/photo-gallary/event-049.jpeg', alt: 'Successful event photo 49' },
+      { src: 'public/assets/images/photo-gallary/event-050.jpeg', alt: 'Successful event photo 50' },
+      { src: 'public/assets/images/photo-gallary/event-051.jpeg', alt: 'Successful event photo 51' },
+      { src: 'public/assets/images/photo-gallary/event-052.jpeg', alt: 'Successful event photo 52' },
+      { src: 'public/assets/images/photo-gallary/event-053.jpeg', alt: 'Successful event photo 53' },
+      { src: 'public/assets/images/photo-gallary/event-054.jpeg', alt: 'Successful event photo 54' },
+      { src: 'public/assets/images/photo-gallary/event-055.jpeg', alt: 'Successful event photo 55' },
+      { src: 'public/assets/images/photo-gallary/event-056.jpeg', alt: 'Successful event photo 56' },
+      { src: 'public/assets/images/photo-gallary/event-057.jpeg', alt: 'Successful event photo 57' },
+      { src: 'public/assets/images/photo-gallary/event-058.jpeg', alt: 'Successful event photo 58' },
+      { src: 'public/assets/images/photo-gallary/event-059.jpeg', alt: 'Successful event photo 59' },
+      { src: 'public/assets/images/photo-gallary/event-060.jpeg', alt: 'Successful event photo 60' },
+      { src: 'public/assets/images/photo-gallary/event-061.jpeg', alt: 'Successful event photo 61' },
+      { src: 'public/assets/images/photo-gallary/event-062.jpeg', alt: 'Successful event photo 62' },
+      { src: 'public/assets/images/photo-gallary/event-063.jpeg', alt: 'Successful event photo 63' },
+      { src: 'public/assets/images/photo-gallary/event-064.jpeg', alt: 'Successful event photo 64' },
+      { src: 'public/assets/images/photo-gallary/event-065.jpeg', alt: 'Successful event photo 65' },
+      { src: 'public/assets/images/photo-gallary/event-066.jpeg', alt: 'Successful event photo 66' },
+      { src: 'public/assets/images/photo-gallary/event-067.jpeg', alt: 'Successful event photo 67' },
+      { src: 'public/assets/images/photo-gallary/event-068.jpeg', alt: 'Successful event photo 68' },
+      { src: 'public/assets/images/photo-gallary/event-069.jpeg', alt: 'Successful event photo 69' },
+      { src: 'public/assets/images/photo-gallary/event-070.jpeg', alt: 'Successful event photo 70' },
+      { src: 'public/assets/images/photo-gallary/event-071.jpeg', alt: 'Successful event photo 71' },
+      { src: 'public/assets/images/photo-gallary/event-072.jpeg', alt: 'Successful event photo 72' },
+      { src: 'public/assets/images/photo-gallary/event-073.jpeg', alt: 'Successful event photo 73' },
+      { src: 'public/assets/images/photo-gallary/event-074.jpeg', alt: 'Successful event photo 74' },
+      { src: 'public/assets/images/photo-gallary/event-075.jpeg', alt: 'Successful event photo 75' },
+      { src: 'public/assets/images/photo-gallary/event-076.jpeg', alt: 'Successful event photo 76' },
+      { src: 'public/assets/images/photo-gallary/event-077.jpeg', alt: 'Successful event photo 77' },
+      { src: 'public/assets/images/photo-gallary/event-078.jpeg', alt: 'Successful event photo 78' },
+      { src: 'public/assets/images/photo-gallary/event-079.jpeg', alt: 'Successful event photo 79' },
+      { src: 'public/assets/images/photo-gallary/event-080.jpeg', alt: 'Successful event photo 80' },
+      { src: 'public/assets/images/photo-gallary/event-081.jpeg', alt: 'Successful event photo 81' },
+      { src: 'public/assets/images/photo-gallary/event-082.jpeg', alt: 'Successful event photo 82' },
+      { src: 'public/assets/images/photo-gallary/event-083.jpeg', alt: 'Successful event photo 83' },
+      { src: 'public/assets/images/photo-gallary/event-084.jpeg', alt: 'Successful event photo 84' },
+      { src: 'public/assets/images/photo-gallary/event-085.jpeg', alt: 'Successful event photo 85' },
+      { src: 'public/assets/images/photo-gallary/event-086.jpeg', alt: 'Successful event photo 86' },
+      { src: 'public/assets/images/photo-gallary/event-087.jpeg', alt: 'Successful event photo 87' },
+      { src: 'public/assets/images/photo-gallary/event-088.jpeg', alt: 'Successful event photo 88' },
+      { src: 'public/assets/images/photo-gallary/event-089.jpeg', alt: 'Successful event photo 89' },
+      { src: 'public/assets/images/photo-gallary/event-090.jpeg', alt: 'Successful event photo 90' },
+      { src: 'public/assets/images/photo-gallary/event-091.jpeg', alt: 'Successful event photo 91' },
+      { src: 'public/assets/images/photo-gallary/event-092.jpeg', alt: 'Successful event photo 92' },
+      { src: 'public/assets/images/photo-gallary/event-093.jpeg', alt: 'Successful event photo 93' }
+    ];
+
+    const INITIAL_BATCH = 20;
+    const LOAD_BATCH = 10;
+    const grid = document.getElementById('galleryGrid');
+    const seeMoreBtn = document.getElementById('seeMoreBtn');
+    const galleryCount = document.getElementById('galleryCount');
+    const totalPhotos = document.getElementById('totalPhotos');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+    const lbPrev = document.getElementById('lbPrev');
+    const lbNext = document.getElementById('lbNext');
+    let rendered = 0;
+    let activeIndex = 0;
+
+    totalPhotos.textContent = photos.length;
+
+    function updateCount() {
+      galleryCount.textContent = 'Showing ' + rendered + ' of ' + photos.length;
+      seeMoreBtn.hidden = rendered >= photos.length;
+    }
+
+    function createPhotoCard(photo, index) {
+      const button = document.createElement('button');
+      button.className = 'photo-card';
+      button.type = 'button';
+      button.setAttribute('aria-label', 'Open ' + photo.alt);
+      button.addEventListener('click', () => openLightbox(index));
+
+      const img = document.createElement('img');
+      img.src = photo.src;
+      img.alt = photo.alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      button.appendChild(img);
+      return button;
+    }
+
+    function loadPhotos(count) {
+      const next = Math.min(rendered + count, photos.length);
+      const fragment = document.createDocumentFragment();
+      for (let i = rendered; i < next; i++) {
+        fragment.appendChild(createPhotoCard(photos[i], i));
+      }
+      grid.appendChild(fragment);
+      rendered = next;
+      updateCount();
+    }
+
+    function openLightbox(index) {
+      activeIndex = index;
+      lbImg.src = photos[activeIndex].src;
+      lbImg.alt = photos[activeIndex].alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    function moveLightbox(delta) {
+      activeIndex = (activeIndex + delta + photos.length) % photos.length;
+      lbImg.src = photos[activeIndex].src;
+      lbImg.alt = photos[activeIndex].alt;
+    }
+
+    function openNav() {
+      document.getElementById('mobNav').classList.add('open');
+      document.getElementById('mobOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+      document.getElementById('mobNav').classList.remove('open');
+      document.getElementById('mobOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    seeMoreBtn.addEventListener('click', () => loadPhotos(LOAD_BATCH));
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => moveLightbox(-1));
+    lbNext.addEventListener('click', () => moveLightbox(1));
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') moveLightbox(-1);
+      if (e.key === 'ArrowRight') moveLightbox(1);
+    });
+
+    loadPhotos(INITIAL_BATCH);
+  </script>
+</body>
+</html>
