@@ -311,6 +311,7 @@
   <a href="student.html"        onclick="closeNav()" style="padding-left:28px;">🎒 Student Category</a>
   <a href="office.html"         onclick="closeNav()" style="padding-left:28px;">💼 Office Category</a>
   <a href="new-year-diary.html" onclick="closeNav()" style="padding-left:28px;">📅 New Year Diary</a>
+  <a href="plastic.html"        onclick="closeNav()" style="padding-left:28px;">📐 Plastic Category</a>
   <a href="../photo-gallary.html" onclick="closeNav()">Photo Gallary</a>
   <a href="../index.html#events" onclick="closeNav()">🎉 Events</a>
   <a href="../index.html#contact" onclick="closeNav()">📞 Contact Us</a>
@@ -333,6 +334,7 @@
             <a href="student.html"><span class="drop-icon">🎒</span><span><strong>Student Category</strong><span class="drop-sub">Notebooks, Drawing &amp; More</span></span></a>
             <a href="office.html"><span class="drop-icon">💼</span><span><strong>Office Category</strong><span class="drop-sub">Professional Stationery</span></span></a>
             <a href="new-year-diary.html"><span class="drop-icon">📅</span><span><strong>New Year Diary</strong><span class="drop-sub">Premium Yearly Planners</span></span></a>
+            <a href="plastic.html"><span class="drop-icon">📐</span><span><strong>Plastic Category</strong><span class="drop-sub">Durable Plastic Essentials</span></span></a>
           </div>
         </div>
         <a href="../photo-gallary.html">Photo Gallary</a>
@@ -399,6 +401,7 @@
           <ul class="sb-list">
             <li><a href="office.html"         class="sb-link">💼&nbsp; Office Category</a></li>
             <li><a href="new-year-diary.html" class="sb-link">📅&nbsp; New Year Diary</a></li>
+            <li><a href="plastic.html"        class="sb-link">📐&nbsp; Plastic Category</a></li>
           </ul>
         </div>
       </aside>
@@ -452,6 +455,7 @@
           <li><a href="student.html">Student Category</a></li>
           <li><a href="office.html">Office Category</a></li>
           <li><a href="new-year-diary.html">New Year Diary</a></li>
+          <li><a href="plastic.html">Plastic Category</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -500,7 +504,7 @@
       { id: 'big-drawing-premium', name: 'BIG DRAWING PREMIUM',           images: ['1.webp','s.webp'] },
       { id: 'big-drawing-white',   name: 'BIG DRAWING WHITE',             images: ['moc.webp','moc a.webp'] },
       { id: 'jumbo-drawing',       name: 'JUMBO DRAWING N/S',             images: ['JUMBO DRAWING NS.webp','JUMBO DRAWING sss.webp'] },
-      { id: null, name: 'A4 WIRO DRAWING',  images: [] },
+      { id: 'a4-wiro-drawing', name: 'A4 WIRO DRAWING',  images: ['1.png'] },
       { id: null, name: 'BIG DRAWING WIRO', images: [] },
     ],
     'grid-sketch': [
@@ -520,9 +524,10 @@
       { id: 'math-practical',          name: 'MATH PRACTICAL',                         images: ['1.webp','2.webp','3.webp'] },
       { id: null, name: 'SUCCESSFUL PREMIUM PRACTICAL BOARD', images: [] },
       { id: null, name: 'SUCCESSFUL PREMIUM PRACTICAL SHEET', images: [] },
-      { id: null, name: 'PRACTICAL BOARD LAB BIG SIZE',       images: [] },
-      { id: null, name: 'PROJECT PAPER',                      images: [] },
-      { id: null, name: 'MAP SHEET',                          images: [] },
+      { id: 'practical-board-lab-big-size', name: 'PRACTICAL BOARD LAB BIG SIZE',       images: ['1.png'] },
+      { id: 'project-paper',                name: 'PROJECT PAPER',                      images: ['1.png'] },
+      { id: 'map-sheet',                    name: 'MAP SHEET',                          images: ['1.png'] },
+      { id: 'graph-sheet',                  name: 'GRAPH SHEET',                        images: ['1.png'] },
     ],
     'grid-wiro': [
       { id: 'a5-one-subject-wiro', name: 'A5 ONE SUBJECT WIRO', images: ['1.webp','2.webp'] },
@@ -532,19 +537,20 @@
     ],
     'grid-craft': [
       { id: 'scrap-book', name: 'SCRAP BOOK', images: ['1.webp','2.webp'] },
-      { id: null, name: 'PLASTIC UNBREAKABLE EXAM BOARD TRANSPARENT',     images: [] },
-      { id: null, name: 'CRYSTAL PLASTIC UNBREAKABLE EXAM BOARD',         images: [] },
+      { id: 'plastic-unbreakable-exam-board-transparent', name: 'PLASTIC UNBREAKABLE EXAM BOARD TRANSPARENT',     images: ['1.png'] },
+      { id: 'crystal-plastic-unbreakable-exam-board',     name: 'CRYSTAL PLASTIC UNBREAKABLE EXAM BOARD',         images: ['1.png'] },
       { id: null, name: 'MDF EXAM BOARD',                                 images: [] },
-      { id: null, name: 'SYNTHETIC ROLL GOLDEN METALIC BOX',              images: [] },
-      { id: null, name: 'SYNTHETIC ROLL BLUE METALIC BOX',                images: [] },
-      { id: null, name: 'SYNTHETIC ROLL WHITE BOX',                       images: [] },
-      { id: null, name: 'PLATINUM SYNTHETIC ROLL BOX PM-01',              images: [] },
-      { id: null, name: 'CRYSTAL SYNTHETIC ROLL BOX CL-01',               images: [] },
-      { id: null, name: 'VISION SYNTHETIC ROLL BOX',                      images: [] },
-      { id: null, name: 'CLASSMERIT SYNTHETIC ROLL BOX',                  images: [] },
-      { id: null, name: 'TRANSPARENT BOOK COVER ROLL GREEN BOX',          images: [] },
-      { id: null, name: 'TRANSPARENT BOOK COVER ROLL YELLOW BOX',         images: [] },
+      { id: 'synthetic-roll-golden-metalic-box', name: 'SYNTHETIC ROLL GOLDEN METALIC BOX',              images: ['1.png'] },
+      { id: 'synthetic-roll-blue-metalic-box',   name: 'SYNTHETIC ROLL BLUE METALIC BOX',                images: ['1.png'] },
+      { id: 'synthetic-roll-white-box',          name: 'SYNTHETIC ROLL WHITE BOX',                       images: ['1.png'] },
+      { id: 'platinum-synthetic-roll-box-pm-01', name: 'PLATINUM SYNTHETIC ROLL BOX PM-01',              images: ['1.png'] },
+      { id: 'crystal-synthetic-roll-box-cl-01',  name: 'CRYSTAL SYNTHETIC ROLL BOX CL-01',               images: ['1.png'] },
+      { id: 'vision-synthetic-roll-box',         name: 'VISION SYNTHETIC ROLL BOX',                      images: ['1.png'] },
+      { id: 'classmerit-synthetic-roll-box',     name: 'CLASSMERIT SYNTHETIC ROLL BOX',                  images: ['1.png'] },
+      { id: 'transparent-book-cover-roll-green-box',  name: 'TRANSPARENT BOOK COVER ROLL GREEN BOX',     images: ['1.png'] },
+      { id: 'transparent-book-cover-roll-yellow-box', name: 'TRANSPARENT BOOK COVER ROLL YELLOW BOX',    images: ['1.png'] },
       { id: null, name: 'SUCCESSFUL PREMIUM FLUROSCENT ASSORTED CRAFT PAPER', images: [] },
+      { id: 'successful-polypropylene-cover-roll-metalic-copper-box', name: 'SUCCESSFUL POLYPROPLYENE COVER ROLL (METAALIC COPPER BOX)', images: ['1.png'] },
     ],
   };
 

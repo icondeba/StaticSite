@@ -169,6 +169,7 @@
   <a href="student.html"        onclick="closeNav()" style="padding-left:28px;">🎒 Student Category</a>
   <a href="office.html"         onclick="closeNav()" style="padding-left:28px;">💼 Office Category</a>
   <a href="new-year-diary.html" onclick="closeNav()" style="padding-left:28px;">📅 New Year Diary</a>
+  <a href="plastic.html"        onclick="closeNav()" style="padding-left:28px;">📐 Plastic Category</a>
   <a href="../photo-gallary.html" onclick="closeNav()">Photo Gallary</a>
   <a href="../index.html#events" onclick="closeNav()">🎉 Events</a>
   <a href="../index.html#contact" onclick="closeNav()">📞 Contact Us</a>
@@ -191,6 +192,7 @@
             <a href="student.html"><span class="drop-icon">🎒</span><span><strong>Student Category</strong><span class="drop-sub">Notebooks, Drawing &amp; More</span></span></a>
             <a href="office.html"><span class="drop-icon">💼</span><span><strong>Office Category</strong><span class="drop-sub">Professional Stationery</span></span></a>
             <a href="new-year-diary.html"><span class="drop-icon">📅</span><span><strong>New Year Diary</strong><span class="drop-sub">Premium Yearly Planners</span></span></a>
+            <a href="plastic.html"><span class="drop-icon">📐</span><span><strong>Plastic Category</strong><span class="drop-sub">Durable Plastic Essentials</span></span></a>
           </div>
         </div>
         <a href="../photo-gallary.html">Photo Gallary</a>
@@ -288,6 +290,7 @@
           <li><a href="student.html">Student Category</a></li>
           <li><a href="office.html">Office Category</a></li>
           <li><a href="new-year-diary.html">New Year Diary</a></li>
+          <li><a href="plastic.html">Plastic Category</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -387,8 +390,8 @@
   document.getElementById('productName').textContent = name;
   document.getElementById('bcProductName').textContent = name;
 
-  const catLabels = { student:'🎒 Student', office:'💼 Office', diary:'📅 Diary' };
-  const catHrefs  = { student:'student.html', office:'office.html', diary:'new-year-diary.html' };
+  const catLabels = { student:'🎒 Student', office:'💼 Office', diary:'📅 Diary', plastic:'📐 Plastic' };
+  const catHrefs  = { student:'student.html', office:'office.html', diary:'new-year-diary.html', plastic:'plastic.html' };
   document.getElementById('catBadge').textContent = catLabels[cat] || '📦 Product';
   document.getElementById('catLink').textContent  = cat.charAt(0).toUpperCase() + cat.slice(1) + ' Category';
   document.getElementById('catLink').href         = catHrefs[cat] || 'student.html';
