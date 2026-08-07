@@ -113,7 +113,7 @@
     .spec-section { margin-bottom:18px; }
     .spec-label { font-size:11px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; margin-bottom:8px; }
     .spec-pills { display:flex; flex-wrap:wrap; gap:6px; }
-    .spec-pill { padding:4px 13px; border-radius:50px; font-size:12px; font-weight:700; }
+    .spec-pill { padding:4px 13px; border-radius:50px; font-size:12px; font-weight:700; text-transform:uppercase; }
     .spec-pill.pages { background:#e3f2fd; color:#0a3d8f; border:1px solid #bbdefb; }
     .spec-pill.ruling { background:#fff8e1; color:#e65100; border:1px solid #ffe082; }
 
@@ -246,7 +246,7 @@
         <div id="specsBlock" style="display:none;">
           <div class="divider"></div>
           <div class="spec-section" id="pagesSection" style="display:none;">
-            <div class="spec-label">📄 Available Pages</div>
+            <div class="spec-label" id="pagesLabel">📄 Available Pages</div>
             <div class="spec-pills" id="pagesPills"></div>
           </div>
           <div class="spec-section" id="rulingSection" style="display:none;">
@@ -338,6 +338,8 @@
     'a4-premium-drawing':    { pages:'32/60',                              ruling:'N/S' },
     'a4-normal-drawing':     { pages:'20/32/44/56/80/100',                 ruling:'N/S' },
     'a4-brown-drawing':      { pages:'32/56/80',                           ruling:'N/S' },
+    'a4-wiro-drawing':       { pages:'100 PAGE',                           ruling:'' },
+    'big-drawing-wiro':      { pages:'80 PAGE',                            ruling:'' },
     'big-drawing-premium':   { pages:'36',                                 ruling:'N/S' },
     'big-drawing-white':     { pages:'64',                                 ruling:'WHITE' },
     'jumbo-drawing':         { pages:'36/60/80',                           ruling:'N/S' },
@@ -348,39 +350,52 @@
     'a3-regular-sketch-book':{ pages:'72',                                 ruling:'N/S' },
     'a4-graph':              { pages:'36/64',                              ruling:'' },
     'small-graph':           { pages:'24/52',                              ruling:'' },
+    'project-paper':         { pages:'50 SHEET/25 SHEET',                  ruling:'', pageLabel:'📄 Available Sheets' },
+    'map-sheet':             { pages:'100 SHEET',                          ruling:'', pageLabel:'📄 Available Sheets' },
+    'graph-sheet':           { pages:'100 SHEET',                          ruling:'', pageLabel:'📄 Available Sheets' },
     'math-practical':        { pages:'60',                                 ruling:'' },
     'scrap-book':            { pages:'32',                                 ruling:'' },
     'soft-cover-lab':        { pages:'60',                                 ruling:'' },
     'hard-binding-lab':      { pages:'80/100/148',                         ruling:'' },
     'premium-fitting':       { pages:'28 Sheets',                          ruling:'' },
     'premium-zoology-fitting':{ pages:'28 Sheets',                         ruling:'' },
+    'successful-premium-practical-sheet': { pages:'25 SHEET',              ruling:'', pageLabel:'📄 Available Sheets' },
     'successful-pocket-notebook':{ pages:'84',                             ruling:'R/L,P/L' },
     'pocket-memo':           { pages:'44/100',                             ruling:'R/L' },
     'top-pocket-wiro':       { pages:'40/100',                             ruling:'R/L' },
+    'champ-hard-bound-notebook': { pages:'72/144/216/288/360/432/504/720/1008 PAGE', ruling:'R/L,P/L' },
     'desk-note-pad':         { pages:'14/32/80',                           ruling:'R/L,P/L' },
     'spiral-conference-pad': { pages:'80',                                 ruling:'R/L,P/L' },
     'a5-one-subject-wiro':   { pages:'100',                                ruling:'R/L,P/L' },
     'b4-one-subject-wiro':   { pages:'92',                                 ruling:'R/L' },
     'b6-one-subject-wiro':   { pages:'92',                                 ruling:'R/L' },
+    'a5-neon-wiro-notebook': { pages:'100 PAGES',                          ruling:'R/L,P/L' },
     'premium-duplicate-book':{ pages:'No.8 / No.12 / No.16',              ruling:'' },
     'premium-cash-memo':     { pages:'No.12',                              ruling:'' },
-    'slip-pad':              { pages:'No.11 / No.22 / No.33',              ruling:'R/L,P/L' },
+    'slip-pad':              { pages:'80 PAGE/160 PAGE',                   ruling:'R/L,P/L' },
     'champ-a5':              { pages:'200',                                ruling:'R/L' },
     'champ-a5-magnet':       { pages:'200',                                ruling:'R/L' },
+    'champ-a5-case-bound-notebook-leather-lite': { pages:'200 PAGE',       ruling:'R/L' },
     'champ-executive':       { pages:'200',                                ruling:'R/L' },
     'champ-b6':              { pages:'200',                                ruling:'R/L' },
     'champ-a6':              { pages:'160',                                ruling:'R/L' },
     'champ-pocket':          { pages:'200',                                ruling:'R/L' },
     'champ-case-bound':      { pages:'100/200',                            ruling:'R/L' },
     'champ-crown':           { pages:'100/200',                            ruling:'R/L' },
-    'a5-premium-neon-wiro':  { pages:'160',                                ruling:'R/L,P/L' },
-    'b5-1-subject-black-pp': { pages:'160',                                ruling:'R/L' },
-    'b5-5-subject-black-pp': { pages:'300',                                ruling:'R/L' },
-    'a5-1-subject-black-pp': { pages:'160',                                ruling:'R/L' },
-    'a5-5-subject-black-pp': { pages:'300',                                ruling:'R/L' },
-    'a6-1-subject-black-pp': { pages:'160',                                ruling:'R/L' },
-    'a6-4-subject-black-pp': { pages:'240',                                ruling:'R/L' },
-    'a7-pocket-black-pp':    { pages:'100',                                ruling:'R/L' },
+    'a5-soft-notebook':      { pages:'120 PAGE',                           ruling:'R/L' },
+    'a5-pihu-notebook-with-lock': { pages:'200 PAGE',                      ruling:'R/L' },
+    'a5-pihu-notebook-with-mobile-pocket': { pages:'200 PAGE',             ruling:'R/L' },
+    'successful-a5-pihu-case-bound-notebook-with-pen-holder': { pages:'200 PAGE', ruling:'R/L' },
+    'executive-pihu-notebook-with-lock': { pages:'200 PAGE',               ruling:'R/L' },
+    'champ-executive-case-bound-notebook-leather-lite': { pages:'200 PAGE', ruling:'R/L' },
+    'a5-premium-neon-wiro':  { pages:'160 PAGE',                           ruling:'R/L,P/L' },
+    'b5-1-subject-black-pp': { pages:'160 PAGE',                           ruling:'R/L' },
+    'b5-5-subject-black-pp': { pages:'300 PAGE',                           ruling:'R/L' },
+    'a5-1-subject-black-pp': { pages:'160 PAGE',                           ruling:'R/L' },
+    'a5-5-subject-black-pp': { pages:'300 PAGE',                           ruling:'R/L' },
+    'a6-1-subject-black-pp': { pages:'160 PAGE',                           ruling:'R/L' },
+    'a6-4-subject-black-pp': { pages:'240 PAGE',                           ruling:'R/L' },
+    'a7-pocket-black-pp':    { pages:'100 PAGE',                           ruling:'R/L' },
   };
 
   // ── PARSE URL PARAMS ──
@@ -412,7 +427,9 @@
     if (spec.pages) {
       const pSec = document.getElementById('pagesSection');
       const pPills = document.getElementById('pagesPills');
+      const pLabel = document.getElementById('pagesLabel');
       pSec.style.display = '';
+      pLabel.textContent = spec.pageLabel || '📄 Available Pages';
       spec.pages.split('/').forEach(p => {
         const s = document.createElement('span');
         s.className = 'spec-pill pages';

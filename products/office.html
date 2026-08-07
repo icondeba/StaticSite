@@ -187,7 +187,7 @@
     .prod-meta { font-size: 10px; font-weight: 700; color: #aaa; letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 7px; }
     .prod-info h3 { font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; color:var(--navy); line-height:1.3; margin:0 0 14px; }
     .prod-specs { display:flex; flex-wrap:wrap; gap:6px; margin:-6px 0 14px; }
-    .prod-spec-pill { display:inline-flex; align-items:center; border-radius:999px; padding:4px 10px; font-size:11px; font-weight:800; line-height:1.2; }
+    .prod-spec-pill { display:inline-flex; align-items:center; border-radius:999px; padding:4px 10px; font-size:10px; font-weight:800; line-height:1.2; letter-spacing:.2px; text-transform:uppercase; }
     .prod-spec-pill.pages { background:#e3f2fd; color:#0a3d8f; border:1px solid #bbdefb; }
     .prod-spec-pill.ruling { background:#fff8e1; color:#e65100; border:1px solid #ffe082; }
     .prod-view-link {
@@ -515,7 +515,7 @@
       { id: 'slip-pad',               name: 'SLIP PAD',                    images: ['1.webp','2.webp'] },
       { id: 'stick-file',             name: 'STICK FILE',                  images: ['1.png','2.png'] },
       { id: 'my-clear-bag',           name: 'MY CLEAR BAG (PLASTIC FILE)', images: ['1.png','2.png'] },
-      { id: 'cover-file',             name: 'COVER FILE',                  images: ['1.png','2.png','3.png'] },
+      { id: 'cover-file',             name: 'COVER FILE',                  images: ['2.png','3.png'] },
     ],
   };
 
@@ -528,14 +528,23 @@
   };
 
   const officeProductSpecs = {
-    'a5-premium-neon-wiro':  { pages: '160 Pages', ruling: 'Ruled, Plain' },
-    'b5-1-subject-black-pp': { pages: '160 Pages', ruling: 'Ruled' },
-    'b5-5-subject-black-pp': { pages: '300 Pages', ruling: 'Ruled' },
-    'a5-1-subject-black-pp': { pages: '160 Pages', ruling: 'Ruled' },
-    'a5-5-subject-black-pp': { pages: '300 Pages', ruling: 'Ruled' },
-    'a6-1-subject-black-pp': { pages: '160 Pages', ruling: 'Ruled' },
-    'a6-4-subject-black-pp': { pages: '240 Pages', ruling: 'Ruled' },
-    'a7-pocket-black-pp':    { pages: '100 Pages', ruling: 'Ruled' },
+    'champ-hard-bound-notebook': { pages: '72/144/216/288/360/432/504/720/1008 PAGE', ruling: 'RULED, PLAIN' },
+    'a5-soft-notebook': { pages: '120 PAGE', ruling: 'RULED' },
+    'slip-pad': { pages: '80 & 160 PAGES', ruling: 'RULED, PLAIN' },
+    'champ-a5-case-bound-notebook-leather-lite': { pages: '200 PAGE', ruling: 'RULED' },
+    'a5-pihu-notebook-with-lock': { pages: '200 PAGE', ruling: 'RULED' },
+    'a5-pihu-notebook-with-mobile-pocket': { pages: '200 PAGE', ruling: 'RULED' },
+    'successful-a5-pihu-case-bound-notebook-with-pen-holder': { pages: '200 PAGE', ruling: 'RULED' },
+    'executive-pihu-notebook-with-lock': { pages: '200 PAGE', ruling: 'RULED' },
+    'champ-executive-case-bound-notebook-leather-lite': { pages: '200 PAGE', ruling: 'RULED' },
+    'a5-premium-neon-wiro':  { pages: '160 PAGE', ruling: 'RULED, PLAIN' },
+    'b5-1-subject-black-pp': { pages: '160 PAGE', ruling: 'RULED' },
+    'b5-5-subject-black-pp': { pages: '300 PAGE', ruling: 'RULED' },
+    'a5-1-subject-black-pp': { pages: '160 PAGE', ruling: 'RULED' },
+    'a5-5-subject-black-pp': { pages: '300 PAGE', ruling: 'RULED' },
+    'a6-1-subject-black-pp': { pages: '160 PAGE', ruling: 'RULED' },
+    'a6-4-subject-black-pp': { pages: '240 PAGE', ruling: 'RULED' },
+    'a7-pocket-black-pp':    { pages: '100 PAGE', ruling: 'RULED' },
   };
 
   const revealObs = new IntersectionObserver(entries => {
@@ -558,8 +567,8 @@
       const spec = p.id ? officeProductSpecs[p.id] : null;
       const specHtml = spec ? `
             <div class="prod-specs" aria-label="${p.name} specifications">
-              <span class="prod-spec-pill pages">${spec.pages}</span>
-              <span class="prod-spec-pill ruling">${spec.ruling}</span>
+              <span class="prod-spec-pill pages">Page: ${spec.pages}</span>
+              <span class="prod-spec-pill ruling">Ruling: ${spec.ruling}</span>
             </div>` : '';
       const card = document.createElement('div');
       card.className = 'prod-card' + (hasImg ? ' has-image' : '');

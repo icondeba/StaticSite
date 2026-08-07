@@ -241,6 +241,11 @@
       font-family: 'Poppins', sans-serif; font-weight: 700;
       font-size: 16px; color: var(--navy); line-height: 1.3; margin: 0 0 14px;
     }
+    .prod-specs { display: flex; flex-wrap: wrap; gap: 6px; margin: -6px 0 14px; }
+    .prod-spec-pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 800; line-height: 1.2; letter-spacing: .2px; text-transform: uppercase; }
+    .prod-spec-pill.pages,
+    .prod-spec-pill.sheet { background: #e3f2fd; color: #0a3d8f; border: 1px solid #bbdefb; }
+    .prod-spec-pill.ruling { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
     .prod-view-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 800;
@@ -464,12 +469,12 @@
         <div class="sidebar-card">
           <h3 class="sb-title">Sub Categories</h3>
           <ul class="sb-list">
-            <li><a href="#notebooks" class="sb-link active" data-target="notebooks"><span>Notebooks &amp; Writing</span><span class="sb-count">15</span></a></li>
-            <li><a href="#drawing"   class="sb-link" data-target="drawing"><span>Drawing Books</span><span class="sb-count">10</span></a></li>
-            <li><a href="#sketch"    class="sb-link" data-target="sketch"><span>Sketch Books</span><span class="sb-count">5</span></a></li>
-            <li><a href="#graph"     class="sb-link" data-target="graph"><span>Graph &amp; Lab</span><span class="sb-count">13</span></a></li>
-            <li><a href="#wiro"      class="sb-link" data-target="wiro"><span>Wiro Notebooks</span><span class="sb-count">4</span></a></li>
-            <li><a href="#craft"     class="sb-link" data-target="craft"><span>Craft &amp; Specialty</span><span class="sb-count">14+</span></a></li>
+            <li><a href="#notebooks" class="sb-link active" data-target="notebooks"><span>Notebooks &amp; Writing</span></a></li>
+            <li><a href="#drawing"   class="sb-link" data-target="drawing"><span>Drawing Books</span></a></li>
+            <li><a href="#sketch"    class="sb-link" data-target="sketch"><span>Sketch Books</span></a></li>
+            <li><a href="#graph"     class="sb-link" data-target="graph"><span>Graph &amp; Lab</span></a></li>
+            <li><a href="#wiro"      class="sb-link" data-target="wiro"><span>Wiro Notebooks</span></a></li>
+            <li><a href="#craft"     class="sb-link" data-target="craft"><span>Craft &amp; Specialty</span></a></li>
           </ul>
           <h3 class="sb-title">Other Categories</h3>
           <ul class="sb-list">
@@ -487,7 +492,7 @@
           <div class="products-grid" id="grid-notebooks"></div>
         </section>
         <section class="category-sec" id="drawing">
-          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff3e0;">🎨</div><div><h2>Drawing Books</h2><p>High-quality drawing books in all sizes for students and artists</p></div></div><span class="sec-count">10 Products</span></div>
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff3e0;">🎨</div><div><h2>Drawing Books</h2><p>High-quality drawing books in all sizes for students and artists</p></div></div><span class="sec-count">9 Products</span></div>
           <div class="products-grid" id="grid-drawing"></div>
         </section>
         <section class="category-sec" id="sketch">
@@ -606,7 +611,6 @@
       { id: 'a4-premium-drawing',  name: 'A4 PREMIUM DRAWING',            images: ['10.webp','a.webp'] },
       { id: 'a4-normal-drawing',   name: 'A4 NORMAL DRAWING',             images: ['10.webp','aaa.webp'] },
       { id: 'a4-brown-drawing',    name: 'A4 BROWN DRAWING',              images: ['1.webp'] },
-      { id: 'drawing-22x28',       name: 'DRAWING SUCCESSFUL 22X28 SIZE', images: ['DRAWING SUCCESSFUL 22X28 SIZE DRAWING.webp','DRAWING SUCCESSFUL 22X28 SIZE DRAWING 2.webp'] },
       { id: 'big-drawing-premium', name: 'BIG DRAWING PREMIUM',           images: ['1.webp','s.webp'] },
       { id: 'big-drawing-white',   name: 'BIG DRAWING WHITE',             images: ['moc.webp','moc a.webp'] },
       { id: 'jumbo-drawing',       name: 'JUMBO DRAWING N/S',             images: ['JUMBO DRAWING NS.webp','JUMBO DRAWING sss.webp'] },
@@ -639,10 +643,11 @@
       { id: 'a5-one-subject-wiro', name: 'A5 ONE SUBJECT WIRO', images: ['1.webp','2.webp'] },
       { id: 'b4-one-subject-wiro', name: 'B4 ONE SUBJECT WIRO', images: ['1.webp','2.webp'] },
       { id: 'b6-one-subject-wiro', name: 'B6 ONE SUBJECT WIRO', images: ['1.webp','2.webp'] },
-      { id: null, name: 'A5 NEON WIRO NOTEBOOK', images: [] },
+      { id: 'a5-neon-wiro-notebook', name: 'A5 NEON WIRO NOTEBOOK', images: ['1.png','2.png','3.png'] },
     ],
     'grid-craft': [
       { id: 'scrap-book', name: 'SCRAP BOOK', images: ['1.webp','2.webp'] },
+      { id: 'successful-premium-fluroscent-assorted-craft-paper', name: 'SUCCESSFUL PREMIUM FLUROSCENT ASSORTED CRAFT PAPER', images: ['1.png'] },
       { id: 'plastic-unbreakable-exam-board-transparent', name: 'PLASTIC UNBREAKABLE EXAM BOARD TRANSPARENT',     images: ['1.png'] },
       { id: 'crystal-plastic-unbreakable-exam-board',     name: 'CRYSTAL PLASTIC UNBREAKABLE EXAM BOARD',         images: ['1.png'] },
       { id: 'mdf-exam-board', name: 'MDF EXAM BOARD',                      images: ['1.webp','2.webp'] },
@@ -655,7 +660,6 @@
       { id: 'classmerit-synthetic-roll-box',     name: 'CLASSMERIT SYNTHETIC ROLL BOX',                  images: ['1.png'] },
       { id: 'transparent-book-cover-roll-green-box',  name: 'TRANSPARENT BOOK COVER ROLL GREEN BOX',     images: ['1.png'] },
       { id: 'transparent-book-cover-roll-yellow-box', name: 'TRANSPARENT BOOK COVER ROLL YELLOW BOX',    images: ['1.png'] },
-      { id: null, name: 'SUCCESSFUL PREMIUM FLUROSCENT ASSORTED CRAFT PAPER', images: [] },
       { id: 'successful-polypropylene-cover-roll-metalic-copper-box', name: 'SUCCESSFUL POLYPROPLYENE COVER ROLL (METAALIC COPPER BOX)', images: ['1.png'] },
     ],
   };
@@ -669,6 +673,16 @@
     'grid-graph':     'Lab & Science',
     'grid-wiro':      'Wiro Notebook',
     'grid-craft':     'Craft & Specialty',
+  };
+
+  const studentProductSpecs = {
+    'a4-wiro-drawing': { pages: '100 PAGE' },
+    'big-drawing-wiro': { pages: '80 PAGE' },
+    'a5-neon-wiro-notebook': { pages: '100 PAGES', ruling: 'RULED, PLAIN' },
+    'successful-premium-practical-sheet': { sheet: '25 SHEET' },
+    'project-paper': { sheet: '50 SHEET / 25 SHEET' },
+    'map-sheet': { sheet: '100 SHEET' },
+    'graph-sheet': { sheet: '100 SHEET' },
   };
 
   const revealObs = new IntersectionObserver(entries => {
@@ -688,6 +702,13 @@
       const hasImg  = p.id && p.images.length > 0;
       const thumbSrc = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.images[0])}` : null;
       const detailUrl = hasImg ? `detail.html?id=${p.id}&name=${encodeURIComponent(p.name)}&cat=student&imgs=${encodeURIComponent(p.images.join('|'))}` : '#';
+      const spec = p.id ? studentProductSpecs[p.id] : null;
+      const specHtml = spec ? `
+            <div class="prod-specs" aria-label="${p.name} specifications">
+              ${spec.pages ? `<span class="prod-spec-pill pages">Page: ${spec.pages}</span>` : ''}
+              ${spec.sheet ? `<span class="prod-spec-pill sheet">Sheet: ${spec.sheet}</span>` : ''}
+              ${spec.ruling ? `<span class="prod-spec-pill ruling">Ruling: ${spec.ruling}</span>` : ''}
+            </div>` : '';
 
       const card = document.createElement('div');
       card.className = 'prod-card' + (hasImg ? ' has-image' : '');
@@ -705,6 +726,7 @@
           <div>
             <span class="prod-meta">${type} &middot; Student</span>
             <h3>${p.name}</h3>
+            ${specHtml}
           </div>
           ${hasImg
             ? `<span class="prod-view-link">VIEW PRODUCT &nbsp;→</span>`
