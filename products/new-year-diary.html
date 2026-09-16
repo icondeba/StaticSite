@@ -142,6 +142,9 @@
     .sec-header h2 { font-size: clamp(20px,2.5vw,28px); color: var(--navy); }
     .sec-header p { font-size: 13px; color: var(--muted); margin-top: 3px; }
     .sec-count { background: var(--sky); color: var(--blue); font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 50px; white-space: nowrap; }
+    .catalogue-link { display:inline-flex; align-items:center; gap:10px; margin:-14px 0 30px; padding:12px 18px; border-radius:12px; background:var(--navy); box-shadow:0 8px 20px rgba(10,45,114,.2); color:white; font-family:'Poppins',sans-serif; font-size:13px; font-weight:800; transition:transform .2s, background .2s, box-shadow .2s; }
+    .catalogue-link:hover { background:var(--bluem); box-shadow:0 12px 26px rgba(10,45,114,.3); transform:translateY(-2px); }
+    .catalogue-link__arrow { font-size:16px; line-height:1; }
 
     .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
 
@@ -325,6 +328,11 @@
               </div>
             </div>
           </div>
+          <a class="catalogue-link reveal up" href="../public/assets/catalogues/new-year-diary-2027-catalogue.pdf" target="_blank" rel="noopener" type="application/pdf">
+            <span aria-hidden="true">📖</span>
+            <span>New Year Diary 2027 Catalogue</span>
+            <span class="catalogue-link__arrow" aria-hidden="true">↗</span>
+          </a>
           <div class="products-grid" id="grid-diary-2027"></div>
         </section>
       </div><!-- /psb-content -->
