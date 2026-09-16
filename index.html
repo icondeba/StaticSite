@@ -992,30 +992,16 @@
   <!-- Slide backgrounds -->
   <div class="hero-slides">
     <div class="hero-slide active">
-      <picture>
-        <source media="(max-width: 599px) and (orientation: portrait)" type="image/webp" srcset="public/assets/images/hero-products-mobile.webp">
-        <source media="(max-width: 1200px) and (orientation: portrait)" type="image/webp" srcset="public/assets/images/hero-products-tablet.webp">
-        <img src="public/assets/images/hero-products-desktop.webp" alt="" aria-hidden="true" loading="eager" decoding="async">
-      </picture>
-    </div>
-    <div class="hero-slide">
-      <picture>
-        <source media="(max-width: 599px) and (orientation: portrait)" type="image/webp" srcset="public/assets/images/hero-notebooks-mobile.webp">
-        <source media="(max-width: 1200px) and (orientation: portrait)" type="image/webp" srcset="public/assets/images/hero-notebooks-tablet.webp">
-        <img src="public/assets/images/hero-notebooks-desktop.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      </picture>
-    </div>
-    <div class="hero-slide">
-      <img src="public/assets/images/success-web-banner-1.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img src="public/assets/images/success-web-banner-1.jpg" alt="" aria-hidden="true" loading="eager" decoding="async">
     </div>
   </div>
 
   <!-- Left-to-right gradient for text legibility -->
-  <div class="hero-overlay"></div>
+  <div class="hero-overlay hidden"></div>
 
   <!-- Text content -->
   <div class="container">
-    <div class="hero-inner">
+    <div class="hero-inner hidden">
       <div class="hero-card">
         <div class="hero-badge" id="heroBadge" style="opacity:0">
           <span class="dot"></span>
@@ -1027,20 +1013,6 @@
 
     </div>
   </div>
-
-  <!-- Prev / Next arrows -->
-  <button class="slide-btn slide-btn--prev" id="slidePrevBtn" aria-label="Previous slide">&#8249;</button>
-  <button class="slide-btn slide-btn--next" id="slideNextBtn" aria-label="Next slide">&#8250;</button>
-
-  <!-- Dot indicators -->
-  <div class="slide-dots">
-    <button class="slide-dot active" data-idx="0" aria-label="Slide 1"></button>
-    <button class="slide-dot"        data-idx="1" aria-label="Slide 2"></button>
-    <button class="slide-dot"        data-idx="2" aria-label="Slide 3"></button>
-  </div>
-
-  <!-- Auto-play progress bar -->
-  <div class="slide-progress" id="slideProgress"></div>
 
 </section>
 
@@ -1626,76 +1598,6 @@
     });
   });
 
-  // ── HERO SLIDESHOW ──
-  (function () {
-    const slides   = document.querySelectorAll('.hero-slide');
-    const dots     = document.querySelectorAll('.slide-dot');
-    const progress = document.getElementById('slideProgress');
-    const heroEl   = document.querySelector('.hero');
-    const heroCard = document.querySelector('.hero-inner');
-    const heroOverlay = document.querySelector('.hero-overlay');
-    const DURATION = 6000;
-    let cur = 0, timer, paused = false;
-
-    function goTo(n) {
-      slides[cur].classList.remove('active');
-      dots[cur].classList.remove('active');
-      cur = (n + slides.length) % slides.length;
-      slides[cur].classList.add('active');
-      dots[cur].classList.add('active');
-      const hideText = cur !== 0;
-      heroCard.classList.toggle('hidden', hideText);
-      heroOverlay.classList.toggle('hidden', hideText);
-      if (!paused) startProgress();
-      resetTimer();
-    }
-
-    function startProgress() {
-      progress.style.transition = 'none';
-      progress.style.width = '0%';
-      progress.offsetWidth;                                    // force reflow
-      progress.style.transition = 'width ' + DURATION + 'ms linear';
-      progress.style.width = '100%';
-    }
-
-    function resetTimer() {
-      clearTimeout(timer);
-      if (!paused) timer = setTimeout(() => goTo(cur + 1), DURATION);
-    }
-
-    document.getElementById('slidePrevBtn').addEventListener('click', () => goTo(cur - 1));
-    document.getElementById('slideNextBtn').addEventListener('click', () => goTo(cur + 1));
-    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
-
-    // Pause on hover
-    heroEl.addEventListener('mouseenter', () => {
-      paused = true;
-      clearTimeout(timer);
-      progress.style.transition = 'none';
-    });
-    heroEl.addEventListener('mouseleave', () => {
-      paused = false;
-      startProgress();
-      resetTimer();
-    });
-
-    // Touch swipe
-    let tx = 0;
-    heroEl.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, { passive: true });
-    heroEl.addEventListener('touchend',   e => {
-      const dx = e.changedTouches[0].clientX - tx;
-      if (Math.abs(dx) > 48) goTo(dx < 0 ? cur + 1 : cur - 1);
-    }, { passive: true });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft')  goTo(cur - 1);
-      if (e.key === 'ArrowRight') goTo(cur + 1);
-    });
-
-    startProgress();
-    resetTimer();
-  })();
 </script>
 </body>
 </html>
