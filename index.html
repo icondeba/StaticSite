@@ -1005,6 +1005,9 @@
         <img src="public/assets/images/hero-notebooks-desktop.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
       </picture>
     </div>
+    <div class="hero-slide">
+      <img src="public/assets/images/success-web-banner-1.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    </div>
   </div>
 
   <!-- Left-to-right gradient for text legibility -->
@@ -1033,6 +1036,7 @@
   <div class="slide-dots">
     <button class="slide-dot active" data-idx="0" aria-label="Slide 1"></button>
     <button class="slide-dot"        data-idx="1" aria-label="Slide 2"></button>
+    <button class="slide-dot"        data-idx="2" aria-label="Slide 3"></button>
   </div>
 
   <!-- Auto-play progress bar -->
@@ -1639,7 +1643,7 @@
       cur = (n + slides.length) % slides.length;
       slides[cur].classList.add('active');
       dots[cur].classList.add('active');
-      const hideText = cur === 1;
+      const hideText = cur !== 0;
       heroCard.classList.toggle('hidden', hideText);
       heroOverlay.classList.toggle('hidden', hideText);
       if (!paused) startProgress();
