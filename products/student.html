@@ -603,7 +603,7 @@
       { id: 'normal-long-notebook',  name: 'NORMAL LONG SUCCESS NOTEBOOK',                        images: ['1.webp','2.webp'] },
       { id: 'mini-long-notebook',    name: 'MINI LONG SUCCESSFUL PREMIUM',                        images: ['1.webp','2.webp'] },
       { id: 'a4-neon-wiro',          name: 'A4 SUCCESSFUL PREMIUM NEON 6 SUBJECT WIRO NOTEBOOK',  images: ['A4 Nion.webp','f.webp'] },
-      { id: 'plastic-cover-premium-a4-spiral-notebook-plain', name: 'PLASTIC COVER PREMIUM A4 SPIRAL NOTEBOOK PLAIN', thumbnail: '1.jpg', images: ['1.jpg','2.png','3.png'] },
+      { id: 'plastic-cover-premium-a4-spiral-notebook-plain', name: 'PLASTIC COVER PREMIUM A4 SPIRAL NOTEBOOK PLAIN', images: ['2.png','3.png'] },
       { id: 'a4-brown-premium',      name: 'A4 BROWN PREMIUM',                                    images: ['1.webp'] },
       { id: 'a4-brown-normal',       name: 'A4 BROWN NORMAL',                                     images: ['aaa.webp'] },
       { id: 'success-big-stitch',    name: 'SUCCESS BIG STITCH NOTE',                             images: ['1.webp','2.webp'] },
@@ -702,8 +702,8 @@
     if (!container) return;
     const type = sectionTypes[gridId] || 'Student';
     products.forEach((p, i) => {
-      const hasImg  = p.id && (p.thumbnail || p.images.length > 0);
-      const thumbSrc = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.thumbnail || p.images[0])}` : null;
+      const hasImg  = p.id && p.images.length > 0;
+      const thumbSrc = hasImg ? `${IMG}${p.id}/${encodeURIComponent(p.images[0])}` : null;
       const detailUrl = hasImg ? `detail.html?id=${p.id}&name=${encodeURIComponent(p.name)}&cat=student&imgs=${encodeURIComponent(p.images.join('|'))}` : '#';
       const spec = p.id ? studentProductSpecs[p.id] : null;
       const specHtml = spec ? `
