@@ -356,6 +356,7 @@
       <a href="#premium-nb" class="mob-pill" data-target="premium-nb">Premium</a>
       <a href="#wiro-office" class="mob-pill" data-target="wiro-office">Wiro</a>
       <a href="#files"      class="mob-pill" data-target="files">Files</a>
+      <a href="#clear-bags" class="mob-pill" data-target="clear-bags">Clear Bags</a>
     </div>
 
     <div class="psb-layout">
@@ -370,6 +371,7 @@
             <li><a href="#premium-nb"  class="sb-link" data-target="premium-nb"><span>Premium Notebooks</span></a></li>
             <li><a href="#wiro-office" class="sb-link" data-target="wiro-office"><span>Wiro &amp; PP Cover</span></a></li>
             <li><a href="#files"       class="sb-link" data-target="files"><span>Files &amp; Accessories</span></a></li>
+            <li><a href="#clear-bags"  class="sb-link" data-target="clear-bags"><span>My Clear Bag &amp; Files</span></a></li>
           </ul>
           <h3 class="sb-title">Other Categories</h3>
           <ul class="sb-list">
@@ -399,8 +401,12 @@
           <div class="products-grid" id="grid-wiro-office"></div>
         </section>
         <section class="category-sec" id="files">
-          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fce4ec;">📁</div><div><h2>Files, Pads &amp; Accessories</h2><p>Premium cash memos, slip pads, files and duplicate books</p></div></div><span class="sec-count">6 Products</span></div>
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fce4ec;">📁</div><div><h2>Files, Pads &amp; Accessories</h2><p>Premium cash memos, slip pads, files and duplicate books</p></div></div><span class="sec-count">5 Products</span></div>
           <div class="products-grid" id="grid-files"></div>
+        </section>
+        <section class="category-sec" id="clear-bags">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#e0f2f1;">🗂️</div><div><h2>My Clear Bag &amp; File Folders</h2><p>Document bags, clear folders and protective file solutions for organised workspaces</p></div></div><span class="sec-count">36 Products</span></div>
+          <div class="products-grid" id="grid-clear-bags"></div>
         </section>
       </div><!-- /psb-content -->
 
@@ -520,8 +526,45 @@
       { id: 'premium-cash-memo',      name: 'PREMIUM CASH MEMO',           images: ['1.webp','2.webp'] },
       { id: 'slip-pad',               name: 'SLIP PAD',                    images: ['1.webp','2.webp'] },
       { id: 'stick-file',             name: 'STICK FILE',                  images: ['1.png','2.png'] },
-      { id: 'my-clear-bag',           name: 'MY CLEAR BAG (PLASTIC FILE)', images: ['1.png','2.png'] },
       { id: 'cover-file',             name: 'COVER FILE',                  images: ['2.png','3.png'] },
+    ],
+    'grid-clear-bags': [
+      { id: 'double-pocket-round-flap-mixed-colour', name: 'DOUBLE POCKET ROUND FLAP - MIX COLOUR', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'double-pocket-round-flap-mixed-colour-sliding-pack', name: 'DOUBLE POCKET ROUND FLAP - MIX COLOUR SLIDING PACK', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'double-pocket-rectangle-flap-mixed-colour', name: 'DOUBLE POCKET RECTANGLE FLAP - MIX COLOUR', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'my-clear-bag-opec-mixed-colour', name: 'MY CLEAR BAG - OPEC MIXED COLOUR', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-218', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR', images: ['1.png','2.png','3.png','4.png','5.png'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-218', name: 'MY CLEAR BAG TRANSPARENT NATURAL', images: ['1.png'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-220', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR SLIDING PACK', images: ['1.png','2.png','3.png','4.png','5.png'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-220', name: 'MY CLEAR BAG TRANSPARENT NATURAL SLIDING PACK', images: ['1.png'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-221', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR SLIDING PACK', images: ['1.png','2.png','3.png','4.png','5.png'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-221', name: 'MY CLEAR BAG TRANSPARENT NATURAL SLIDING PACK', images: ['1.png'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-222', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR SLIDING PACK', images: ['1.png','2.png','3.png','4.png','5.png'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-222', name: 'MY CLEAR BAG TRANSPARENT NATURAL SLIDING PACK', images: ['1.png'] },
+      { id: 'my-clear-bag-opec-mixed-colour-mcb-223', name: 'MY CLEAR BAG OPEC MIXED COLOUR', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'my-clear-bag-opec-mixed-colour-mcb-224', name: 'MY CLEAR BAG OPEC MIXED COLOUR SLIDING PACK', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'my-clear-bag-front-neon-back-milky', name: 'MY CLEAR BAG - FRONT NEON COLOUR BACK MILKY', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg'] },
+      { id: 'my-clear-bag-expanding-transparent', name: 'MY CLEAR BAG - EXPANDING TRANSPARENT', images: ['1.jpg'] },
+      { id: 'a3-document-bag-button-mixed-colour', name: 'A3 DOCUMENT BAG WITH BUTTON - MIXED COLOUR', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'a3-document-bag-button-natural', name: 'A3 DOCUMENT BAG WITH BUTTON - NATURAL', images: ['1.jpg'] },
+      { id: 'my-clear-bag-offset', name: 'MY CLEAR BAG - OFFSET', images: ['1.jpg','2.jpg','3.jpg','4.jpg'] },
+      { id: 'my-clear-bag-offset-sliding-pack', name: 'MY CLEAR BAG - OFFSET SLIDING PACK', images: ['1.jpg','2.jpg','3.jpg','4.jpg'] },
+      { id: 'my-clear-bag-transparent-printed-mcb-09', name: 'MY CLEAR BAG TRANSPARENT PRINTED', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-09', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-09', name: 'MY CLEAR BAG TRANSPARENT NATURAL', images: ['1.jpg'] },
+      { id: 'my-clear-bag-transparent-printed-mcb-10', name: 'MY CLEAR BAG TRANSPARENT PRINTED', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-10', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-10', name: 'MY CLEAR BAG TRANSPARENT NATURAL', images: ['1.jpg'] },
+      { id: 'my-clear-bag-transparent-printed-mcb-11', name: 'MY CLEAR BAG TRANSPARENT PRINTED', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-11', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-11', name: 'MY CLEAR BAG TRANSPARENT NATURAL', images: ['1.jpg'] },
+      { id: 'my-clear-bag-transparent-printed-mcb-12', name: 'MY CLEAR BAG TRANSPARENT PRINTED', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-mixed-colour-mcb-12', name: 'MY CLEAR BAG TRANSPARENT MIXED COLOUR', images: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'] },
+      { id: 'my-clear-bag-transparent-natural-mcb-12', name: 'MY CLEAR BAG TRANSPARENT NATURAL', images: ['1.jpg'] },
+      { id: 'my-clear-bag-double-button', name: 'MY CLEAR BAG - DOUBLE BUTTON', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'my-clear-bag-cloth', name: 'MY CLEAR BAG - CLOTH', images: ['1.png','2.png','3.png','4.png','5.png'] },
+      { id: 'my-clear-bag-cloth-small-size', name: 'MY CLEAR BAG - CLOTH SMALL SIZE', images: ['1.png','2.png','3.png','4.png','5.png','6.png'] },
+      { id: 'admit-button-bag', name: 'ADMIT BUTTON BAG', images: ['1.png'] },
     ],
   };
 
@@ -531,6 +574,7 @@
     'grid-premium-nb': 'Premium Notebook',
     'grid-wiro-office':'Wiro Notebook',
     'grid-files':      'Files & Stationery',
+    'grid-clear-bags': 'My Clear Bag',
   };
 
   const officeProductSpecs = {
