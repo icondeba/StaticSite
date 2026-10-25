@@ -101,6 +101,7 @@
     .info-col { position:sticky; top:96px; }
     .cat-badge { display:inline-flex; align-items:center; gap:6px; background:var(--sky); color:var(--blue); font-size:12px; font-weight:700; padding:5px 14px; border-radius:50px; text-transform:uppercase; letter-spacing:.5px; margin-bottom:16px; }
     .info-col h1 { font-size:clamp(22px,2.5vw,32px); color:var(--navy); line-height:1.25; margin-bottom:20px; }
+    .product-attribute { color:var(--orange); font-size:16px; font-weight:700; line-height:1.4; margin:-10px 0 0; text-transform:uppercase; }
     .divider { height:1px; background:#e8edf5; margin:24px 0; }
     .feature-list { display:flex; flex-direction:column; gap:12px; }
     .feat { display:flex; align-items:flex-start; gap:12px; }
@@ -249,6 +250,7 @@
       <div class="info-col">
         <div class="cat-badge" id="catBadge">📦 Category</div>
         <h1 id="productName">Loading…</h1>
+        <p class="product-attribute" id="productAttribute" hidden></p>
         <div id="specsBlock" style="display:none;">
           <div class="divider"></div>
           <div class="spec-section" id="pagesSection" style="display:none;">
@@ -404,6 +406,9 @@
     'a6-1-subject-black-pp': { pages:'160',                                ruling:'R/L' },
     'a6-4-subject-black-pp': { pages:'240',                                ruling:'R/L' },
     'a7-pocket-black-pp':    { pages:'100',                                ruling:'R/L' },
+    'stick-file-s311a-mixed-colour': { attribute:'SHEET COLOUR(SAND/GLOSS)& STICK COLOUR' },
+    'stick-file-s311a-natural': { attribute:'SHEET NATURAL(SAND/GLOSS) & STICK NATURAL' },
+    'stick-file-s309-mixed-colour': { attribute:'SHEET COLOUR(SAND/GLOSS)& STICK COLOUR' },
   };
 
   // ── PARSE URL PARAMS ──
@@ -429,7 +434,13 @@
 
   // ── RENDER SPECS ──
   const spec = PRODUCT_SPECS[id];
-  if (spec) {
+  if (spec?.attribute) {
+    const attribute = document.getElementById('productAttribute');
+    attribute.textContent = spec.attribute;
+    attribute.hidden = false;
+  }
+
+  if (spec && (spec.pages || spec.ruling)) {
     document.getElementById('specsBlock').style.display = '';
 
     if (spec.pages) {
