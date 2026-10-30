@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteImageMover", "FavoriteImageMover.csproj", "{7AEE111B-84E8-C846-E780-B63AADDFEA6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AEE111B-84E8-C846-E780-B63AADDFEA6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEE111B-84E8-C846-E780-B63AADDFEA6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEE111B-84E8-C846-E780-B63AADDFEA6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEE111B-84E8-C846-E780-B63AADDFEA6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DECF23F8-22F2-4947-997F-9C9643779E1F}
+	EndGlobalSection
+EndGlobal
