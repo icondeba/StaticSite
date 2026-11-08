@@ -464,6 +464,9 @@
       <a href="#graph"     class="mob-pill" data-target="graph">Graph &amp; Lab</a>
       <a href="#wiro"      class="mob-pill" data-target="wiro">Wiro</a>
       <a href="#craft"     class="mob-pill" data-target="craft">Craft</a>
+      <a href="#book-cover-rolls" class="mob-pill" data-target="book-cover-rolls">Cover Rolls</a>
+      <a href="#exam-boards" class="mob-pill" data-target="exam-boards">Exam Boards</a>
+      <a href="#plastic-scales" class="mob-pill" data-target="plastic-scales">Scales</a>
     </div>
 
     <div class="psb-layout">
@@ -479,6 +482,9 @@
             <li><a href="#graph"     class="sb-link" data-target="graph"><span>Graph &amp; Lab</span></a></li>
             <li><a href="#wiro"      class="sb-link" data-target="wiro"><span>Wiro Notebooks</span></a></li>
             <li><a href="#craft"     class="sb-link" data-target="craft"><span>Craft &amp; Specialty</span></a></li>
+            <li><a href="#book-cover-rolls" class="sb-link" data-target="book-cover-rolls"><span>Book Cover Rolls</span></a></li>
+            <li><a href="#exam-boards" class="sb-link" data-target="exam-boards"><span>Exam Boards</span></a></li>
+            <li><a href="#plastic-scales" class="sb-link" data-target="plastic-scales"><span>Plastic Scales</span></a></li>
           </ul>
           <h3 class="sb-title">Other Categories</h3>
           <ul class="sb-list">
@@ -517,8 +523,20 @@
           <div class="products-grid" id="grid-wiro"></div>
         </section>
         <section class="category-sec" id="craft">
-          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff8e1;">✂️</div><div><h2>Craft, Boards &amp; Specialty Items</h2><p>Scrap books, exam boards, book covers and craft supplies</p></div></div><span class="sec-count">14+ Products</span></div>
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff8e1;">✂️</div><div><h2>Craft &amp; Specialty Items</h2><p>Scrap books and creative craft supplies</p></div></div><span class="sec-count">2 Products</span></div>
           <div class="products-grid" id="grid-craft"></div>
+        </section>
+        <section class="category-sec" id="book-cover-rolls">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#e8f5e9;">📗</div><div><h2>Book Cover Rolls</h2><p>Synthetic, transparent and paper cover rolls for everyday school use</p></div></div><span class="sec-count">20 Products</span></div>
+          <div class="products-grid" id="grid-book-cover-rolls"></div>
+        </section>
+        <section class="category-sec" id="exam-boards">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#fff3e0;">📋</div><div><h2>Exam Boards</h2><p>Durable clip boards in full and executive sizes</p></div></div><span class="sec-count">10 Products</span></div>
+          <div class="products-grid" id="grid-exam-boards"></div>
+        </section>
+        <section class="category-sec" id="plastic-scales">
+          <div class="sec-header reveal left"><div class="sec-header-left"><div class="sec-icon" style="background:#e3f2fd;">📏</div><div><h2>Plastic Scales</h2><p>Reliable 15 cm and 30 cm plastic scales for students</p></div></div><span class="sec-count">2 Products</span></div>
+          <div class="products-grid" id="grid-plastic-scales"></div>
         </section>
       </div><!-- /psb-content -->
 
@@ -659,19 +677,44 @@
     'grid-craft': [
       { id: 'scrap-book', name: 'SCRAP BOOK', images: ['1.webp','2.webp'] },
       { id: 'successful-premium-fluroscent-assorted-craft-paper', name: 'SUCCESSFUL PREMIUM FLUROSCENT ASSORTED CRAFT PAPER', images: ['1.png'] },
-      { id: 'plastic-unbreakable-exam-board-transparent', name: 'PLASTIC UNBREAKABLE EXAM BOARD TRANSPARENT',     images: ['1.png'] },
-      { id: 'crystal-plastic-unbreakable-exam-board',     name: 'CRYSTAL PLASTIC UNBREAKABLE EXAM BOARD',         images: ['1.png'] },
-      { id: 'mdf-exam-board', name: 'MDF EXAM BOARD',                      images: ['1.webp','2.webp'] },
-      { id: 'synthetic-roll-golden-metalic-box', name: 'SYNTHETIC ROLL GOLDEN METALIC BOX',              images: ['1.png'] },
-      { id: 'synthetic-roll-blue-metalic-box',   name: 'SYNTHETIC ROLL BLUE METALIC BOX',                images: ['1.png'] },
-      { id: 'synthetic-roll-white-box',          name: 'SYNTHETIC ROLL WHITE BOX',                       images: ['1.png'] },
-      { id: 'platinum-synthetic-roll-box-pm-01', name: 'PLATINUM SYNTHETIC ROLL BOX PM-01',              images: ['1.png'] },
-      { id: 'crystal-synthetic-roll-box-cl-01',  name: 'CRYSTAL SYNTHETIC ROLL BOX CL-01',               images: ['1.png'] },
-      { id: 'vision-synthetic-roll-box',         name: 'VISION SYNTHETIC ROLL BOX',                      images: ['1.png'] },
-      { id: 'classmerit-synthetic-roll-box',     name: 'CLASSMERIT SYNTHETIC ROLL BOX',                  images: ['1.png'] },
-      { id: 'transparent-book-cover-roll-green-box',  name: 'TRANSPARENT BOOK COVER ROLL GREEN BOX',     images: ['1.png'] },
-      { id: 'transparent-book-cover-roll-yellow-box', name: 'TRANSPARENT BOOK COVER ROLL YELLOW BOX',    images: ['1.png'] },
-      { id: 'successful-polypropylene-cover-roll-metalic-copper-box', name: 'SUCCESSFUL POLYPROPLYENE COVER ROLL (METAALIC COPPER BOX)', images: ['1.png'] },
+    ],
+    'grid-book-cover-rolls': [
+      { id: 'book-cover-roll-01', name: 'SUCCESSFUL 9 METER SYNTHETIC ROLL (GOLDEN BOX PACK) CODE-SGB-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-02', name: 'SUCCESSFUL 8 METER SYNTHETIC ROLL (WHITE BOX PACK) CODE-SWB-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-03', name: 'SUCCESSFUL 8 METER SYNTHETIC ROLL (METALLIC BLUE BOX PACK) CODE-SMB-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-04', name: 'SUCCESSFUL PLATINUM SYNTHETIC ROLL WITH BOX (CODE PM-01)', images: ['1.webp'] },
+      { id: 'book-cover-roll-05', name: 'SUCCESSFUL CRYSTAL SYNTHETIC ROLL WITH BOX (CODE CL-01)', images: ['1.webp'] },
+      { id: 'book-cover-roll-06', name: 'SUCCESSFUL POLYPROPLYENE COVER ROLL 8 YARD (METAALIC COPPER BOX) CODE-PP-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-07', name: 'SUCCESSFUL 9 METRE TRANSPARENT ROLL (GREEN BOX) CODE-SGB-02-TPT', images: ['1.webp'] },
+      { id: 'book-cover-roll-08', name: 'SUCCESFUL 8 METRE TRANSPARENR ROLL (YELLOW BOX) CODE-SYB-02-TPT', images: ['1.webp'] },
+      { id: 'book-cover-roll-09', name: 'VISION 9 METER SYNTHETIC ROLL (RED BOX) CODE-VRB-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-10', name: 'VISION 9 METER SYNTHETIC ROLL (POLY PACK) CODE-VPP-01', images: ['1.webp','2.webp'] },
+      { id: 'book-cover-roll-11', name: 'CLASSMERIT SYNTHETIC ROLL (POLY PACK) CODE-CMPP-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-12', name: 'STUDENT 9 YDS SYNTHETIC ROLL (POLY PACK) PINK, GREEN, YELLOW ALL IN FLUORESCENT CLR CODE-STPP-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-13', name: 'STUDENT 9 YDS SYNTHETIC ROLL (POLY PACK) CODE-STPP-01', images: ['1.webp'] },
+      { id: 'book-cover-roll-14', name: 'SUCCESSFUL 8 METRE PAPER ROLL (BLUE BOX) - 38CM 64GSM CODE-SPR-8M-64G-38CM(BB)', images: ['1.webp'] },
+      { id: 'book-cover-roll-15', name: 'SUCCESSFUL 8 METRE PAPER ROLL (PINK BOX) - 38CM 80GSM CODE-SPR-8M-80G-38CM(PB)', images: ['1.webp'] },
+      { id: 'book-cover-roll-16', name: 'SUCCESSFUL PAPER ROLL (POLY PACK) - 38CM 64GSM', images: ['1.webp','2.webp','3.webp'] },
+      { id: 'book-cover-roll-17', name: 'SUCCESSFUL PAPER ROLL (POLY PACK) - 38CM 80GSM', images: ['1.webp','2.webp','3.webp'] },
+      { id: 'book-cover-roll-18', name: 'SUCCESSFUL PAPER ROLL (POLY PACK) - 16 INCH / 40CM 64GSM', images: ['1.webp','2.webp','3.webp','4.webp'] },
+      { id: 'book-cover-roll-19', name: "VISION 8 METRE PAPER ROLL (POLY PACK) - 14'' CODE-VPR-8M-(PP)", images: ['1.webp'] },
+      { id: 'book-cover-roll-20', name: "CLASSMERIT 5 YARD PAPER ROLL (POLY PACK) - 14'' CODE-CMPR-5Y-(PP)", images: ['1.webp'] },
+    ],
+    'grid-exam-boards': [
+      { id: 'exam-board-cb-01', name: "SUCCESSFUL PLASTIC UNBREAKABLE MIX CLR CLIP BOARD (FULL SIZE 9.5''X14'') - MERCURY CODE-CB-01", images: ['1.webp','2.webp','3.webp','4.webp'] },
+      { id: 'exam-board-cb-02', name: "SUCCESSFUL PLASTIC UNBREAKABLE WHITE CLIP BOARD (FULL SIZE 9.5''X14'') - MERCURY CODE-CB-02", images: ['1.webp'] },
+      { id: 'exam-board-cb-03', name: "SUCCESSFUL CRYSTAL CLIP BOARD (FULL SIZE 9.5''X14'') - PLATINUM CODE-CB-03", images: ['1.webp'] },
+      { id: 'exam-board-cb-05', name: "SUCCESSFUL CRYSTAL CLIP BOARD (FULL SIZE 9.5''X14'') - SILVER CODE-CB-05", images: ['1.webp'] },
+      { id: 'exam-board-cbe-01', name: "SUCCESSFUL PLASTIC UNBREAKABLE MIX CLR CLIP BOARD (FULL SIZE 9''X13.5'') - VENUS CODE-CBE-01", images: ['1.webp','2.webp','3.webp','4.webp'] },
+      { id: 'exam-board-cbe-02', name: "SUCCESSFUL PLASTIC UNBREAKABLE WHITE CLIP BOARD (FULL SIZE 9''X13.5'') - VENUS CODE-CBE-02", images: ['1.webp'] },
+      { id: 'exam-board-cbe-03', name: "SUCCESSFUL CRYSTAL CLIP BOARD (FULL SIZE 9''X13.5'') - GOLD CODE-CBE-03", images: ['1.webp'] },
+      { id: 'exam-board-cbg-01', name: "SUCCESSFUL PLASTIC UNBREAKABLE MIX CLR CLIP BOARD (FULL SIZE 9''X13.5'') - JUPITER CODE-CBG-01", images: ['1.webp','2.webp','3.webp','4.webp'] },
+      { id: 'exam-board-cbg-02', name: "SUCCESSFUL PLASTIC UNBREAKABLE WHITE CLIP BOARD (FULL SIZE 9''X13.5'') - JUPITER CODE-CBG-02", images: ['1.webp'] },
+      { id: 'exam-board-mdf-01', name: "MDF EXAM BOARD (FULL SIZE 9.5''X14'') - ALPHA CODE-MDF-01", images: ['1.webp','2.webp','3.webp'] },
+    ],
+    'grid-plastic-scales': [
+      { id: 'plastic-scale-30cm', name: 'SUCCESSFUL PLASTIC SCALE BIG SIZE 30CM CODE-SPS-30CM', images: ['1.webp'] },
+      { id: 'plastic-scale-15cm', name: 'SUCCESSFUL PLASTIC SCALE SMALL SIZE 15CM CODE-SPS-15CM', images: ['1.webp'] },
     ],
   };
 
@@ -684,6 +727,9 @@
     'grid-graph':     'Lab & Science',
     'grid-wiro':      'Wiro Notebook',
     'grid-craft':     'Craft & Specialty',
+    'grid-book-cover-rolls': 'Book Cover Roll',
+    'grid-exam-boards': 'Exam Board',
+    'grid-plastic-scales': 'Plastic Scale',
   };
 
   const studentProductSpecs = {
